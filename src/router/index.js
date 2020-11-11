@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Pages from "@/views/Pages";
 import Settings from "@/views/Settings";
 import Documantation from "@/views/Documantation";
+import List from "@/components/pagesComponents/List";
+import Create from "@/components/pagesComponents/Create";
+import Update from "@/components/pagesComponents/Update";
 
 Vue.use(VueRouter)
 
@@ -16,7 +19,24 @@ const routes = [
   {
     path: '/pages',
     name: 'Pages',
-    component: Pages
+    component: Pages,
+    children: [
+      {
+        path: '/',
+        name: 'List',
+        component: List
+      },
+      {
+        path: '/create',
+        name: 'Create',
+        component: Create
+      },
+      {
+        path: '/update/:id',
+        name: 'Update',
+        component: Update
+      }
+    ]
   },
   {
     path: '/settings',
