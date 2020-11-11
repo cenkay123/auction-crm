@@ -17,7 +17,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/pages',
+    path: '/pages/',
     name: 'Pages',
     component: Pages,
     children: [

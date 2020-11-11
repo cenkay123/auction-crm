@@ -16,9 +16,6 @@
 <script>
 export default {
   name: "Pages",
-  mounted() {
-    this.$router.push({name: 'List'})
-  }
 }
 </script>
 
