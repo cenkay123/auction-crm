@@ -6,7 +6,7 @@
     <v-app-bar color="blue darken-1" dense dark app>
       <Header></Header>
     </v-app-bar>
-    <v-main>
+    <v-main class="blue-grey lighten-5">
       <v-container fluid>
         <router-view></router-view>
       </v-container>

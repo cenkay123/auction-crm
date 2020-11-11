@@ -22,7 +22,7 @@
       </v-card>
     </v-col>
     <v-col cols="4">
-      <v-card class="mx-auto">
+      <v-card class="mx-auto mt-5">
         <v-card-title class="pa-2 text--darken-1">
           <h3 class="c-title font-weight-bold text-left grow">Aktivite</h3>
           <v-spacer></v-spacer>
@@ -57,63 +57,33 @@
       </v-card>
     </v-col>
     <v-col cols="4">
-      <v-card
-          class="mt-4 mx-auto"
-      >
-        <v-sheet
-            class="v-sheet--offset mx-auto"
-            color="cyan"
-            elevation="12"
-            max-width="calc(100% - 32px)"
-        >
-          <v-sparkline
-              :labels="labels"
-              :value="value"
-              color="white"
-              line-width="2"
-              padding="16"
-          ></v-sparkline>
+      <v-card class="mt-4 mx-auto">
+        <v-sheet class="v-sheet--offset mx-auto" color="cyan" elevation="12" max-width="calc(100% - 32px)">
+          <v-sparkline :labels="labels" :value="value" color="white" line-width="2" padding="16"></v-sparkline>
         </v-sheet>
-
         <v-card-text class="pt-0">
           <div class="title font-weight-light mb-2">
             User Registrations
           </div>
-          <div class="subheading font-weight-light grey--text">
-            Last Campaign Performance
-          </div>
+          <div class="subheading font-weight-light grey--text">Last Campaign Performance</div>
           <v-divider class="my-2"></v-divider>
-          <v-icon
-              class="mr-2"
-              small
-          >
-            mdi-clock
-          </v-icon>
+          <v-icon class="mr-2" small>mdi-clock</v-icon>
           <span class="caption grey--text font-weight-light">last registration 26 minutes ago</span>
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col cols="6">
-      <v-card class="mt-4 mx-auto pa-5">
-        <v-card-title class="pa-2 text--darken-1">
-          <h3 class="c-title font-weight-bold text-left grow">Sayfalar</h3>
-          <v-spacer></v-spacer>
-        </v-card-title>
-        <v-data-table
-            :headers="headers"
-            :items="desserts"
-            :items-per-page="5"
-            class="elevation-1"
-        ></v-data-table>
+    <v-col cols="5">
+      <v-card class="mx-auto">
+        <List></List>
       </v-card>
     </v-col>
-    <v-col cols="6">
-      <v-card class="mt-4 mx-auto pa-5">
+    <v-col cols="4">
+      <v-card class="mx-auto">
         <v-card-title>
           <v-icon
               :color="checking ? 'red lighten-2' : 'cyan'"
               class="mr-12"
-              size="170"
+              size="195"
               @click="takePulse"
           >
             mdi-account-arrow-left
@@ -155,15 +125,44 @@
         </v-sheet>
       </v-card>
     </v-col>
+    <v-col cols="3">
+        <v-card color="#385F73" class="mt-3" dark>
+          <v-card-title class="headline">Unlimited music now</v-card-title>
+          <v-card-subtitle>Listen to your favorite artists and albums whenever and wherever, online and offline.</v-card-subtitle>
+          <v-card-actions>
+            <v-btn text>Listen Now</v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-card color="#952175" class="mt-7" dark>
+          <div class="d-flex flex-no-wrap justify-space-between">
+            <div>
+              <v-card-title class="headline" v-text="'Halcyon Days'"
+              ></v-card-title>
+              <v-card-subtitle v-text="'Ellie Goulding'"></v-card-subtitle>
+              <v-card-actions>
+                <v-btn class="ml-2 mt-3" fab icon height="40px" right width="40px">
+                  <v-icon>mdi-play</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </div>
+            <v-avatar class="ma-3" size="125" tile>
+              <v-img :src="'https://cdn.vuetifyjs.com/images/cards/halcyon.png'"></v-img>
+            </v-avatar>
+          </div>
+        </v-card>
+    </v-col>
   </v-row>
 </template>
 
 <script>
+import List from "@/components/pagesComponents/List";
+
 const exhale = ms =>
     new Promise(resolve => setTimeout(resolve, ms))
 
 export default {
   name: 'Home',
+  components: {List},
   data() {
     return {
       labels: [
@@ -193,11 +192,11 @@ export default {
           sortable: false,
           value: 'name'
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
+        {text: 'Calories', value: 'calories'},
+        {text: 'Fat (g)', value: 'fat'},
+        {text: 'Carbs (g)', value: 'carbs'},
+        {text: 'Protein (g)', value: 'protein'},
+        {text: 'Iron (%)', value: 'iron'}
       ],
       desserts: [
         {
@@ -287,7 +286,7 @@ export default {
     }
   },
   computed: {
-    avg () {
+    avg() {
       const sum = this.heartbeats.reduce((acc, cur) => acc + cur, 0)
       const length = this.heartbeats.length
 
@@ -296,19 +295,19 @@ export default {
       return Math.ceil(sum / length)
     },
   },
-  created () {
+  created() {
     this.takePulse(false)
   },
   methods: {
-    heartbeat () {
+    heartbeat() {
       return Math.ceil(Math.random() * (120 - 80) + 80)
     },
-    async takePulse (inhale = true) {
+    async takePulse(inhale = true) {
       this.checking = true
 
       inhale && await exhale(1000)
 
-      this.heartbeats = Array.from({ length: 20 }, this.heartbeat)
+      this.heartbeats = Array.from({length: 20}, this.heartbeat)
 
       this.checking = false
     },
@@ -332,13 +331,13 @@ export default {
 }
 
 .c-caption {
-  font-size: .75rem!important;
-  letter-spacing: .0333333333em!important;
+  font-size: .75rem !important;
+  letter-spacing: .0333333333em !important;
   line-height: 1.25rem;
 }
 
 .c-title {
-  font-size: 18px!important;
+  font-size: 18px !important;
   padding-left: 10px;
 }
 </style>
