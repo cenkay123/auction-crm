@@ -1,30 +1,28 @@
 <template>
-  <v-card color="grey lighten-4" flat tile>
-    <v-toolbar dense>
-      <v-app-bar-nav-icon @click="test()"></v-app-bar-nav-icon>
-      <v-toolbar-title>Online Muzayede</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </v-toolbar>
-  </v-card>
+  <div style="display: contents">
+    <v-app-bar-nav-icon @click.stop="$parent.$data.mini = !$parent.$data.mini"></v-app-bar-nav-icon>
+    <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <v-btn icon>
+      <v-icon>mdi-settings</v-icon>
+    </v-btn>
+    <v-btn icon>
+      <v-icon>mdi-magnify</v-icon>
+    </v-btn>
+    <v-btn icon>
+      <v-avatar color="red" size="30">
+        <span class="white--text">S</span>
+      </v-avatar>
+    </v-btn>
+  </div>
 </template>
 
 
 <script>
 export default {
-  inject:['$validator'],
   name: "Header",
-  methods: {
-    test() {
-      this.drawer = false
+  data() {
+    return {
     }
   }
 }
