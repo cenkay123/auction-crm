@@ -2,20 +2,23 @@
   <v-card>
     <v-card-title class="pb-3">Yeni Sayfa Olustur</v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="loginForm.valid" class="px-10 pt-2">
+    <v-form v-model="pagesForm.valid" class="px-10 pt-2">
       <v-row>
         <v-col cols="6">
-          <v-text-field class="flag-TR" ref="name" v-model="name" :rules="[() => !!name || 'This field is required']"
+          <v-text-field class="flag-TR" ref="name" v-model="pagesForm.titleTR"
+                        :rules="[() => !!pagesForm.titleTR || 'Lutfen bos birakmayiniz']"
                         label="Baslik TR" prepend-icon="mdi-flag-checkered" placeholder="Turkce baslik giriniz" required
                         outlined></v-text-field>
         </v-col>
         <v-col cols="6">
-          <v-text-field class="flag-EN" ref="name" v-model="name" :rules="[() => !!name || 'This field is required']"
+          <v-text-field class="flag-EN" ref="name" v-model="pagesForm.titleEN"
+                        :rules="[() => !!pagesForm.titleEN || 'Lutfen bos birakmayiniz']"
                         label="Baslik EN" prepend-icon="mdi-flag-checkered" placeholder="Ingilizce baslik giriniz"
                         required outlined></v-text-field>
         </v-col>
         <v-col cols="6">
-          <v-combobox class="flag-TR" ref="name" v-model="model" :rules="[() => !!model || 'This field is required']"
+          <v-combobox class="flag-TR" ref="name" v-model="pagesForm.keywordsTR"
+                      :rules="[() => !!pagesForm.keywordsTR || 'Lufen en az 1 tane ekleyin']"
                       label="Keywords TR" prepend-icon="mdi-flag-checkered" placeholder="Turkce keywords giriniz"
                       required multiple small-chips hide-selected :filter="filter" :hide-no-data="!search"
                       :items="items" :search-input.sync="search" outlined>
@@ -48,8 +51,8 @@
           </v-combobox>
         </v-col>
         <v-col cols="6">
-          <v-combobox class="flag-EN" ref="name" v-model="modelEN"
-                      :rules="[() => !!modelEN || 'This field is required']" label="Keywords EN"
+          <v-combobox class="flag-EN" ref="name" v-model="pagesForm.keywordsEN"
+                      :rules="[() => !!pagesForm.keywordsEN || 'This field is required']" label="Keywords EN"
                       prepend-icon="mdi-flag-checkered" placeholder="Ingilizce keywords giriniz" required multiple
                       small-chips hide-selected :filter="filter" :hide-no-data="!search" :items="items"
                       :search-input.sync="search" outlined>
@@ -82,30 +85,33 @@
           </v-combobox>
         </v-col>
         <v-col cols="6">
-          <v-textarea class="flag-TR" counter v-model="name" :rules="[() => !!name || 'This field is required']"
+          <v-textarea class="flag-TR" counter v-model="pagesForm.summaryTR"
+                      :rules="[() => !!pagesForm.summaryTR || 'Lutfen bos birakmayiniz']"
                       label="Ozet TR" prepend-icon="mdi-flag-checkered" placeholder="Turkce ozet giriniz" required
                       outlined></v-textarea>
         </v-col>
         <v-col cols="6">
-          <v-textarea class="flag-EN" counter v-model="name" :rules="[() => !!name || 'This field is required']"
+          <v-textarea class="flag-EN" counter v-model="pagesForm.summaryEN"
+                      :rules="[() => !!pagesForm.summaryEN || 'Lutfen bos birakmayiniz']"
                       label="Ozet EN" prepend-icon="mdi-flag-checkered" placeholder="Ingilizce ozet giriniz" required
                       outlined></v-textarea>
         </v-col>
         <v-col cols="12">
-          <v-text-field ref="name" v-model="name" :rules="[() => !!name || 'This field is required']"
+          <v-text-field ref="name" v-model="pagesForm.pageUrl"
+                        :rules="[() => !!pagesForm.pageUrl || 'Lutfen bos birakmayiniz']"
                         label="Sayfa Yonlendirme" placeholder="https://" required outlined></v-text-field>
         </v-col>
         <v-col cols="6">
           <label class="custom-label flag-TR">Icerik TR &nbsp;
             <v-icon>mdi-flag-checkered</v-icon>
           </label>
-          <ckeditor :editor="editor" v-model="data"></ckeditor>
+          <ckeditor :editor="editor" v-model="pagesForm.editorTR"></ckeditor>
         </v-col>
         <v-col cols="6">
           <label class="custom-label flag-EN">Icerik EN &nbsp;
             <v-icon>mdi-flag-checkered</v-icon>
           </label>
-          <ckeditor :editor="editor" v-model="data"></ckeditor>
+          <ckeditor :editor="editor" v-model="pagesForm.editorEN"></ckeditor>
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-EN">Resim yukle</label>
@@ -113,24 +119,25 @@
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="6">
-          <v-select :items="itemsD" label="Sayfa Ozelligi" outlined dense></v-select>
+          <v-select :items="pagePropertyList" v-model="pagesForm.pageProperty" item-text="name" item-value="id"
+                    label="Sayfa Ozelligi" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
-          <v-select :items="itemsD" label="Ust Sayfalar" outlined dense></v-select>
+          <v-select :items="topPagesList" v-model="pagesForm.topPages" label="Ust Sayfalar" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
           <v-row>
             <v-col cols="6">
-              <v-checkbox v-model="checkbox1" label="Ust menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="pagesForm.topMenu" label="Ust menude gozuksun" class="mt-0"></v-checkbox>
             </v-col>
             <v-col cols="6">
-              <v-checkbox v-model="checkbox2" label="Alt menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="pagesForm.bottomMenu" label="Alt menude gozuksun" class="mt-0"></v-checkbox>
             </v-col>
           </v-row>
         </v-col>
         <v-col cols="6"></v-col>
         <v-col cols="2" class="px-7 py-0">
-          <v-btn class="login-btn" color="success" @click="login" :loading="loading" :disabled="loading">Kaydet
+          <v-btn class="login-btn" color="success" @click="createPage" :loading="loading" :disabled="loading">Kaydet
             <template v-slot:loader>
               <span>Loading...</span>
             </template>
@@ -154,18 +161,7 @@ export default {
   data() {
     return {
       editor: ClassicEditor,
-      data: null,
-      activator: null,
-      attach: null,
-      editing: null,
-      search: null,
-      menu: false,
-      checkbox1: false,
-      checkbox2: false,
-      editingIndex: -1,
-      nonce: 1,
-      x: 0,
-      y: 0,
+
       colors: ['green', 'purple', 'indigo', 'cyan', 'teal', 'orange'],
       items: [
         {header: 'Select an option or create one'},
@@ -182,19 +178,14 @@ export default {
           color: 'red',
         },
       ],
-      model: [
-        {
-          text: 'turkce',
-          color: 'blue',
-        },
-      ],
-      modelEN: [
-        {
-          text: 'english',
-          color: 'blue',
-        },
-      ],
-      itemsD: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      editing: null,
+      editingIndex: -1,
+      nonce: 1,
+      search: null,
+
+      pagePropertyList: ['Normal Sayfa', 'Galeri Sayfasi', 'Video Sayfasi', 'Referans Sayfasi'],
+      topPagesList: ['Ust Sayfa', 'Hakkimizda', 'Urunler', 'Sayfa-3', 'Sayfa-4'],
+
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,
@@ -202,19 +193,41 @@ export default {
         addRemoveLinks: true,
         headers: {"My-Awesome-Header": "header value"}
       },
-      loginForm: {
+
+      pagesForm: {
         valid: false,
-        email: '',
-        password: '',
-        emailRules: [v => !!v || 'Email is required'],
-        passwordRules: [v => !!v || 'Password is required',],
+        titleTR: null,
+        titleEN: null,
+        keywordsTR: [
+          {
+            text: 'muzayede',
+            color: 'blue',
+          },
+        ],
+        keywordsEN: [
+          {
+            text: 'auction',
+            color: 'blue',
+          },
+        ],
+        summaryTR: null,
+        summaryEN: null,
+        pageUrl: null,
+        editorTR: null,
+        editorEN: null,
+        pageProperty: false,
+        topPages: false,
+        topMenu: false,
+        bottomMenu: false
       },
+
+      loading: false
     }
   },
   watch: {
-    model(val, prev) {
+    'pagesForm.keywordsTR'(val, prev) {
       if (val.length === prev.length) return
-      this.model = val.map(v => {
+      this.pagesForm.keywordsTR = val.map(v => {
         if (typeof v === 'string') {
           v = {
             text: v,
@@ -226,9 +239,9 @@ export default {
         return v
       })
     },
-    modelEN(val, prev) {
+    'pagesForm.keywordsEN'(val, prev) {
       if (val.length === prev.length) return
-      this.modelEN = val.map(v => {
+      this.pagesForm.keywordsEN = val.map(v => {
         if (typeof v === 'string') {
           v = {
             text: v,
@@ -240,6 +253,9 @@ export default {
         return v
       })
     },
+  },
+  mounted() {
+    this.fetchSpecifications()
   },
   methods: {
     edit(index, item) {
@@ -260,6 +276,43 @@ export default {
           .toLowerCase()
           .indexOf(query.toString().toLowerCase()) > -1
     },
+    fetchSpecifications() {
+      this.api_get('/pagespecifications', this.successSpecifications, this.errorSpecifications)
+    },
+    successSpecifications(response) {
+      this.pagePropertyList = response.data
+    },
+    errorSpecifications(e) {
+      console.log(e)
+    },
+    createPage() {
+      this.loading = true;
+      this.api_post('/pages/add', {
+        TR_title: this.pagesForm.titleTR,
+        EN_title: this.pagesForm.titleEN,
+        TR_Keywords: this.pagesForm.keywordsTR[0].text,
+        EN_Keywords: this.pagesForm.keywordsEN[0].text,
+        TR_Description: this.pagesForm.summaryTR,
+        EN_Description: this.pagesForm.summaryEN,
+        TR_Detail: this.pagesForm.editorTR,
+        EN_Detail: this.pagesForm.editorEN,
+        RedirectionLink: this.pagesForm.pageUrl,
+        SpecificationId: this.pagesForm.pageProperty,
+        IsMain: this.pagesForm.topMenu,
+        IsFooter: this.pagesForm.bottomMenu,
+        PageBanners:[{
+          PictureUrl:"blabla.jpg"
+        }]
+      }, this.successPage, this.errorPage)
+    },
+    successPage() {
+      this.loading = false;
+      this.$router.push({name: 'List'})
+    },
+    errorPage(e) {
+      this.loading = false;
+      console.log(e)
+    }
   },
 }
 </script>
