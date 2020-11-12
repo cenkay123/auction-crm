@@ -155,18 +155,18 @@ export default {
     return {
       editor: ClassicEditor,
       data: null,
-      loginForm: {
-        valid: false,
-        email: '',
-        password: '',
-        emailRules: [v => !!v || 'Email is required'],
-        passwordRules: [v => !!v || 'Password is required',],
-      },
       activator: null,
       attach: null,
-      colors: ['green', 'purple', 'indigo', 'cyan', 'teal', 'orange'],
       editing: null,
+      search: null,
+      menu: false,
+      checkbox1: false,
+      checkbox2: false,
       editingIndex: -1,
+      nonce: 1,
+      x: 0,
+      y: 0,
+      colors: ['green', 'purple', 'indigo', 'cyan', 'teal', 'orange'],
       items: [
         {header: 'Select an option or create one'},
         {
@@ -182,8 +182,6 @@ export default {
           color: 'red',
         },
       ],
-      nonce: 1,
-      menu: false,
       model: [
         {
           text: 'turkce',
@@ -197,9 +195,6 @@ export default {
         },
       ],
       itemsD: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      x: 0,
-      search: null,
-      y: 0,
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,
@@ -207,44 +202,41 @@ export default {
         addRemoveLinks: true,
         headers: {"My-Awesome-Header": "header value"}
       },
-      checkbox1: false,
-      checkbox2: false
+      loginForm: {
+        valid: false,
+        email: '',
+        password: '',
+        emailRules: [v => !!v || 'Email is required'],
+        passwordRules: [v => !!v || 'Password is required',],
+      },
     }
   },
   watch: {
     model(val, prev) {
       if (val.length === prev.length) return
-
       this.model = val.map(v => {
         if (typeof v === 'string') {
           v = {
             text: v,
             color: this.colors[this.nonce - 1],
           }
-
           this.items.push(v)
-
           this.nonce++
         }
-
         return v
       })
     },
     modelEN(val, prev) {
       if (val.length === prev.length) return
-
       this.modelEN = val.map(v => {
         if (typeof v === 'string') {
           v = {
             text: v,
             color: this.colors[this.nonce - 1],
           }
-
           this.items.push(v)
-
           this.nonce++
         }
-
         return v
       })
     },
@@ -261,12 +253,9 @@ export default {
     },
     filter(item, queryText, itemText) {
       if (item.header) return false
-
       const hasValue = val => val != null ? val : ''
-
       const text = hasValue(itemText)
       const query = hasValue(queryText)
-
       return text.toString()
           .toLowerCase()
           .indexOf(query.toString().toLowerCase()) > -1
