@@ -9,11 +9,27 @@
     <v-btn icon>
       <v-icon>mdi-magnify</v-icon>
     </v-btn>
-    <v-btn icon>
-      <v-avatar color="red" size="30">
-        <span class="white--text">S</span>
-      </v-avatar>
-    </v-btn>
+    <v-menu bottom offset-y >
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn v-bind="attrs" v-on="on" icon>
+          <v-avatar color="red" size="30">
+            <span class="white--text">{{ $store.state.auth.userInfo.userName.slice(0,1) }}</span>
+          </v-avatar>
+        </v-btn>
+      </template>
+      <v-list dense>
+        <v-list-item :to="{name: 'Settings'}">
+          <v-list-item-title><v-icon color="cyan" class="mr-2">mdi-settings</v-icon>Site Ayarlari</v-list-item-title>
+        </v-list-item>
+        <v-list-item :to="{name: 'Documentation'}">
+          <v-list-item-title><v-icon color="cyan" class="mr-2">mdi-help-box</v-icon>Dokumentasyon</v-list-item-title>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item @click="logout">
+          <v-list-item-title><v-icon color="red" class="mr-2">mdi-logout</v-icon>Guvenli Cikis</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
   </div>
 </template>
 
@@ -22,7 +38,11 @@
 export default {
   name: "Header",
   data() {
-    return {
+    return {}
+  },
+  methods: {
+    logout() {
+      this.$store.commit('logout');
     }
   }
 }

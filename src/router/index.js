@@ -17,14 +17,15 @@ const routes = [
     component: Home
   },
   {
-    path: '/pages/',
+    path: '/pages',
     name: 'Pages',
     component: Pages,
+    redirect: '/pages',
     children: [
       {
         path: '/',
         name: 'List',
-        component: List
+        component: List,
       },
       {
         path: '/create',

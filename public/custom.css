@@ -1,0 +1,11 @@
+.ck-editor {
+    height: 250px!important;
+}
+.ck-editor__editable {
+    height: 200px!important;
+}
+.custom-label {
+    font-size: 14px;
+    color: #797979;
+    font-weight: 500;
+}

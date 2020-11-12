@@ -5,13 +5,15 @@ import store from './store'
 import vuetify from "@/plugins/vuetify"
 import axios_mixin from './axios_mixin'
 import VueMoment from 'vue-moment'
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import moment from 'moment-timezone'
 require('moment/locale/tr')
 Vue.config.productionTip = false;
 Vue.mixin(axios_mixin);
 Vue.use(VueMoment, {
   moment,
-})
+});
+Vue.use( CKEditor );
 
 export const EventBus = new Vue();
 
