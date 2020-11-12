@@ -22,7 +22,7 @@
       <template v-slot:item.actions="{ item }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-icon small color="orange lighten-1" class="mr-2" @click="editItem(item)" v-bind="attrs" v-on="on">
+            <v-icon small color="orange lighten-1" class="mr-2" v-bind="attrs" v-on="on" @click="updateItem(item.id)">
               mdi-pencil
             </v-icon>
           </template>
@@ -30,7 +30,8 @@
         </v-tooltip>
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-icon small color="red lighten-1" @click="deleteItem(item)" v-bind="attrs" v-on="on">mdi-delete</v-icon>
+            <v-icon small color="red lighten-1" v-bind="attrs" v-on="on" @click="deleteItem(item.id)">mdi-delete
+            </v-icon>
           </template>
           <span>Sil</span>
         </v-tooltip>
@@ -81,6 +82,20 @@ export default {
     },
     errorPages() {
       this.snackbar = true
+    },
+    deleteItem(id) {
+      this.api_post('/pages/delete/' + id, {
+        Id: id
+      }, this.deleteSuccess, this.deleteErrror)
+    },
+    deleteSuccess() {
+      this.fetchPages()
+    },
+    deleteErrror(e) {
+      console.log(e)
+    },
+    updateItem(id){
+      this.$router.push({name: 'Update', params: {id: id}})
     }
   }
 }
