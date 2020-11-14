@@ -94,7 +94,7 @@
         </v-col>
         <v-col cols="12">
           <v-text-field ref="name" v-model="pagesForm.pageUrl"
-                        label="Link Yönlendirme"  outlined></v-text-field>
+                        label="Link Yönlendirme" outlined></v-text-field>
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-TR">Icerik TR &nbsp;
@@ -118,7 +118,8 @@
                     label="Sayfa Ozelligi" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
-          <v-select :items="topPagesList" v-model="pagesForm.topPages" label="Ust Sayfalar" outlined dense></v-select>
+          <v-select :items="$store.state.pages.pages" v-model="pagesForm.topPages" default="id" item-text="title" item-value="id"
+                    label="Ust Sayfalar" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
           <v-row>
@@ -178,7 +179,7 @@ export default {
       nonce: 1,
       search: null,
 
-      pagePropertyList: ['Normal Sayfa', 'Galeri Sayfasi'],
+      pagePropertyList: [],
       topPagesList: ['Ust Sayfa', 'Hakkimizda', 'Urunler', 'Sayfa-3', 'Sayfa-4'],
 
       dropzoneOptions: {
@@ -210,7 +211,7 @@ export default {
         pageUrl: null,
         editorTR: null,
         editorEN: null,
-        pageProperty: null,
+        pageProperty: {},
         topPages: false,
         topMenu: false,
         bottomMenu: false
@@ -250,7 +251,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchSpecifications()
+    this.fetchSpecifications();
   },
   methods: {
     edit(index, item) {
@@ -275,7 +276,8 @@ export default {
       this.api_get('/pagespecifications', this.successSpecifications, this.errorSpecifications)
     },
     successSpecifications(response) {
-      this.pagePropertyList = response.data
+      this.pagePropertyList = response.data;
+      this.pagesForm.pageProperty = this.pagePropertyList[0];
     },
     errorSpecifications(e) {
       console.log(e)
@@ -292,10 +294,11 @@ export default {
         EN_Detail: this.pagesForm.editorEN,
         RedirectionLink: this.pagesForm.pageUrl,
         SpecificationId: this.pagesForm.pageProperty,
+        parent_id: this.pagesForm.topPages,
         IsMain: this.pagesForm.topMenu,
         IsFooter: this.pagesForm.bottomMenu,
-        PageBanners:[{
-          PictureUrl:"blabla.jpg"
+        PageBanners: [{
+          PictureUrl: "blabla.jpg"
         }]
       }, this.successPage, this.errorPage)
     },

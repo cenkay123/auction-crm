@@ -7,68 +7,79 @@ import axios from "axios";
 Vue.use(Vuex)
 window.axios = require('axios');
 
+var vuex = window.localStorage.getItem('vuex')
+var token = JSON.parse(vuex);
+
 
 const systemUtiltys = {
     mixins: [axios_mixin],
     state: {
         base_url: 'http://52.247.242.98:80'
     },
-     actions: {
+    actions: {
 
         /* Table row da sutun silmek */
         deleteItem(context, credentials) {
-          return new Promise((resolve, reject) => {
-            Vue.swal.fire({
-                  title: 'Silmek istediğinizden eminmisiniz?',
-                  text: "Silme işlemi yapıldıkdan sonra veri geri getirilemez!",
-                  type: 'warning',
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Evet, silinsin!'
-            }).then((result) => {
-               if (result.value){
-                  axios
-                      .post(context.state.base_url + credentials.endpoint + credentials.id, {
-                          id: credentials.id,
-                      })
-                      .then(response=> {
-                          context.commit('getSwallFireSuccess');
-                          resolve(response)
-                      })
-                      .catch(error => {
-                          context.commit('getSwallFireError');
-                          reject(error)
-                      })
-                  }
-               });
+            return new Promise((resolve, reject) => {
+                Vue.swal.fire({
+                    title: 'Silmek istediğinizden eminmisiniz?',
+                    text: "Silme işlemi yapıldıkdan sonra veri geri getirilemez!",
+                    type: 'warning',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet, silinsin!'
+                }).then((result) => {
+                    if (result.value) {
+                        axios
+                            .post(context.state.base_url + credentials.endpoint + credentials.id, {
+                                id: credentials.id,
+                            }, {
+                                headers: {
+                                    Authorization: 'Bearer ' + token.auth.userToken //the token is a variable which holds the token
+                                },
+                            })
+                            .then(response => {
+                                context.commit('getSwallFireSuccess');
+                                resolve(response)
+                            })
+                            .catch(error => {
+                                context.commit('getSwallFireError');
+                                reject(error)
+                            })
+                    }
+                });
             })
         },
         /* Durum aktif et yada pasif et */
-        statusChange(context, credentials){
+        statusChange(context, credentials) {
             return new Promise((resolve, reject) => {
                 axios
-                  .post(context.state.base_url + credentials.endpoint + credentials.id, {
-                    id: credentials.id,
-                    IsMain: credentials.IsMain,
-                  })
-                  .then(response => {
-                    context.commit('getSwallFireSuccess');
-                    resolve(response)
-                  })
-                  .catch(error => {
-                   context.commit('getSwallFireError');
-                    reject(error)
-                  })
+                    .post(context.state.base_url + credentials.endpoint, {
+                        id: credentials.id,
+                        isActive: credentials.isActive
+                    }, {
+                        headers: {
+                            Authorization: 'Bearer ' + token.auth.userToken //the token is a variable which holds the token
+                        },
+                    })
+                    .then(response => {
+                        context.commit('getSwallFireSuccess');
+                        resolve(response)
+                    })
+                    .catch(error => {
+                        context.commit('getSwallFireError');
+                        reject(error)
+                    })
             });
         }
-      },
+    },
     mutations: {
-        getSwallFireSuccess(){
+        getSwallFireSuccess() {
             axios_mixin.methods.Swall_Fire('İslem Başarılı', '', 'success')
         },
-        getSwallFireError(){
+        getSwallFireError() {
             axios_mixin.methods.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error')
         }
     }
@@ -118,17 +129,18 @@ const modulePages = {
             data.forEach((item) => {
                 var customItem = {
                     id: item.id,
-                    title: item.tR_Title,
+                    title: item.title_tr,
                     createdAt: item.createdAt,
-                    isMain: item.isMain
+                    isActive: item.isActive,
+                    subPages: item.subPages
                 };
                 state.pages.push(customItem);
             })
         },
-        successPagesCreate(){
+        successPagesCreate() {
             axios_mixin.methods.Error_Message('İslem Basarılı', '', 'success')
         },
-        errorPagesCreate(){
+        errorPagesCreate() {
             axios_mixin.methods.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
         }
     }

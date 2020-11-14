@@ -1,32 +1,45 @@
 <template>
   <div>
-    <v-card-title>
-     <v-text-field
-          v-model="search"
-          label="Tabloda aratmak istediğinizi bu alana yazabilirsiniz..."
-          single-line
-          hide-details
-        ></v-text-field>
-    </v-card-title>
     <v-data-table
         :headers="headers"
         :search="search"
         :items="$store.state.pages.pages"
         sort-by="id"
-        class="elevation-1"
+        class="elevation-5"
     >
       <template v-slot:item.isMain="{ item }">
-           <v-btn color="c00c292" v-if="item.isMain" @click="updateStatus(item.id,false)">AKTİF</v-btn>
-           <v-btn color="error" v-if="!item.isMain" @click="updateStatus(item.id,true)">PASİF</v-btn>
+           <v-btn color="c00c292" v-if="item.isActive" @click="updateStatus(item.id,false)">AKTİF</v-btn>
+           <v-btn color="error" v-if="!item.isActive" @click="updateStatus(item.id,true)">PASİF</v-btn>
+      </template>
+      <template v-slot:item.subPages="{ item }" >
+        <router-link tag="div" :to="'pages/subpages/' + item.id" class="text-decoration-underline">
+          Alt sayfalar({{item.subPages.length}})
+        </router-link>
       </template>
       <template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title>Sayfalar</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
+          <v-text-field
+              v-model="search"
+              label="Ara"
+              hide-details
+              outlined
+              dense
+              style="font-size: 12px; max-width: 300px"
+              placeholder="Bu alandan arama yapabilirsiniz.."
+          ></v-text-field>
           <v-spacer></v-spacer>
-          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Create'}">Yeni Olustur</v-btn>
-          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Sıfırla'}">Sıfırla</v-btn>
-          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Export'}">Export</v-btn>
+
+          <v-btn class="mr-3" small color="red" dark>Sıfırla
+            <v-icon small class="ml-1">mdi-close-outline</v-icon>
+          </v-btn>
+          <v-btn class="mr-3" small color="warning" dark>Export
+            <v-icon small class="ml-1">mdi-export</v-icon>
+          </v-btn>
+          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Create'}">Yeni Olustur
+            <v-icon small class="ml-1">mdi-plus-outline</v-icon>
+          </v-btn>
         </v-toolbar>
       </template>
 
@@ -46,9 +59,6 @@
           </template>
           <span>Sil</span>
         </v-tooltip>
-      </template>
-      <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">Reset</v-btn>
       </template>
     </v-data-table>
     <v-snackbar v-model="snackbar" :timeout="timeout">{{ text }}
@@ -73,6 +83,7 @@ export default {
           value: 'id'
         },
         {text: 'Baslik', value: 'title'},
+        {text: 'Alt Sayfalar', value: 'subPages'},
         {text: 'Status', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
       ],
@@ -104,8 +115,8 @@ export default {
     updateStatus(id,status){
        this.$store.dispatch('statusChange',{
           id:id,
-          IsMain:status,
-          endpoint:'/pages/update/'
+          isActive:status,
+          endpoint:'/pages/isactiveupdate/'
         })
     },
     routeUpdateItem(id){
