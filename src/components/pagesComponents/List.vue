@@ -6,10 +6,9 @@
         sort-by="id"
         class="elevation-1"
     >
-      <template v-slot:item.createdAt="{ item }">
-        <span>
-          {{ item.createdAt | moment('timezone','Europe/Istanbul', "dddd, MMMM Do YYYY") }}
-        </span>
+      <template v-slot:item.isMain="{ item }">
+           <v-btn color="c00c292" v-if="item.isMain" @click="updateStatus(item.id,false)">AKTİF</v-btn>
+           <v-btn color="error" v-if="!item.isMain" @click="updateStatus(item.id,true)">PASİF</v-btn>
       </template>
       <template v-slot:top>
         <v-toolbar flat>
@@ -22,7 +21,7 @@
       <template v-slot:item.actions="{ item }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-icon small color="orange lighten-1" class="mr-2" v-bind="attrs" v-on="on" @click="updateItem(item.id)">
+            <v-icon small color="orange lighten-1" class="mr-2" v-bind="attrs" v-on="on" @click="routeUpdateItem(item.id)">
               mdi-pencil
             </v-icon>
           </template>
@@ -62,12 +61,12 @@ export default {
         },
         {text: 'Baslik', value: 'title'},
         {text: 'Status', value: 'isMain'},
-        {text: 'Olusurma Tarihi', value: 'createdAt'},
-        {text: 'Actions', value: 'actions', sortable: false}
+        {text: 'İslemler', value: 'actions', sortable: false}
       ],
       snackbar: false,
       text: 'Bir sorun ile karsilasildi.',
       timeout: 2000,
+      switch: ''
     }
   },
   mounted() {
@@ -84,19 +83,23 @@ export default {
       this.snackbar = true
     },
     deleteItem(id) {
-      this.api_post('/pages/delete/' + id, {
-        Id: id
-      }, this.deleteSuccess, this.deleteErrror)
+       this.$store.dispatch('deleteItem',{
+          id:id,
+          endpoint:'/pages/delete/'
+        })
     },
-    deleteSuccess() {
-      this.fetchPages()
+    updateStatus(id,status){
+       this.$store.dispatch('statusChange',{
+          id:id,
+          IsMain:status,
+          endpoint:'/pages/update/'
+        })
     },
-    deleteErrror(e) {
-      console.log(e)
-    },
-    updateItem(id){
+
+    routeUpdateItem(id){
       this.$router.push({name: 'Update', params: {id: id}})
     }
+
   }
 }
 </script>

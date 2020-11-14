@@ -6,15 +6,13 @@
       <v-row>
         <v-col cols="6">
           <v-text-field class="flag-TR" ref="name" v-model="pagesForm.titleTR"
-                        :rules="[() => !!pagesForm.titleTR || 'Lutfen bos birakmayiniz']"
-                        label="Baslik TR" prepend-icon="mdi-flag-checkered" placeholder="Turkce baslik giriniz" required
+                        label="Baslik TR" prepend-icon="mdi-flag-checkered" placeholder="baslik giriniz"
                         outlined></v-text-field>
         </v-col>
         <v-col cols="6">
           <v-text-field class="flag-EN" ref="name" v-model="pagesForm.titleEN"
-                        :rules="[() => !!pagesForm.titleEN || 'Lutfen bos birakmayiniz']"
-                        label="Baslik EN" prepend-icon="mdi-flag-checkered" placeholder="Ingilizce baslik giriniz"
-                        required outlined></v-text-field>
+                        label="Baslik EN" prepend-icon="mdi-flag-checkered" placeholder="baslik giriniz"
+                        outlined></v-text-field>
         </v-col>
         <v-col cols="6">
           <v-combobox class="flag-TR" ref="name" v-model="pagesForm.keywordsTR"
@@ -86,28 +84,25 @@
         </v-col>
         <v-col cols="6">
           <v-textarea class="flag-TR" counter v-model="pagesForm.summaryTR"
-                      :rules="[() => !!pagesForm.summaryTR || 'Lutfen bos birakmayiniz']"
-                      label="Ozet TR" prepend-icon="mdi-flag-checkered" placeholder="Turkce ozet giriniz" required
+                      label="Ozet TR" prepend-icon="mdi-flag-checkered" placeholder="ozet giriniz"
                       outlined></v-textarea>
         </v-col>
         <v-col cols="6">
           <v-textarea class="flag-EN" counter v-model="pagesForm.summaryEN"
-                      :rules="[() => !!pagesForm.summaryEN || 'Lutfen bos birakmayiniz']"
-                      label="Ozet EN" prepend-icon="mdi-flag-checkered" placeholder="Ingilizce ozet giriniz" required
+                      label="Ozet EN" prepend-icon="mdi-flag-checkered" placeholder="ozet giriniz"
                       outlined></v-textarea>
         </v-col>
         <v-col cols="12">
           <v-text-field ref="name" v-model="pagesForm.pageUrl"
-                        :rules="[() => !!pagesForm.pageUrl || 'Lutfen bos birakmayiniz']"
-                        label="Sayfa Yonlendirme" placeholder="https://" required outlined></v-text-field>
+                        label="Link Yönlendirme"  outlined></v-text-field>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12">
           <label class="custom-label flag-TR">Icerik TR &nbsp;
             <v-icon>mdi-flag-checkered</v-icon>
           </label>
           <ckeditor :editor="editor" v-model="pagesForm.editorTR"></ckeditor>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12">
           <label class="custom-label flag-EN">Icerik EN &nbsp;
             <v-icon>mdi-flag-checkered</v-icon>
           </label>
@@ -183,7 +178,7 @@ export default {
       nonce: 1,
       search: null,
 
-      pagePropertyList: ['Normal Sayfa', 'Galeri Sayfasi', 'Video Sayfasi', 'Referans Sayfasi'],
+      pagePropertyList: ['Normal Sayfa', 'Galeri Sayfasi'],
       topPagesList: ['Ust Sayfa', 'Hakkimizda', 'Urunler', 'Sayfa-3', 'Sayfa-4'],
 
       dropzoneOptions: {
@@ -215,7 +210,7 @@ export default {
         pageUrl: null,
         editorTR: null,
         editorEN: null,
-        pageProperty: false,
+        pageProperty: null,
         topPages: false,
         topMenu: false,
         bottomMenu: false
@@ -286,7 +281,6 @@ export default {
       console.log(e)
     },
     createPage() {
-      this.loading = true;
       this.api_post('/pages/add', {
         TR_title: this.pagesForm.titleTR,
         EN_title: this.pagesForm.titleEN,
@@ -306,12 +300,11 @@ export default {
       }, this.successPage, this.errorPage)
     },
     successPage() {
-      this.loading = false;
+      this.$store.commit('successPagesCreate')
       this.$router.push({name: 'List'})
     },
-    errorPage(e) {
-      this.loading = false;
-      console.log(e)
+    errorPage() {
+      this.$store.commit('errorPagesCreate')
     }
   },
 }

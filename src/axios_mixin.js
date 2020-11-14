@@ -1,5 +1,5 @@
 import axios from 'axios'
-//import Vue from 'vue'
+import Vue from 'vue'
 
 const axios_mixin = {
     data: function () {
@@ -41,6 +41,20 @@ const axios_mixin = {
                 (error) => (posterror(error))
             );
         },
+        Error_Message(title, text, type) {
+            Vue.swal.fire({
+              position: 'top-end',
+              icon: type,
+              title: title,
+              showConfirmButton: false,
+              timer: 1500
+            })
+        },
+        Swall_Fire(title,text,type){
+          Vue.swal.fire(title,text,type)
+        },
+
+
         findByKeyAndRemove: function (source, key, oddkey) {
             if (key in source) {
                 if (source[key].id === oddkey) {

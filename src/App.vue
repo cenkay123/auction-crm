@@ -8,6 +8,7 @@
     </v-app-bar>
     <v-main class="blue-grey lighten-5">
       <v-container fluid>
+            <Loader v-if="$store.state.settings.loader"></Loader>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -21,11 +22,12 @@
 // @ is an alias to /src
 
 import Header from "@/components/Header";
+import Loader from "@/components/Loader";
 import Sideebar from "@/components/Sideebar";
 import Login from "@/views/Login";
 export default {
   name: 'App',
-  components: {Login, Sideebar, Header},
+  components: {Login, Sideebar, Header,Loader},
   mounted() {
     this.$store.commit('hello');
   },

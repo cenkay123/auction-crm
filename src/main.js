@@ -7,9 +7,21 @@ import axios_mixin from './axios_mixin'
 import VueMoment from 'vue-moment'
 import CKEditor from '@ckeditor/ckeditor5-vue';
 import moment from 'moment-timezone'
+import Notifications from 'vue-notification'
+import VueSweetalert2 from 'vue-sweetalert2';
+
+
+Vue.use(Notifications);
+Vue.use(VueSweetalert2);
+
 require('moment/locale/tr')
 Vue.config.productionTip = false;
 Vue.mixin(axios_mixin);
+
+
+
+
+
 Vue.use(VueMoment, {
   moment,
 });
