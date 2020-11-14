@@ -8,11 +8,11 @@
         class="elevation-5"
     >
       <template v-slot:item.isMain="{ item }">
-           <v-btn color="c00c292" v-if="item.isActive" @click="updateStatus(item.id,false)">AKTİF</v-btn>
-           <v-btn color="error" v-if="!item.isActive" @click="updateStatus(item.id,true)">PASİF</v-btn>
+           <v-btn color="c00c292" small v-if="item.isActive" @click="updateStatus(item.id,false)">AKTİF</v-btn>
+           <v-btn color="error" small v-if="!item.isActive" @click="updateStatus(item.id,true)">PASİF</v-btn>
       </template>
       <template v-slot:item.subPages="{ item }" >
-        <router-link tag="div" :to="'pages/subpages/' + item.id" class="text-decoration-underline">
+        <router-link tag="div" :to="'pages/subpages/' + item.id" class="text-decoration-underline" style="cursor: pointer">
           Alt sayfalar({{item.subPages.length}})
         </router-link>
       </template>
@@ -90,7 +90,6 @@ export default {
       snackbar: false,
       text: 'Bir sorun ile karsilasildi.',
       timeout: 2000,
-      switch: ''
     }
   },
   mounted() {
@@ -107,10 +106,7 @@ export default {
       this.snackbar = true
     },
     deleteItem(id) {
-       this.$store.dispatch('deleteItem',{
-          id:id,
-          endpoint:'/pages/delete/'
-        })
+      this.mixinDeleteItem('/pages/delete/' +id, {Id: id});
     },
     updateStatus(id,status){
        this.$store.dispatch('statusChange',{

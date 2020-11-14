@@ -277,25 +277,22 @@ export default {
     },
     successSpecifications(response) {
       this.pagePropertyList = response.data;
-      this.pagesForm.pageProperty = this.pagePropertyList[0];
+      this.pagesForm.pageProperty = this.pagePropertyList[0].id;
     },
     errorSpecifications(e) {
       console.log(e)
     },
     createPage() {
       this.api_post('/pages/add', {
-        TR_title: this.pagesForm.titleTR,
-        EN_title: this.pagesForm.titleEN,
-        TR_Keywords: this.pagesForm.keywordsTR[0].text,
-        EN_Keywords: this.pagesForm.keywordsEN[0].text,
-        TR_Description: this.pagesForm.summaryTR,
-        EN_Description: this.pagesForm.summaryEN,
-        TR_Detail: this.pagesForm.editorTR,
-        EN_Detail: this.pagesForm.editorEN,
+        Title: this.pagesForm.titleTR,
+        Keywords: this.pagesForm.keywordsTR[0].text,
+        Description: this.pagesForm.summaryTR,
+        Detail: this.pagesForm.editorTR,
         RedirectionLink: this.pagesForm.pageUrl,
         SpecificationId: this.pagesForm.pageProperty,
-        parent_id: this.pagesForm.topPages,
+        parent_id: 1,
         IsMain: this.pagesForm.topMenu,
+        isActive: true,
         IsFooter: this.pagesForm.bottomMenu,
         PageBanners: [{
           PictureUrl: "blabla.jpg"

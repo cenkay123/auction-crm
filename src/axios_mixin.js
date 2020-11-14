@@ -43,15 +43,44 @@ const axios_mixin = {
         },
         Error_Message(title, text, type) {
             Vue.swal.fire({
-              position: 'top-end',
-              icon: type,
-              title: title,
-              showConfirmButton: false,
-              timer: 1500
+                position: 'top-end',
+                icon: type,
+                title: title,
+                showConfirmButton: false,
+                timer: 1500
             })
         },
-        Swall_Fire(title,text,type){
-          Vue.swal.fire(title,text,type)
+        Swall_Fire(title, text, type) {
+            Vue.swal.fire(title, text, type)
+        },
+
+        mixinDeleteItem(path, payload) {
+            Vue.swal.fire({
+                title: 'Silmek istediğinizden eminmisiniz?',
+                text: "Silme işlemi yapıldıkdan sonra veri geri getirilemez!",
+                type: 'warning',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, silinsin!',
+            }).then((result) => {
+                if (result.value) {
+                    this.api_post(path, payload, this.successDelete,this.errorDelete)
+                }
+            });
+        },
+        successDelete() {
+            Vue.swal.fire({
+                title: 'İslem Başarılı',
+                text: "",
+                type: 'success',
+                confirmButtonText: 'Tamam',
+                preConfirm: confirm
+            })
+        },
+        errorDelete () {
+            this.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error')
         },
 
 

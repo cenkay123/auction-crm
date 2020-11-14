@@ -17,41 +17,6 @@ const systemUtiltys = {
         base_url: 'http://52.247.242.98:80'
     },
     actions: {
-
-        /* Table row da sutun silmek */
-        deleteItem(context, credentials) {
-            return new Promise((resolve, reject) => {
-                Vue.swal.fire({
-                    title: 'Silmek istediğinizden eminmisiniz?',
-                    text: "Silme işlemi yapıldıkdan sonra veri geri getirilemez!",
-                    type: 'warning',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Evet, silinsin!'
-                }).then((result) => {
-                    if (result.value) {
-                        axios
-                            .post(context.state.base_url + credentials.endpoint + credentials.id, {
-                                id: credentials.id,
-                            }, {
-                                headers: {
-                                    Authorization: 'Bearer ' + token.auth.userToken //the token is a variable which holds the token
-                                },
-                            })
-                            .then(response => {
-                                context.commit('getSwallFireSuccess');
-                                resolve(response)
-                            })
-                            .catch(error => {
-                                context.commit('getSwallFireError');
-                                reject(error)
-                            })
-                    }
-                });
-            })
-        },
         /* Durum aktif et yada pasif et */
         statusChange(context, credentials) {
             return new Promise((resolve, reject) => {
