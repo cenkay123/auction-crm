@@ -1,7 +1,16 @@
 <template>
   <div>
+    <v-card-title>
+     <v-text-field
+          v-model="search"
+          label="Tabloda aratmak istediğinizi bu alana yazabilirsiniz..."
+          single-line
+          hide-details
+        ></v-text-field>
+    </v-card-title>
     <v-data-table
         :headers="headers"
+        :search="search"
         :items="$store.state.pages.pages"
         sort-by="id"
         class="elevation-1"
@@ -15,9 +24,12 @@
           <v-toolbar-title>Sayfalar</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-btn small color="primary" dark :to="{name: 'Create'}">Yeni Sayfa Olustur</v-btn>
+          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Create'}">Yeni Olustur</v-btn>
+          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Sıfırla'}">Sıfırla</v-btn>
+          <v-btn class="mr-3" small color="primary" dark :to="{name: 'Export'}">Export</v-btn>
         </v-toolbar>
       </template>
+
       <template v-slot:item.actions="{ item }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -52,6 +64,7 @@ export default {
   name: "List",
   data() {
     return {
+      search: "",
       headers: [
         {
           text: '#',
@@ -95,7 +108,6 @@ export default {
           endpoint:'/pages/update/'
         })
     },
-
     routeUpdateItem(id){
       this.$router.push({name: 'Update', params: {id: id}})
     }
