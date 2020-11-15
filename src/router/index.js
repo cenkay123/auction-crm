@@ -30,7 +30,7 @@ const routes = [
                 meta: {
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
-                        {name: 'Sayfalar', route: '/pages',disabled:true},
+                        {name: 'Sayfalar', route: '/pages', disabled: true},
                         {name: 'Sayfa ekleme', route: '/create'},
                     ]
                 }
@@ -43,7 +43,7 @@ const routes = [
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages'},
-                        {name: 'Sayfa ekleme', route: '/create',disabled:true},
+                        {name: 'Sayfa ekleme', route: '/create', disabled: true},
                     ]
                 }
             },
@@ -51,6 +51,11 @@ const routes = [
                 path: '/update/:id',
                 name: 'Update',
                 component: Update
+            },
+            {
+                path: '/subpages/:id',
+                name: 'subpages',
+                component: Subpages
             }
         ]
     },
@@ -62,7 +67,7 @@ const routes = [
             breadcrumb: [
                 {name: 'Anasayfa', route: '/'},
                 {name: 'Sayfalar', route: '/pages'},
-                {name: 'Sayfa ekleme', route: '/create',disabled:true},
+                {name: 'Sayfa ekleme', route: '/create', disabled: true},
             ]
         }
     },
