@@ -9,6 +9,7 @@
     <v-main class="blue-grey lighten-5">
       <v-container fluid>
             <Loader v-if="$store.state.settings.loader"></Loader>
+            <Breadcrumbs v-if="$store.state.auth.loggedIn"></Breadcrumbs>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -25,9 +26,10 @@ import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 import Sideebar from "@/components/Sideebar";
 import Login from "@/views/Login";
+import Breadcrumbs from "@/components/Breadcrumbs";
 export default {
   name: 'App',
-  components: {Login, Sideebar, Header,Loader},
+  components: {Breadcrumbs, Login, Sideebar, Header,Loader},
   mounted() {
     this.$store.commit('hello');
   },

@@ -17,3 +17,5 @@
 .swal2-title {
     font-weight: 500!important;
 }
+.v-breadcrumbs__item{color: #0d47a1!important;}
+.v-breadcrumbs__item--disabled{color: #000000!important;}
