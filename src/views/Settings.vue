@@ -134,6 +134,7 @@ export default {
       this.$store.state.settings.siteSettings = response.data[0]
     },
     updateData(){
+      this.$store.state.settings.loader=true;
       this.api_post('/sitesettings/update',{
          id:this.$store.state.settings.siteSettings.id,
          title:this.$store.state.settings.siteSettings.title,

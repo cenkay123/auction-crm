@@ -119,7 +119,8 @@ const modulePages = {
 
 const moduleSettings = {
     state: {
-        siteSettings: {}
+        siteSettings: {},
+        loader:false
     },
     mutations: {}
 }
