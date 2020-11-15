@@ -68,21 +68,9 @@ const modulePages = {
 
 const moduleSettings = {
     state: {
-        siteSettings: {},
-        socialSettings: {},
-        langSettings: [],
+        siteSettings: {}
     },
-    mutations: {
-        successSite(state, response) {
-            state.siteSettings = response.data[0];
-        },
-        successSocial(state, response) {
-            state.socialSettings = response.data;
-        },
-        successLang(state, response) {
-            state.langSettings = response.data[0];
-        },
-    }
+    mutations: {}
 }
 
 const vuexLocal = new createPersistedState({
