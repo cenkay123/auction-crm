@@ -46,7 +46,13 @@ const systemUtiltys = {
         },
         getSwallFireError() {
             axios_mixin.methods.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error')
-        }
+        },
+        successMessage() {
+            axios_mixin.methods.Error_Message('İslem Basarılı', '', 'success')
+        },
+        errorMessage() {
+            axios_mixin.methods.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
+        },
     }
 }
 
@@ -113,21 +119,9 @@ const modulePages = {
 
 const moduleSettings = {
     state: {
-        siteSettings: {},
-        socialSettings: {},
-        langSettings: [],
+        siteSettings: {}
     },
-    mutations: {
-        successSite(state, response) {
-            state.siteSettings = response.data[0];
-        },
-        successSocial(state, response) {
-            state.socialSettings = response.data;
-        },
-        successLang(state, response) {
-            state.langSettings = response.data[0];
-        },
-    }
+    mutations: {}
 }
 
 const vuexLocal = new createPersistedState({
