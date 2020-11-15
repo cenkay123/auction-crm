@@ -7,6 +7,7 @@ import Documantation from "@/views/Documantation";
 import List from "@/components/pagesComponents/List";
 import Create from "@/components/pagesComponents/Create";
 import Update from "@/components/pagesComponents/Update";
+import Subpages from "@/components/pagesComponents/Subpages";
 
 Vue.use(VueRouter)
 
@@ -36,6 +37,11 @@ const routes = [
         path: '/update/:id',
         name: 'Update',
         component: Update
+      },
+       {
+        path: '/subpages/:id',
+        name: 'subpages',
+        component: Subpages
       }
     ]
   },

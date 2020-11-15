@@ -12,7 +12,7 @@
         <v-btn color="error" small v-if="!item.isActive" @click="updateStatus(item.id,true)">PASİF</v-btn>
       </template>
       <template v-slot:item.subPages="{ item }">
-        <router-link tag="div" :to="'pages/subpages/' + item.id" class="text-decoration-underline"
+        <router-link tag="div" :to="'subpages/' + item.id" class="text-decoration-underline"
                      style="cursor: pointer">
           Alt sayfalar({{ item.subPages.length }})
         </router-link>
