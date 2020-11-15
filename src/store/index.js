@@ -8,8 +8,8 @@ window.axios = require('axios');
 const moduleForm = {
     state: {
         languages: [
-            {lang: 'turkish', code: 'tr'},
-            {lang: 'english', code: 'en'},
+            {lang: 'turkce', code: 'tr', id: 1},
+            {lang: 'english', code: 'en', id: 2},
         ]
     },
     mutations: {
@@ -57,12 +57,6 @@ const modulePages = {
                 state.pages.push(customItem);
             })
         },
-        successPagesCreate() {
-            axios_mixin.methods.Error_Message('İslem Basarılı', '', 'success')
-        },
-        errorPagesCreate() {
-            axios_mixin.methods.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
-        }
     }
 }
 
