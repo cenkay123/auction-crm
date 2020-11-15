@@ -11,50 +11,71 @@ import Update from "@/components/pagesComponents/Update";
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/pages',
-    name: 'Pages',
-    component: Pages,
-    redirect: '/pages',
-    children: [
-      {
+    {
         path: '/',
-        name: 'List',
-        component: List,
-      },
-      {
-        path: '/create',
-        name: 'Create',
-        component: Create
-      },
-      {
-        path: '/update/:id',
-        name: 'Update',
-        component: Update
-      }
-    ]
-  },
-  {
-    path: '/settings',
-    name: 'Settings',
-    component: Settings
-  },
-  {
-    path: '/documantation',
-    name: 'Documantation',
-    component: Documantation
-  },
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/pages',
+        name: 'Pages',
+        component: Pages,
+        redirect: '/pages',
+        children: [
+            {
+                path: '/',
+                name: 'List',
+                component: List,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sayfalar', route: '/pages',disabled:true},
+                        {name: 'Sayfa ekleme', route: '/create'},
+                    ]
+                }
+            },
+            {
+                path: '/create',
+                name: 'Create',
+                component: Create,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sayfalar', route: '/pages'},
+                        {name: 'Sayfa ekleme', route: '/create',disabled:true},
+                    ]
+                }
+            },
+            {
+                path: '/update/:id',
+                name: 'Update',
+                component: Update
+            }
+        ]
+    },
+    {
+        path: '/settings',
+        name: 'Settings',
+        component: Settings,
+        meta: {
+            breadcrumb: [
+                {name: 'Anasayfa', route: '/'},
+                {name: 'Sayfalar', route: '/pages'},
+                {name: 'Sayfa ekleme', route: '/create',disabled:true},
+            ]
+        }
+    },
+    {
+        path: '/documantation',
+        name: 'Documantation',
+        component: Documantation
+    },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router
