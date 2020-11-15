@@ -43,18 +43,20 @@ const axios_mixin = {
         },
         Error_Message(title, text, type) {
             Vue.swal.fire({
+                toast: true,
+                timerProgressBar: true,
                 position: 'top-end',
                 icon: type,
                 title: title,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000,
             })
         },
         Swall_Fire(title, text, type) {
             Vue.swal.fire(title, text, type)
         },
 
-        mixinDeleteItem(path, payload) {
+        mixinDeleteItem(path, payload, postsuccess, posterror) {
             Vue.swal.fire({
                 title: 'Silmek istediğinizden eminmisiniz?',
                 text: "Silme işlemi yapıldıkdan sonra veri geri getirilemez!",
@@ -66,21 +68,40 @@ const axios_mixin = {
                 confirmButtonText: 'Evet, silinsin!',
             }).then((result) => {
                 if (result.value) {
-                    this.api_post(path, payload, this.successDelete,this.errorDelete)
+                    this.api_calling().post(this.base_url + path, payload).then(
+                        (response) => {
+                            this.Swall_Fire('İslem Basarili', '', 'success');
+                            if (postsuccess) {
+                                (postsuccess(response.data))
+                            }
+                        }
+                    ).catch(
+                        (error) => {
+                            this.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error');
+                            if (posterror) {
+                                (posterror(error))
+                            }
+                        }
+                    );
                 }
             });
         },
-        successDelete() {
-            Vue.swal.fire({
-                title: 'İslem Başarılı',
-                text: "",
-                type: 'success',
-                confirmButtonText: 'Tamam',
-                preConfirm: confirm
-            })
-        },
-        errorDelete () {
-            this.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error')
+        mixinUpdateItem(path, payload, postsuccess, posterror) {
+            this.api_calling().post(this.base_url + path, payload).then(
+                (response) => {
+                    this.Swall_Fire('İslem Basarili', '', 'success');
+                    if (postsuccess) {
+                        (postsuccess(response.data))
+                    }
+                }
+            ).catch(
+                (error) => {
+                    this.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error');
+                    if (posterror) {
+                        (posterror(error))
+                    }
+                }
+            );
         },
 
 

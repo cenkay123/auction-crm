@@ -2,59 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate';
 import axios_mixin from "@/axios_mixin";
-import axios from "axios";
-
 Vue.use(Vuex)
 window.axios = require('axios');
-
-var vuex = window.localStorage.getItem('vuex')
-var token = JSON.parse(vuex);
-
-
-const systemUtiltys = {
-    mixins: [axios_mixin],
-    state: {
-        base_url: 'http://52.247.242.98:80'
-    },
-    actions: {
-        /* Durum aktif et yada pasif et */
-        statusChange(context, credentials) {
-            return new Promise((resolve, reject) => {
-                axios
-                    .post(context.state.base_url + credentials.endpoint, {
-                        id: credentials.id,
-                        isActive: credentials.isActive
-                    }, {
-                        headers: {
-                            Authorization: 'Bearer ' + token.auth.userToken //the token is a variable which holds the token
-                        },
-                    })
-                    .then(response => {
-                        context.commit('getSwallFireSuccess');
-                        resolve(response)
-                    })
-                    .catch(error => {
-                        context.commit('getSwallFireError');
-                        reject(error)
-                    })
-            });
-        }
-    },
-    mutations: {
-        getSwallFireSuccess() {
-            axios_mixin.methods.Swall_Fire('İslem Başarılı', '', 'success')
-        },
-        getSwallFireError() {
-            axios_mixin.methods.Swall_Fire('İslem Hatalı', 'Tekrar deneyiniz', 'error')
-        },
-        successMessage() {
-            axios_mixin.methods.Error_Message('İslem Basarılı', '', 'success')
-        },
-        errorMessage() {
-            axios_mixin.methods.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
-        },
-    }
-}
 
 const moduleForm = {
     state: {
@@ -130,7 +79,6 @@ const vuexLocal = new createPersistedState({
 
 const store = new Vuex.Store({
     modules: {
-        systemUtilty: systemUtiltys,
         form: moduleForm,
         auth: moduleAuth,
         settings: moduleSettings,
