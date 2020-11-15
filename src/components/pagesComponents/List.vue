@@ -32,8 +32,8 @@
           ></v-text-field>
           <v-spacer></v-spacer>
 
-          <v-btn class="mr-3" small color="red" dark>Sıfırla
-            <v-icon small class="ml-1">mdi-close-outline</v-icon>
+          <v-btn class="mr-3" small color="red" dark @click="deleteAllClear(null)">Sıfırla
+            <v-icon small class="ml-1"  >mdi-close-outline</v-icon>
           </v-btn>
           <v-btn class="mr-3" small color="warning" dark>Export
             <v-icon small class="ml-1">mdi-export</v-icon>
@@ -107,11 +107,17 @@ export default {
     errorPages() {
       this.snackbar = true
     },
+    deleteAllClear() {
+      this.mixinDeleteItem('/pages/deleteall', {Id: null}, this.successDelete);
+    },
     deleteItem(id) {
       this.mixinDeleteItem('/pages/delete/' + id, {Id: id}, this.successDelete);
     },
     successDelete() {
       this.fetchPages()
+    },
+    error(e){
+      console.log(e)
     },
     updateStatus(id, status) {
       this.mixinUpdateItem('/pages/isactiveupdate', {
