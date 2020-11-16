@@ -41,7 +41,8 @@ const moduleAuth = {
 const modulePages = {
     mixins: [axios_mixin],
     state: {
-        pages: []
+        pages: [],
+        news: []
     },
     mutations: {
         successPages(state, data) {
@@ -56,6 +57,10 @@ const modulePages = {
                 };
                 state.pages.push(customItem);
             })
+        },
+        successNews(state, data) {
+            state.news = [];
+            state.news = data;
         },
     }
 }
