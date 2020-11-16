@@ -30,6 +30,7 @@ export default {
         {title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'Home'},
         {title: 'Sayfalar', icon: 'mdi-image', route: 'Pages'},
         {title: 'Haberler', icon: 'mdi-newspaper', route: 'News'},
+        {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists'},
         {title: 'Site Ayarlari', icon: 'mdi-settings', route: 'Settings'},
         {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation'},
       ],

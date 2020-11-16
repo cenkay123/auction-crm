@@ -30,14 +30,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 export default {
   name: 'App',
   components: {Breadcrumbs, Login, Sideebar, Header,Loader},
-  mounted() {
+  created() {
     this.$store.commit('hello');
   },
   data() {
     return {
-      right: null,
       mini: false,
-      login: true
     }
   }
 }

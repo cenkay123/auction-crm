@@ -42,7 +42,8 @@ const modulePages = {
     mixins: [axios_mixin],
     state: {
         pages: [],
-        news: []
+        news: [],
+        artists: []
     },
     mutations: {
         successPages(state, data) {
@@ -61,6 +62,10 @@ const modulePages = {
         successNews(state, data) {
             state.news = [];
             state.news = data;
+        },
+        successArtists(state, data) {
+            state.artists = [];
+            state.artists = data;
         },
     }
 }

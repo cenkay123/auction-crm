@@ -12,6 +12,10 @@ import News from "@/views/News";
 import NewsList from "@/components/newsComponents/NewsList";
 import NewsCreate from "@/components/newsComponents/NewsCreate";
 import NewsUpdate from "@/components/newsComponents/NewsUpdate";
+import Artists from "@/views/Artists";
+import ArtistsList from "@/components/artistsComponents/ArtistsList";
+import ArtistsCreate from "@/components/artistsComponents/ArtistsCreate";
+import ArtistsUpdate from "@/components/artistsComponents/ArtistsUpdate";
 
 Vue.use(VueRouter)
 
@@ -101,6 +105,49 @@ const routes = [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Haberler', route: '/news'},
                         {name: 'Haber Guncelle', route: '/NewsUpdate', disabled: true},
+                    ]
+                }
+            },
+        ]
+    },
+    {
+        path: '/artists',
+        name: 'Artists',
+        component: Artists,
+        redirect: '/artists',
+        children: [
+            {
+                path: '/',
+                name: 'ArtistsList',
+                component: ArtistsList,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sanatcilar', route: '/artists', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/ArtistsCreate',
+                name: 'ArtistsCreate',
+                component: ArtistsCreate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sanatcilar', route: '/artists'},
+                        {name: 'Sanatci Ekle', route: '/ArtistsCreate', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/ArtistsUpdate/:id',
+                name: 'ArtistsUpdate',
+                component: ArtistsUpdate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sanatcilar', route: '/artists'},
+                        {name: 'Sanatci Guncelle', route: '/ArtistsUpdate', disabled: true},
                     ]
                 }
             },
