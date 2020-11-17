@@ -50,7 +50,8 @@ const axios_mixin = {
                 title: title,
                 showConfirmButton: false,
                 timer: 3000,
-            })
+            });
+            this.$store.state.settings.loader=false;
         },
         Swall_Fire(title, text, type) {
             Vue.swal.fire(title, text, type)

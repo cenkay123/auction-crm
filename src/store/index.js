@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate';
 import axios_mixin from "@/axios_mixin";
+
 Vue.use(Vuex)
 window.axios = require('axios');
+
 
 const moduleForm = {
     state: {
@@ -16,6 +18,20 @@ const moduleForm = {
         hello() {
             console.log('hello admin')
         }
+    }
+}
+
+const moduleStore = {
+    state: {
+        slayts: []
+    },
+    mutations: {
+        successSlayt(state, response) {
+            state.slayts = response;
+        },
+        errorSlayt() {
+            axios_mixin.methods.Error_Message('İşlem hatalı','tekrar deneyiniz','error')
+        },
     }
 }
 
@@ -73,7 +89,7 @@ const modulePages = {
 const moduleSettings = {
     state: {
         siteSettings: {},
-        loader:false
+        loader: false
     },
     mutations: {}
 }
@@ -87,7 +103,8 @@ const store = new Vuex.Store({
         form: moduleForm,
         auth: moduleAuth,
         settings: moduleSettings,
-        pages: modulePages
+        pages: modulePages,
+        storeData: moduleStore,
     },
     plugins: [vuexLocal]
 });

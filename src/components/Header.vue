@@ -3,7 +3,7 @@
     <v-app-bar-nav-icon @click.stop="$parent.$data.mini = !$parent.$data.mini"></v-app-bar-nav-icon>
     <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn icon>
+    <v-btn icon :to="{name: 'Settings'}">
       <v-icon>mdi-settings</v-icon>
     </v-btn>
     <v-btn icon>

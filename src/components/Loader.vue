@@ -33,7 +33,7 @@ export default {
       var th = this;
       setTimeout(function () {
         th.$store.state.settings.loader = false;
-      }, 2000);
+      }, 3000);
     },
   },
   watch: {
@@ -50,7 +50,7 @@ export default {
         return (this.value = 0)
       }
       this.value += 10
-    }, 1000)
+    }, 150)
   },
 }
 </script>
