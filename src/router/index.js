@@ -16,15 +16,21 @@ import Artists from "@/views/Artists";
 import ArtistsList from "@/components/artistsComponents/ArtistsList";
 import ArtistsCreate from "@/components/artistsComponents/ArtistsCreate";
 import ArtistsUpdate from "@/components/artistsComponents/ArtistsUpdate";
+import Slayts from "@/views/Slayts";
+import SlaytList from "@/components/slaytComponents/SlaytList";
+import SlaytsCreate from "@/components/slaytComponents/SlaytsCreate";
+import SlaytsUpdate from "@/components/slaytComponents/SlaytsUpdate";
 
 Vue.use(VueRouter)
 
 const routes = [
+    /** Home Router */
     {
         path: '/',
         name: 'Home',
         component: Home
     },
+    /** Pages Router */
     {
         path: '/pages',
         name: 'Pages',
@@ -67,6 +73,7 @@ const routes = [
             }
         ]
     },
+    /** News Router */
     {
         path: '/news',
         name: 'News',
@@ -110,6 +117,7 @@ const routes = [
             },
         ]
     },
+    /** Artists Router */
     {
         path: '/artists',
         name: 'Artists',
@@ -153,6 +161,51 @@ const routes = [
             },
         ]
     },
+    /** Slayts Router */
+    {
+        path: '/Slayts',
+        name: 'Slayts',
+        component: Slayts,
+        redirect: '/slayts',
+        children: [
+            {
+                path: '/',
+                name: 'SlaytList',
+                component: SlaytList,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Slaytlar', route: '/slayts', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/SlaytsCreate',
+                name: 'SlaytsCreate',
+                component: SlaytsCreate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Slaytlar', route: '/slayts'},
+                        {name: 'Slayt Ekleme', route: 'SlaytsCreate', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/SlaytsUpdate/:id',
+                name: 'SlaytsUpdate',
+                component: SlaytsUpdate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Slaytlar', route: '/slayts'},
+                        {name: 'Slayt Güncelleme', route: 'SlaytsUpdate', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+    /** Settings Router */
     {
         path: '/settings',
         name: 'Settings',
