@@ -3,13 +3,13 @@
     <v-navigation-drawer app :mini-variant.sync="mini" permanent>
       <Sideebar></Sideebar>
     </v-navigation-drawer>
-    <v-app-bar color="blue darken-4" dense dark app>
+    <v-app-bar color="blue" dense dark app>
       <Header></Header>
     </v-app-bar>
-    <v-main class="blue-grey lighten-5">
+    <v-main color="grey">
       <v-container fluid>
-            <Loader v-if="$store.state.settings.loader"></Loader>
-            <Breadcrumbs v-if="$store.state.auth.loggedIn"></Breadcrumbs>
+        <Loader v-if="$store.state.settings.loader"></Loader>
+        <Breadcrumbs v-if="$store.state.auth.loggedIn"></Breadcrumbs>
         <router-view></router-view>
       </v-container>
     </v-main>
@@ -29,7 +29,7 @@ import Login from "@/views/Login";
 import Breadcrumbs from "@/components/Breadcrumbs";
 export default {
   name: 'App',
-  components: {Breadcrumbs, Login, Sideebar, Header,Loader},
+  components: {Breadcrumbs, Login, Sideebar, Header, Loader},
   created() {
     this.$store.commit('hello');
   },
