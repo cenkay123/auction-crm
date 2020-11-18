@@ -27,11 +27,13 @@
           <v-spacer></v-spacer>
 
           <v-btn class="mr-3" small color="red" dark @click="deleteAllClear()">Sıfırla
-            <v-icon small class="ml-1"  >mdi-close-outline</v-icon>
+            <v-icon small class="ml-1">mdi-close-outline</v-icon>
           </v-btn>
-          <v-btn class="mr-3" small color="warning" dark>Export
-            <v-icon small class="ml-1">mdi-export</v-icon>
-          </v-btn>
+          <download-excel :data="$store.state.storeData.artists" name="Sanatcilar.xls">
+            <v-btn class="mr-3" small color="warning" dark>Export
+              <v-icon small class="ml-1">mdi-export</v-icon>
+            </v-btn>
+          </download-excel>
           <v-btn class="mr-3" small color="primary" dark :to="{name: 'ArtistsCreate'}">Yeni Olustur
             <v-icon small class="ml-1">mdi-plus-outline</v-icon>
           </v-btn>
@@ -102,7 +104,7 @@ export default {
     successArtists(response) {
       this.$store.commit('successArtists', response.data)
     },
-    routeUpdateItem(id){
+    routeUpdateItem(id) {
       this.$router.push({name: 'ArtistsUpdate', params: {id: id}})
     }
   }

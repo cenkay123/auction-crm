@@ -9,10 +9,12 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import moment from 'moment-timezone'
 import Notifications from 'vue-notification'
 import VueSweetalert2 from 'vue-sweetalert2';
+import JsonExcel from "vue-json-excel";
 
 
 Vue.use(Notifications);
 Vue.use(VueSweetalert2);
+Vue.component("downloadExcel", JsonExcel);
 
 require('moment/locale/tr')
 Vue.config.productionTip = false;
