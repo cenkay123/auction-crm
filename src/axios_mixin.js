@@ -35,6 +35,7 @@ const axios_mixin = {
             );
         },
         api_post: function (path, payload, postsuccess, posterror) {
+            this.$store.state.settings.loader=true;
             this.api_calling().post(this.base_url + path, payload).then(
                 (response) => (postsuccess(response.data))
             ).catch(
@@ -52,6 +53,7 @@ const axios_mixin = {
                 timer: 3000,
             });
             this.$store.state.settings.loader=false;
+
         },
         Swall_Fire(title, text, type) {
             Vue.swal.fire(title, text, type)

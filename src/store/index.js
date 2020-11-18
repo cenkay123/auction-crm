@@ -23,14 +23,22 @@ const moduleForm = {
 
 const moduleStore = {
     state: {
-        slayts: []
+        slayts: [],
+        news: [],
+        artists: []
     },
     mutations: {
         successSlayt(state, response) {
             state.slayts = response;
         },
+        successNews(state, data) {
+            state.news = data;
+        },
+        successArtists(state, data) {
+            state.artists = data;
+        },
         errorSlayt() {
-            axios_mixin.methods.Error_Message('İşlem hatalı','tekrar deneyiniz','error')
+            axios_mixin.methods.Error_Message('İşlem hatalı', 'tekrar deneyiniz', 'error')
         },
     }
 }
@@ -58,8 +66,6 @@ const modulePages = {
     mixins: [axios_mixin],
     state: {
         pages: [],
-        news: [],
-        artists: []
     },
     mutations: {
         successPages(state, data) {
@@ -75,14 +81,7 @@ const modulePages = {
                 state.pages.push(customItem);
             })
         },
-        successNews(state, data) {
-            state.news = [];
-            state.news = data;
-        },
-        successArtists(state, data) {
-            state.artists = [];
-            state.artists = data;
-        },
+
     }
 }
 

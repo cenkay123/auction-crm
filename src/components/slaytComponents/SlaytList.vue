@@ -85,11 +85,9 @@ export default {
   methods: {
     fetchSliders() {
       this.api_get('/sliders', this.fetchSuccess, this.fetchError);
-      this.$store.state.settings.loader = true;
     },
     fetchSuccess(response) {
       this.$store.commit('successSlayt', response.data)
-      this.$store.state.settings.loader = false;
     },
     fetchError() {
       this.$store.commit('errorSlayt')
