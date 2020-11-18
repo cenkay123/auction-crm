@@ -3,7 +3,7 @@
     <v-data-table
         :headers="headers"
         :search="search"
-        :items="$store.state.pages.news"
+        :items="$store.state.storeData.news"
         sort-by="id"
         class="elevation-5"
     >

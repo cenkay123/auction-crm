@@ -29,7 +29,7 @@
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'content_' + item.code.toUpperCase()"></label>
+            <label class="custom-label" v-text="'İçerik ' + item.code.toUpperCase()"></label>
             <ckeditor :editor="editor" v-model="slaytpostData['content_' + item.code]"></ckeditor>
           </div>
         </v-col>

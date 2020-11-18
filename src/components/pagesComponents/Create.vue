@@ -4,7 +4,7 @@
       Yeni Sayfa Olustur
     </v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="pagesForm.valid" class="px-10 pt-2">
+    <v-form  class="px-10 pt-2">
       <v-row>
         <v-col cols="6">
           <v-text-field ref="name" v-model="pagesForm['title_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
@@ -17,18 +17,18 @@
                         outlined></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-text-field ref="name" v-model="pagesForm.link"
+          <v-text-field ref="name" v-model="pagesForm.RedirectionLink"
                         label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-textarea counter v-model="pagesForm['summary_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
+          <v-textarea counter v-model="pagesForm['description_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
                       :label="'Ozet ' + item.code.toUpperCase()" placeholder="ozet giriniz"
                       outlined dense></v-textarea>
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
             <label class="custom-label" v-text="'Icerik ' + item.code.toUpperCase()"></label>
-            <ckeditor :editor="editor" v-model="pagesForm['editor_' + item.code]"></ckeditor>
+            <ckeditor :editor="editor" v-model="pagesForm['detail_' + item.code]"></ckeditor>
           </div>
         </v-col>
         <v-col cols="12">
@@ -37,21 +37,21 @@
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="6">
-          <v-select :items="pagePropertyList" v-model="pagesForm.pageProperty" item-text="name" item-value="id"
+          <v-select :items="pagePropertyList" v-model="pagesForm.SpecificationId" item-text="name" item-value="id"
                     label="Sayfa Ozelligi" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
-          <v-select :items="$store.state.pages.pages" v-model="pagesForm.topPages" default="id" item-text="title"
+          <v-select :items="$store.state.pages.pages" v-model="pagesForm.ParentId" default="id" item-text="title"
                     item-value="id"
                     label="Ust Sayfalar" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
           <v-row>
             <v-col cols="6">
-              <v-checkbox v-model="pagesForm.topMenu" label="Ust menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="pagesForm.IsMain" label="Ust menude gozuksun" class="mt-0"></v-checkbox>
             </v-col>
             <v-col cols="6">
-              <v-checkbox v-model="pagesForm.bottomMenu" label="Alt menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="pagesForm.IsFooter" label="Alt menude gozuksun" class="mt-0"></v-checkbox>
             </v-col>
           </v-row>
         </v-col>
@@ -101,7 +101,7 @@ export default {
     },
     createPage() {
       this.api_post('/pages/add', {
-        data: this.pagesForm
+        page: this.pagesForm
       }, this.successPage, this.errorPage)
     },
     successPage() {
