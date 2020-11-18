@@ -27,11 +27,13 @@
           <v-spacer></v-spacer>
 
           <v-btn class="mr-3" small color="red" dark @click="deleteAllClear()">Sıfırla
-            <v-icon small class="ml-1"  >mdi-close-outline</v-icon>
+            <v-icon small class="ml-1">mdi-close-outline</v-icon>
           </v-btn>
-          <v-btn class="mr-3" small color="warning" dark>Export
-            <v-icon small class="ml-1">mdi-export</v-icon>
-          </v-btn>
+          <download-excel :data="$store.state.storeData.news" name="Haberler.xls">
+            <v-btn class="mr-3" small color="warning" dark>Export
+              <v-icon small class="ml-1">mdi-export</v-icon>
+            </v-btn>
+          </download-excel>
           <v-btn class="mr-3" small color="primary" dark :to="{name: 'NewsCreate'}">Yeni Olustur
             <v-icon small class="ml-1">mdi-plus-outline</v-icon>
           </v-btn>
@@ -97,7 +99,7 @@ export default {
     },
     updateStatus(id, status) {
       this.mixinUpdateItem('/news/isactiveupdate', {
-       news: {Id: id, IsActive: status}
+        news: {Id: id, IsActive: status}
       }, this.fetchNews)
     },
     deleteItem(id) {
@@ -111,7 +113,7 @@ export default {
     routeUpdateItem(id) {
       this.$router.push({name: 'NewsUpdate', params: {id: id}})
     },
-     successNews(response) {
+    successNews(response) {
       this.$store.commit('successNews', response.data)
     },
   }
