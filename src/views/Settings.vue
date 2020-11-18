@@ -1,10 +1,10 @@
 <template>
   <v-card>
     <v-tabs
-        background-color="primary"
+        color="blue-grey darken-4"
         dark
     >
-      <v-tab>
+      <v-tab class="white--text">
         Site ayarları
       </v-tab>
     </v-tabs>

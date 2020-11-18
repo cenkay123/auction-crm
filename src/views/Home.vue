@@ -9,7 +9,7 @@
     </v-col>
     <v-col cols="4">
       <v-card class="mt-4 mx-auto">
-        <v-sheet class="v-sheet--offset mx-auto" color="cyan" elevation="12" max-width="calc(100% - 32px)">
+        <v-sheet class="v-sheet--offset mx-auto" color="#14213d" elevation="12" max-width="calc(100% - 32px)">
           <v-sparkline :labels="labels" :value="value" color="white" line-width="2" padding="16"></v-sparkline>
         </v-sheet>
         <v-card-text class="pt-0">

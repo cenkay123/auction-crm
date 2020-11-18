@@ -1,9 +1,9 @@
 <template>
   <div style="display: contents">
-    <v-app-bar-nav-icon @click.stop="$parent.$data.mini = !$parent.$data.mini"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon color="#fff" @click.stop="$parent.$data.mini = !$parent.$data.mini"></v-app-bar-nav-icon>
     <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn icon :to="{name: 'Settings'}">
+    <v-btn color="#fff" icon :to="{name: 'Settings'}">
       <v-icon>mdi-settings</v-icon>
     </v-btn>
     <v-btn icon>
@@ -12,7 +12,7 @@
     <v-menu bottom offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on" icon>
-          <v-avatar color="red" size="30">
+          <v-avatar color="#073b4c" size="30">
             <span class="white--text">{{ $store.state.auth.userInfo.userName.slice(0, 1) }}</span>
           </v-avatar>
         </v-btn>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list-item class="blue darken-1" dark>
+    <v-list-item class="blue-grey darken-4" dark>
       <v-list-item-content>
         <v-list-item-title class="title white--text">Online Muzayede</v-list-item-title>
         <v-list-item-subtitle style="color: #ccc">O-C-S</v-list-item-subtitle>

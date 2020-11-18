@@ -45,6 +45,16 @@
       </template>
 
       <template v-slot:item.actions="{ item }">
+         <v-tooltip bottom>
+          <template v-slot:activator="{ on, attrs }">
+            <v-icon small color="teal darken-2
+ accent-2" class="mr-2" v-bind="attrs" v-on="on"
+                    @click="routeUpdateItem(item.id)">
+              mdi-image
+            </v-icon>
+          </template>
+          <span>Duzenle</span>
+        </v-tooltip>
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <v-icon small color="orange lighten-1" class="mr-2" v-bind="attrs" v-on="on"

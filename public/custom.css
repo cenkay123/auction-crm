@@ -19,3 +19,5 @@
 }
 .v-breadcrumbs__item{color: #00c292!important;font-size: 12px; font-weight: 600; letter-spacing: 1.5px;}
 .v-breadcrumbs__item--disabled{color: #a0a0a0 !important;}
+.darkcolorbg{background: #14213d;}
+.theme--dark.v-navigation-drawer{background-color: #14213d}
