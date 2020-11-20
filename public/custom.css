@@ -21,3 +21,4 @@
 .v-breadcrumbs__item--disabled{color: #a0a0a0 !important;}
 .darkcolorbg{background: #14213d;}
 .theme--dark.v-navigation-drawer{background-color: #14213d}
+.rank-input{border: 1px solid;width: 12%;border-radius: 5px;padding: 2px 0;text-align: center;color: #000;opacity: 1;}

@@ -4,7 +4,7 @@
       Yeni Sayfa Olustur
     </v-card-title>
     <v-divider></v-divider>
-    <v-form  class="px-10 pt-2">
+    <v-form v-model="pagesForm.valid" class="px-10 pt-2">
       <v-row>
         <v-col cols="6">
           <v-text-field ref="name" v-model="pagesForm['title_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
@@ -13,12 +13,16 @@
         </v-col>
         <v-col cols="6">
           <v-text-field ref="name" v-model="pagesForm['keywords_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
-                        :label="'keywords ' + item.code.toUpperCase()" placeholder="Keywords giriniz" dense
+                        :label="'Keywords ' + item.code.toUpperCase()" placeholder="Keywords giriniz" dense
                         outlined></v-text-field>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="6">
           <v-text-field ref="name" v-model="pagesForm.RedirectionLink"
                         label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
+        </v-col>
+         <v-col cols="6">
+          <v-text-field ref="name" v-model="pagesForm.rank"
+                        label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
           <v-textarea counter v-model="pagesForm['description_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
@@ -85,7 +89,7 @@ export default {
         addRemoveLinks: true,
         headers: {"My-Awesome-Header": "header value"}
       },
-      pagesForm: {topPages:null},
+      pagesForm: {},
     }
   },
   mounted() {
@@ -97,7 +101,6 @@ export default {
     },
     successSpecifications(response) {
       this.pagePropertyList = response.data;
-      this.pagesForm.pageProperty = this.pagePropertyList[0].id;
     },
     createPage() {
       this.api_post('/pages/add', {

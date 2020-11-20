@@ -65,7 +65,7 @@ const moduleAuth = {
 const modulePages = {
     mixins: [axios_mixin],
     state: {
-        pages: [],
+        pages: []
     },
     mutations: {
         successPages(state, data) {
@@ -73,12 +73,19 @@ const modulePages = {
             data.forEach((item) => {
                 var customItem = {
                     id: item.id,
+                    parentId: item.parentId,
                     title: item.title_tr,
                     createdAt: item.createdAt,
                     isActive: item.isActive,
-                    subPages: item.subPages
+                    isMain: item.isMain,
+                    rank: item.rank,
+                    subPages: item.subPages,
+                    SpecificationId: item.pageSpecification.id,
                 };
-                state.pages.push(customItem);
+                if (item.parentId==0){
+                    state.pages.push(customItem);
+                }
+
             })
         },
 

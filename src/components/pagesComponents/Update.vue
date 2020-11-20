@@ -18,9 +18,13 @@
                         :label="'keywords ' + item.code.toUpperCase()" placeholder="Keywords giriniz" dense
                         outlined></v-text-field>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="6">
           <v-text-field ref="name" v-model="updateItems.redirectionLink"
                         label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
+        </v-col>
+        <v-col cols="6">
+          <v-text-field ref="name" v-model="updateItems.rank"
+                        label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
           <v-textarea counter v-model="updateItems['description_' + item.code]" v-for="item in $store.state.form.languages"
@@ -40,7 +44,7 @@
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="6">
-          <v-select :items="pagePropertyList" v-model="updateItems.pageProperty" item-text="name" item-value="id"
+          <v-select :items="pagePropertyList" v-model="updateItems.SpecificationId" item-text="name" item-value="id"
                     label="Sayfa Ozelligi" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
