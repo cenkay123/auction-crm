@@ -65,7 +65,7 @@
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
             <label class="custom-label" v-text="'Sanatci Bilgisi ' + item.code.toUpperCase()"></label>
-            <ckeditor :editor="editor" v-model="artistsForm['About_' + item.code]"></ckeditor>
+            <Editor :data="artistsForm" dataItem="About_" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
@@ -83,17 +83,17 @@
 </template>
 
 <script>
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import vue2Dropzone from 'vue2-dropzone';
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+import Editor from "@/components/basicFormComponents/Editor";
 export default {
   name: "ArtistsCreate",
   components: {
+    Editor,
     vueDropzone: vue2Dropzone
   },
   data() {
     return {
-      editor: ClassicEditor,
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,
