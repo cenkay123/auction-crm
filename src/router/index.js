@@ -20,6 +20,7 @@ import Slayts from "@/views/Slayts";
 import SlaytList from "@/components/slaytComponents/SlaytList";
 import SlaytsCreate from "@/components/slaytComponents/SlaytsCreate";
 import SlaytsUpdate from "@/components/slaytComponents/SlaytsUpdate";
+import GalleryPage from "@/components/pagesComponents/GalleryPage";
 
 Vue.use(VueRouter)
 
@@ -70,6 +71,11 @@ const routes = [
                 path: '/subpages/:id',
                 name: 'subpages',
                 component: Subpages
+            },
+             {
+                path: '/GalleryPage/:id',
+                name: 'galleryPage',
+                component: GalleryPage
             }
         ]
     },
