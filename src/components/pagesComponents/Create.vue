@@ -28,7 +28,7 @@
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
             <label class="custom-label" v-text="'Icerik ' + item.code.toUpperCase()"></label>
-            <ckeditor :editor="editor" v-model="pagesForm['detail_' + item.code]"></ckeditor>
+            <Editor :data="pagesForm" dataItem="detail_" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
@@ -65,18 +65,18 @@
 </template>
 
 <script>
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import vue2Dropzone from 'vue2-dropzone';
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+import Editor from "@/components/basicFormComponents/Editor";
 
 export default {
   name: "Create",
   components: {
+    Editor,
     vueDropzone: vue2Dropzone
   },
   data() {
     return {
-      editor: ClassicEditor,
       pagePropertyList: [],
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
