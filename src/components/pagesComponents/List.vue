@@ -61,7 +61,7 @@
                   mdi-image
                 </v-icon>
               </template>
-              <span>Duzenle</span>
+              <span>Galeri</span>
             </v-tooltip>
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
@@ -155,7 +155,7 @@ export default {
       this.$router.push({name: 'Update', params: {id: id}})
     },
     routeGalleryItem(id) {
-      this.$router.push({name: 'Gallery', params: {id: id}})
+      this.$router.push({name: 'galleryPage', params: {page_id: id}})
     }
 
   }
