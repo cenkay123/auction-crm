@@ -70,8 +70,7 @@
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-EN">Resim yukle</label>
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
-                        vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
+          <ImageUpload :data="artistsForm" dataParameter="images"></ImageUpload>
         </v-col>
         <v-col cols="2" class="px-7 py-0">
           <v-btn class="login-btn" color="success" @click="createArtist">Kaydet</v-btn>
@@ -83,28 +82,21 @@
 </template>
 
 <script>
-import vue2Dropzone from 'vue2-dropzone';
-import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 import Editor from "@/components/basicFormComponents/Editor";
+import ImageUpload from "@/components/basicFormComponents/ImageUpload";
 export default {
   name: "ArtistsCreate",
   components: {
+    ImageUpload,
     Editor,
-    vueDropzone: vue2Dropzone
   },
   data() {
     return {
-      dropzoneOptions: {
-        url: 'https://httpbin.org/post',
-        thumbnailWidth: 150,
-        maxFilesize: 0.5,
-        addRemoveLinks: true,
-        headers: {"My-Awesome-Header": "header value"}
-      },
       artistsForm: {
         IsActive: true,
         BirthDate: null,
         dateOfDeath: null,
+        images: []
       },
       menuStart: false,
       menuEnd: false,
