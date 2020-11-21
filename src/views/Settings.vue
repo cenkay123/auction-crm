@@ -109,6 +109,17 @@
                           outlined
                           ref="name"></v-text-field>
           </v-col>
+          <v-col cols="12">
+            <v-row>
+              <v-col cols="6">
+                <v-file-input v-model="$store.state.settings.siteSettings.logo" color="blue-grey darken-4" counter label="Site Logosu" placeholder="Lutfen Logo Seciniz" prepend-icon="mdi-paperclip" outlined :show-size="1000">
+                  <template v-slot:selection="{ index, text }">
+                    <v-chip color="blue-grey darken-4" dark label small>{{ text }}</v-chip>
+                  </template>
+                </v-file-input>
+              </v-col>
+            </v-row>
+          </v-col>
 
           <v-col cols="2" class="py-0">
             <v-btn class="btn" color="success" @click="updateData">Kaydet</v-btn>
@@ -135,26 +146,32 @@ export default {
     },
     updateData(){
       this.$store.state.settings.loader=true;
-      this.api_post('/sitesettings/update',{
-         id:this.$store.state.settings.siteSettings.id,
-         title:this.$store.state.settings.siteSettings.title,
-         description:this.$store.state.settings.siteSettings.description,
-         cellPhone:this.$store.state.settings.siteSettings.cellPhone,
-         landPhone:this.$store.state.settings.siteSettings.landPhone,
-         fax:this.$store.state.settings.siteSettings.fax,
-         email:this.$store.state.settings.siteSettings.email,
-         address:this.$store.state.settings.siteSettings.address,
-         map:this.$store.state.settings.siteSettings.map,
-         facebookUrl:this.$store.state.settings.siteSettings.facebookUrl,
-         instagramUrl:this.$store.state.settings.siteSettings.instagramUrl,
-         twitterUrl:this.$store.state.settings.siteSettings.twitterUrl,
-         linkedinUrl:this.$store.state.settings.siteSettings.linkedinUrl,
-         pinterestUrl:this.$store.state.settings.siteSettings.pinterestUrl,
-         otherSocialMediaUrl:this.$store.state.settings.siteSettings.otherSocialMediaUrl,
-         comissionRate:this.$store.state.settings.siteSettings.comissionRate,
-         taxRate:this.$store.state.settings.siteSettings.taxRate,
-         isActive:this.$store.state.settings.siteSettings.isActive,
-      },this.successUpdate,this.errorUpdate)
+      let rawData = {
+        id:this.$store.state.settings.siteSettings.id,
+        title:this.$store.state.settings.siteSettings.title,
+        description:this.$store.state.settings.siteSettings.description,
+        cellPhone:this.$store.state.settings.siteSettings.cellPhone,
+        landPhone:this.$store.state.settings.siteSettings.landPhone,
+        fax:this.$store.state.settings.siteSettings.fax,
+        email:this.$store.state.settings.siteSettings.email,
+        address:this.$store.state.settings.siteSettings.address,
+        map:this.$store.state.settings.siteSettings.map,
+        facebookUrl:this.$store.state.settings.siteSettings.facebookUrl,
+        instagramUrl:this.$store.state.settings.siteSettings.instagramUrl,
+        twitterUrl:this.$store.state.settings.siteSettings.twitterUrl,
+        linkedinUrl:this.$store.state.settings.siteSettings.linkedinUrl,
+        pinterestUrl:this.$store.state.settings.siteSettings.pinterestUrl,
+        otherSocialMediaUrl:this.$store.state.settings.siteSettings.otherSocialMediaUrl,
+        comissionRate:this.$store.state.settings.siteSettings.comissionRate,
+        taxRate:this.$store.state.settings.siteSettings.taxRate,
+        isActive:this.$store.state.settings.siteSettings.isActive,
+      }
+      rawData = JSON.stringify(rawData)
+      let formData = new FormData();
+      formData.append('logo', this.$store.state.settings.siteSettings.logo)
+      formData.append('data', rawData)
+      this.api_post('/sitesettings/update', formData,
+          {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
     },
     successUpdate(){
       this.$store.commit('successMessage');
