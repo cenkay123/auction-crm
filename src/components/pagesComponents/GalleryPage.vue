@@ -4,13 +4,24 @@
       <v-data-table
           :headers="headers"
           :search="search"
-          :items="$store.state.pages.pages"
+          :items="gallerys"
           sort-by="id"
           class="elevation-5"
       >
+
         <template v-slot:item.isMain="{ item }">
-          <v-btn color="c00c292" small v-if="item.isActive" @click="updateStatus(item.id,false)">AKTİF</v-btn>
-          <v-btn color="error" small v-if="!item.isActive" @click="updateStatus(item.id,true)">PASİF</v-btn>
+          <v-btn color="c00c292" small v-if="item.isMain" @click="updateStatus(item.id,false)">AKTİF</v-btn>
+          <v-btn color="error" small v-if="!item.isMain" @click="updateStatus(item.id,true)">PASİF</v-btn>
+        </template>
+
+
+        <template v-slot:item.pageBanners="{ item }">
+            <v-img
+              lazy-src="https://picsum.photos/id/11/10/6"
+              max-width="200"
+              max-height="160"
+              :src="item.pageBanners[0].pictureUrl"
+            ></v-img>
         </template>
 
         <template v-slot:top>
@@ -27,14 +38,13 @@
                 placeholder="Bu alandan arama yapabilirsiniz.."
             ></v-text-field>
             <v-spacer></v-spacer>
-
-            <v-btn class="mr-3" small color="red" dark>Sıfırla
+            <v-btn class="mr-3" small color="red" dark @click="deleteAllClear()" >Sıfırla
               <v-icon small class="ml-1">mdi-close-outline</v-icon>
             </v-btn>
             <v-btn class="mr-3" small color="warning" dark>Export
               <v-icon small class="ml-1">mdi-export</v-icon>
             </v-btn>
-            <v-btn class="mr-3" small color="primary" dark :to="{name: 'Create'}">Yeni Olustur
+            <v-btn class="mr-3" small color="primary" dark @click="routeGalleryCreate(page_id)" >Yeni Olustur
               <v-icon small class="ml-1">mdi-plus-outline</v-icon>
             </v-btn>
           </v-toolbar>
@@ -44,7 +54,7 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-icon small color="orange lighten-1" class="mr-2" v-bind="attrs" v-on="on"
-                      @click="routeUpdateItem(item.id)">
+                      @click="routeUpdateItem(item.id,page_id)">
                 mdi-pencil
               </v-icon>
             </template>
@@ -59,11 +69,7 @@
           </v-tooltip>
         </template>
       </v-data-table>
-      <v-snackbar v-model="snackbar" :timeout="timeout">{{ text }}
-        <template v-slot:action="{ attrs }">
-          <v-btn color="red" text v-bind="attrs" @click="snackbar = false">Kapat</v-btn>
-        </template>
-      </v-snackbar>
+
     </div>
   </div>
 </template>
@@ -77,43 +83,52 @@ export default {
       newData: [],
       headers: [
         {text: '#',align: 'start',sortable: false,value: 'id'},
+        {text: 'Resim',  value: 'pageBanners'},
         {text: 'Baslik', value: 'title_tr'},
         {text: 'Status', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
       ],
-      snackbar: false,
       text: 'Bir sorun ile karsilasildi.',
       timeout: 2000,
+      gallerys:[],
+      page_id:this.$route.params.page_id
     }
   },
 
+  mounted() {
+   this.fetchGallery();
+  },
+
   methods: {
-    fetchPages() {
-      this.api_get('/pages', this.successFetchPages, this.errorPages)
+    fetchGallery() {
+      this.api_get('/subgallerypages/' + this.page_id, this.successGallery)
     },
-    successFetchPages(response) {
-      this.$store.commit('successPages', response.data)
-    },
-    errorPages() {
-      this.snackbar = true
+    deleteAllClear() {
+      this.mixinDeleteItem('/subgallerypages/deleteall/', {id: this.page_id}, this.successFunc);
     },
     deleteItem(id) {
-      this.mixinDeleteItem('/pages/delete/' + id, {Id: id}, this.successDelete);
-    },
-    successDelete() {
-      this.fetchPages()
+      this.mixinDeleteItem('/pages/delete/' + id, {id: id}, this.successFunc);
     },
     updateStatus(id, status) {
-      this.mixinUpdateItem('/pages/isactiveupdate', {
-        id: id,
-        isActive: status,
-      }, this.successUpdate)
+      this.mixinUpdateItem('/pages/ismainupdate', {
+        page: {
+          id: id,
+          isMain: status,
+        }
+      }, this.successFunc)
     },
-    successUpdate() {
-      this.fetchPages()
+    successGallery(response) {
+      this.gallerys=response.data;
     },
-    routeUpdateItem(id) {
-      this.$router.push({name: 'Update', params: {id: id}})
+    successFunc() {
+      this.fetchGallery()
+    },
+    routeUpdateItem(item_id,page_id) {
+     this.$router.push({name: 'GalleryUpdate', query: {item_id: item_id , page_id:page_id}})
+
+    },
+    routeGalleryCreate(page_id) {
+      this.$router.push({name: 'GalleryCreate', params: {page_id: page_id}})
     }
   }
 }

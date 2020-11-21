@@ -21,6 +21,8 @@ import SlaytList from "@/components/slaytComponents/SlaytList";
 import SlaytsCreate from "@/components/slaytComponents/SlaytsCreate";
 import SlaytsUpdate from "@/components/slaytComponents/SlaytsUpdate";
 import GalleryPage from "@/components/pagesComponents/GalleryPage";
+import GalleryCreate from "@/components/pagesComponents/GalleryCreate";
+import GalleryUpdate from "@/components/pagesComponents/GalleryUpdate";
 
 Vue.use(VueRouter)
 
@@ -72,11 +74,42 @@ const routes = [
                 name: 'subpages',
                 component: Subpages
             },
-             {
-                path: '/GalleryPage/:id',
+            {
+                path: '/GalleryPage/:page_id',
                 name: 'galleryPage',
-                component: GalleryPage
-            }
+                component: GalleryPage,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sayfalar', route: '/pages'},
+                        {name: 'Galeriler', route: '/galleryPage',disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/galleryCreate/:page_id',
+                name: 'GalleryCreate',
+                component: GalleryCreate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Galeriler', route: '/GalleryPage'},
+                        {name: 'Galeri ekleme', route: '/create', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/galleryUpdate/:item_id/:page_id',
+                name: 'GalleryUpdate',
+                component: GalleryUpdate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Galeriler', route: '/GalleryPage'},
+                        {name: 'Galeri Güncelleme', route: '/create', disabled: true},
+                    ]
+                }
+            },
         ]
     },
     /** News Router */
