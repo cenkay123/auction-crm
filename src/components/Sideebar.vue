@@ -28,11 +28,12 @@ export default {
     return {
       items: [
         {title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'Home'},
-        {title: 'Sayfalar', icon: 'mdi-image', route: 'Pages'},
+        {title: 'Site Ayarlari', icon: 'mdi-settings', route: 'Settings'},
+        {title: 'Slaytlar', icon: 'mdi-image', route: 'Slayts'},
+        {title: 'Sayfalar', icon: 'mdi-book', route: 'Pages'},
         {title: 'Haberler', icon: 'mdi-newspaper', route: 'News'},
         {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists'},
-        {title: 'Slaytlar', icon: 'mdi-image', route: 'Slayts'},
-        {title: 'Site Ayarlari', icon: 'mdi-settings', route: 'Settings'},
+        {title: 'Kelimeler', icon: 'mdi-pencil', route: 'Words'},
         {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation'},
       ],
     }

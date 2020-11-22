@@ -25,11 +25,15 @@ const moduleStore = {
     state: {
         slayts: [],
         news: [],
-        artists: []
+        artists: [],
+        words: [],
     },
     mutations: {
         successSlayt(state, response) {
             state.slayts = response;
+        },
+        successWords(state, response) {
+            state.words = response;
         },
         successNews(state, data) {
             state.news = data;
