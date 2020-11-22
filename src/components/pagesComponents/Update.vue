@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="pb-3">
-      Yeni Sayfa Olustur
+      Sayfa Düzenleme
     </v-card-title>
     <v-divider></v-divider>
     <v-form v-model="pagesForm.valid" class="px-10 pt-2">

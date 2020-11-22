@@ -107,7 +107,7 @@ export default {
         {text: 'Baslik', value: 'title'},
         {text: 'Alt Sayfalar', value: 'subPages'},
         {text: 'Sayfa sırası', value: 'rank'},
-        {text: 'Status', value: 'isMain'},
+        {text: 'Üst menu durum', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
       ],
       snackbar: false,

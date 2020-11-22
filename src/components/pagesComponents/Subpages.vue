@@ -16,7 +16,7 @@
 
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Sayfalar</v-toolbar-title>
+            <v-toolbar-title>Alt Sayfalar</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-text-field
                 v-model="search"
@@ -79,7 +79,7 @@ export default {
       headers: [
         {text: '#',align: 'start',sortable: false,value: 'id'},
         {text: 'Baslik', value: 'title_tr'},
-        {text: 'Status', value: 'isMain'},
+        {text: 'Menu durum', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
       ],
       snackbar: false,
