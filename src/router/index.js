@@ -28,6 +28,12 @@ import WordsList from "@/components/wordsComponents/WordsList";
 import WordCreate from "@/components/wordsComponents/WordCreate";
 import WordUpdate from "@/components/wordsComponents/WordUpdate";
 
+import Popup from "@/views/Popup";
+import PopupList from "@/components/popupComponents/PopupList";
+import PopupCreate from "@/components/popupComponents/PopupCreate";
+import PopupUpdate from "@/components/popupComponents/PopupUpdate";
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -40,6 +46,7 @@ const routes = [
             title: 'Anasayfa'
         }
     },
+    /** Settings Router */
     {
         path: '/settings',
         name: 'Settings',
@@ -293,7 +300,6 @@ const routes = [
             },
         ]
     },
-
     /** Words Router */
     {
         path: '/Words',
@@ -340,7 +346,53 @@ const routes = [
             }
         ]
     },
-    /** Settings Router */
+     /** Popup Router */
+    {
+        path: '/Popup',
+        name: 'Popup',
+        component: Popup,
+        redirect: '/Popup',
+        children: [
+            {
+                path: '/',
+                name: 'PopupList',
+                component: PopupList,
+                meta: {
+                    title: 'Popup',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Popup', route: '/popup', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/PopupCreate',
+                name: 'PopupCreate',
+                component: PopupCreate,
+                meta: {
+                    title: 'Yeni Pop-up ekleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Popup', route: '/Popup'},
+                    ]
+                }
+            },
+            {
+                path: '/PopupUpdate/:id',
+                name: 'PopupUpdate',
+                component: PopupUpdate,
+                meta: {
+                    title: 'Pop-up düzenleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Popup', route: '/Popup'},
+                        {name: 'Popup Güncelleme', route: '/popup', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+
 
     {
         path: '/documantation',
