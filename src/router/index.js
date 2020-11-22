@@ -23,6 +23,10 @@ import SlaytsUpdate from "@/components/slaytComponents/SlaytsUpdate";
 import GalleryPage from "@/components/pagesComponents/GalleryPage";
 import GalleryCreate from "@/components/pagesComponents/GalleryCreate";
 import GalleryUpdate from "@/components/pagesComponents/GalleryUpdate";
+import Words from "@/views/Words";
+import WordsList from "@/components/wordsComponents/WordsList";
+import WordCreate from "@/components/wordsComponents/WordCreate";
+import WordUpdate from "@/components/wordsComponents/WordUpdate";
 
 Vue.use(VueRouter)
 
@@ -209,7 +213,7 @@ const routes = [
         children: [
             {
                 path: '/',
-                name: 'SlaytList',
+                name: 'Anasayfa Sliderlar',
                 component: SlaytList,
                 meta: {
                     breadcrumb: [
@@ -239,6 +243,49 @@ const routes = [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Slaytlar', route: '/slayts'},
                         {name: 'Slayt Güncelleme', route: 'SlaytsUpdate', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+     /** Words Router */
+    {
+        path: '/Words',
+        name: 'Words',
+        component: Words,
+        redirect: '/Words',
+          children: [
+            {
+                path: '/',
+                name: 'WordsList',
+                component: WordsList,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kelimeler', route: '/words',disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/WordCreate',
+                name: 'WordCreate',
+                component: WordCreate,
+                meta: {
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kelimeler', route: '/words'},
+                    ]
+                }
+            },
+            {
+                path: '/WordUpdate/:id',
+                name: 'WordUpdate',
+                component: WordUpdate,
+                meta: {
+                     breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kelimeler', route: '/words'},
+                        {name: 'Kelime Güncelleme', route: '/words',disabled: true},
                     ]
                 }
             }
