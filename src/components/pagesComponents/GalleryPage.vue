@@ -85,7 +85,7 @@ export default {
         {text: '#',align: 'start',sortable: false,value: 'id'},
         {text: 'Resim',  value: 'pageBanners'},
         {text: 'Baslik', value: 'title_tr'},
-        {text: 'Status', value: 'isMain'},
+        {text: 'Menu durumu', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
       ],
       text: 'Bir sorun ile karsilasildi.',
