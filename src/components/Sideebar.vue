@@ -34,6 +34,7 @@ export default {
         {title: 'Haberler', icon: 'mdi-newspaper', route: 'News'},
         {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists'},
         {title: 'Kelimeler', icon: 'mdi-pencil', route: 'Words'},
+        {title: 'Popup', icon: 'mdi-gift', route: 'Popup'},
         {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation'},
       ],
     }

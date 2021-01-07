@@ -27,10 +27,14 @@ const moduleStore = {
         news: [],
         artists: [],
         words: [],
+        popup: [],
     },
     mutations: {
         successSlayt(state, response) {
             state.slayts = response;
+        },
+        successPopup(state, response) {
+            state.popup = response;
         },
         successWords(state, response) {
             state.words = response;
