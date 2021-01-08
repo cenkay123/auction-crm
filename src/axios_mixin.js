@@ -4,7 +4,7 @@ import Vue from 'vue'
 const axios_mixin = {
     data: function () {
         return {
-            base_url: 'http://ec2-18-191-134-40.us-east-2.compute.amazonaws.com/'
+            base_url: 'http://ec2-18-191-134-40.us-east-2.compute.amazonaws.com'
         }
     },
     methods: {

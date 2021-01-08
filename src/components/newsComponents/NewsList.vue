@@ -23,6 +23,7 @@
               dense
               style="font-size: 12px; max-width: 300px"
               placeholder="Bu alandan arama yapabilirsiniz.."
+              v-if="$route.name !== 'Home'"
           ></v-text-field>
           <v-spacer></v-spacer>
 
