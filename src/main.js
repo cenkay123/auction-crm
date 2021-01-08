@@ -10,25 +10,16 @@ import Notifications from 'vue-notification'
 import VueSweetalert2 from 'vue-sweetalert2';
 import JsonExcel from "vue-json-excel";
 
-
 Vue.use(Notifications);
 Vue.use(VueSweetalert2);
-Vue.component("downloadExcel", JsonExcel);
-
+//Vue.use(require('vue-moment'));
+Vue.use(VueMoment, {moment,});
 require('moment/locale/tr')
-Vue.config.productionTip = false;
+Vue.component("downloadExcel", JsonExcel);
 Vue.mixin(axios_mixin);
-
-
-
-
-
-Vue.use(VueMoment, {
-  moment,
-});
+Vue.config.productionTip = false;
 
 export const EventBus = new Vue();
-
 Object.defineProperties(Vue.prototype, {
   $bus: {
     get: function () {
