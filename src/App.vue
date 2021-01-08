@@ -3,7 +3,7 @@
     <v-navigation-drawer app :mini-variant.sync="mini" permanent>
       <Sideebar></Sideebar>
     </v-navigation-drawer>
-    <v-app-bar color="blue-grey darken-4" dense dark app>
+    <v-app-bar color="#122230" dense dark app>
       <Header></Header>
     </v-app-bar>
     <v-main color="grey">
