@@ -18,9 +18,6 @@
         </v-list-item-content>
       </v-list-item>
       <v-list-item class="px-2 userProfile">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
-        </v-list-item-avatar>
       </v-list-item>
     </v-list>
     <v-divider></v-divider>

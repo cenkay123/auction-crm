@@ -4,13 +4,13 @@
       Sanatci Guncelle
     </v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-10 pt-2">
+    <v-form class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-text-field ref="name" v-model="artistsItem.nameSurname" label="Ad Soyad" placeholder="Ad Soyad" dense
                         outlined></v-text-field>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-menu v-model="menuStart" :close-on-content-click="false" :nudge-right="40" transition="scale-transition"
                   offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
@@ -20,7 +20,7 @@
             <v-date-picker v-model="artistsItem.birthDate" @input="menuStart = false"></v-date-picker>
           </v-menu>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-menu v-model="menuEnd" :close-on-content-click="false" :nudge-right="40" transition="scale-transition"
                   offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
@@ -49,10 +49,9 @@
             <v-col cols="10"></v-col>
           </v-row>
         </v-col>
-        <v-col cols="2" class="py-0">
+        <v-col cols="12" md="2" class="py-0">
           <v-btn class="login-btn" color="success" @click="updateArtistsItem">Kaydet</v-btn>
         </v-col>
-        <v-col cols="10"></v-col>
       </v-row>
     </v-form>
   </v-card>

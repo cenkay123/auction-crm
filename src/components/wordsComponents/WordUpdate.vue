@@ -4,7 +4,7 @@
       Kelime Guncelle
     </v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-10 pt-2">
+    <v-form class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -14,10 +14,9 @@
                           outlined class="col-md-6 px-1"></v-text-field>
           </v-row>
         </v-col>
-        <v-col cols="2" class="py-0">
+        <v-col cols="12" md="2" class="py-0">
           <v-btn class="login-btn" color="success" @click="updateWord">Kaydet</v-btn>
         </v-col>
-        <v-col cols="10"></v-col>
       </v-row>
     </v-form>
   </v-card>

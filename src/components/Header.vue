@@ -1,6 +1,8 @@
 <template>
   <div style="display: contents">
-    <v-app-bar-nav-icon color="#fff" @click.stop="$parent.$data.mini = !$parent.$data.mini"></v-app-bar-nav-icon>
+    <v-btn icon color="#3fb983" @click.stop="sidebarDrawer">
+      <v-icon>mdi-arrow-split-vertical</v-icon>
+    </v-btn>
     <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn color="#fff" icon :to="{name: 'Settings'}">
@@ -59,6 +61,9 @@ export default {
   methods: {
     logout() {
       this.$store.commit('logout');
+    },
+    sidebarDrawer() {
+      this.$store.commit('sidebarAction');
     }
   }
 }

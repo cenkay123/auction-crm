@@ -4,7 +4,7 @@
       Haber Guncelle
     </v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-10 pt-2">
+    <v-form class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -23,7 +23,7 @@
                         outlined dense class="col-md-6 px-1"></v-textarea>
           </v-row>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-menu ref="menu" v-model="menuStart" :close-on-content-click="false" :return-value.sync="newsItem.startDate"
                   transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
@@ -37,7 +37,7 @@
             </v-date-picker>
           </v-menu>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-menu ref="menu" v-model="menuEnd" :close-on-content-click="false" :return-value.sync="newsItem.endDate"
                   transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
@@ -71,10 +71,9 @@
             <v-col cols="10"></v-col>
           </v-row>
         </v-col>
-        <v-col cols="2" class="py-0">
+        <v-col cols="12" md="2" class="py-0">
           <v-btn class="login-btn" color="success" @click="updateNewsItem">Kaydet</v-btn>
         </v-col>
-        <v-col cols="10"></v-col>
       </v-row>
     </v-form>
   </v-card>

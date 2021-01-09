@@ -48,15 +48,14 @@ const routes = [
     },
     /** Settings Router */
     {
-        path: '/settings',
+        path: '/Settings',
         name: 'Settings',
         component: Settings,
         meta: {
-            title: 'Site ayarlari',
+            title: 'Site Ayarlari',
             breadcrumb: [
                 {name: 'Anasayfa', route: '/'},
-                {name: 'Sayfalar', route: '/pages'},
-                {name: 'Sayfa ekleme', route: '/create', disabled: true},
+                {name: 'Site Ayarlari', route: '/create', disabled: true},
             ]
         }
     },

@@ -22,8 +22,8 @@
           </template>
           <template v-slot:top>
             <v-toolbar flat>
-              <v-toolbar-title>Sayfalar</v-toolbar-title>
-              <v-divider class="mx-4" inset vertical></v-divider>
+              <v-toolbar-title class="d-none d-md-block">Sayfalar</v-toolbar-title>
+              <v-divider class="mx-4 d-none d-md-inline-flex" inset vertical></v-divider>
               <v-text-field
                   v-model="search"
                   label="Ara"
@@ -32,19 +32,23 @@
                   dense
                   style="font-size: 12px; max-width: 300px"
                   placeholder="Bu alandan arama yapabilirsiniz.."
+                  class="d-none d-md-flex"
               ></v-text-field>
               <v-spacer></v-spacer>
 
-              <v-btn class="mr-3" small color="blue-grey darken-4" dark>Sıralama kaydet
-                <v-icon small class="ml-1">mdi-export</v-icon>
+              <v-btn class="mr-3" small color="blue-grey darken-4" dark>
+                <span class="d-none d-md-inline">Sıralama kaydet</span>
+                <v-icon small class="ml-0 ml-md-1">mdi-source-commit</v-icon>
               </v-btn>
-              <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="deleteAllClear(null)">Sıfırla
-                <v-icon small class="ml-1">mdi-close-outline</v-icon>
+              <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="deleteAllClear(null)">
+                <span class="d-none d-md-inline">Sıfırla</span>
+                <v-icon small class="ml-0 ml-md-1">mdi-close-outline</v-icon>
               </v-btn>
 
               <download-excel :data="$store.state.pages.pages" name="Sayfalar.xls">
-                <v-btn class="mr-3" small color="blue-grey darken-4" dark>Export
-                  <v-icon small class="ml-1">mdi-export</v-icon>
+                <v-btn class="mr-3" small color="blue-grey darken-4" dark>
+                  <span class="d-none d-md-inline">Export</span>
+                  <v-icon small class="ml-0 ml-md-1">mdi-export</v-icon>
                 </v-btn>
               </download-excel>
               <v-btn class="mr-3" small color="blue-grey darken-4" dark :to="{name: 'Create'}">Yeni Olustur

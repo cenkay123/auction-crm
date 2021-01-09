@@ -12,11 +12,19 @@ const moduleForm = {
         languages: [
             {lang: 'turkce', code: 'tr', id: 1},
             {lang: 'english', code: 'en', id: 2},
-        ]
+        ],
+        drawer: 1
     },
     mutations: {
         hello() {
             console.log('hello admin')
+        },
+        sidebarAction(state) {
+            if(state.drawer) {
+                state.drawer = false
+            }else {
+                state.drawer = 1
+            }
         }
     }
 }
@@ -105,7 +113,11 @@ const moduleSettings = {
         siteSettings: {},
         loader: false
     },
-    mutations: {}
+    mutations: {
+        loaderAction(state, data) {
+            state.loader = data
+        }
+    }
 }
 
 const vuexLocal = new createPersistedState({

@@ -10,9 +10,8 @@
     </v-tabs>
 
     <v-card-text>
-      <v-form class="px-10 pt-2">
+      <v-form class="px-0 pt-2 md-px-10">
         <v-row>
-
           <v-col cols="12">
             <v-text-field ref="name"
                           label="Site Title"
@@ -25,19 +24,19 @@
                           outlined
                           ref="name"></v-text-field>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" md="4">
             <v-text-field label="Telefon no"
                           v-model="$store.state.settings.siteSettings.cellPhone"
                           outlined
                           ref="name"></v-text-field>
           </v-col>
-          <v-col cols="4">
+          <v-col cols="12" md="4">
             <v-text-field label="Telefon no2"
                           v-model="$store.state.settings.siteSettings.landPhone"
                           outlined
                           ref="name"></v-text-field>
           </v-col>
-            <v-col cols="4">
+            <v-col cols="12" md="4">
             <v-text-field label="Fax"
                           v-model="$store.state.settings.siteSettings.fax"
                           outlined
@@ -111,7 +110,7 @@
           </v-col>
           <v-col cols="12">
             <v-row>
-              <v-col cols="6">
+              <v-col cols="12" md="6">
                 <v-file-input v-model="$store.state.settings.siteSettings.logo" color="blue-grey darken-4" label="Site Logosu" placeholder="Lutfen Logo Seciniz" prepend-icon="mdi-paperclip" outlined :show-size="1000">
                   <template v-slot:selection="{ index, text }">
                     <v-chip color="blue-grey darken-4" dark label small v-text="typeof $store.state.settings.siteSettings.logo === 'string' ? $store.state.settings.siteSettings.logo : text"></v-chip>
