@@ -13,8 +13,8 @@
       </template>
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Pop-up</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
+          <v-toolbar-title class="d-none d-md-block">Pop-up</v-toolbar-title>
+          <v-divider class="mx-4 d-none d-md-inline-flex" inset vertical></v-divider>
           <v-text-field
               v-model="search"
               label="Ara"
@@ -23,6 +23,7 @@
               dense
               style="font-size: 12px; max-width: 300px"
               placeholder="Bu alandan arama yapabilirsiniz.."
+              class="d-none d-md-flex"
           ></v-text-field>
           <v-spacer></v-spacer>
 

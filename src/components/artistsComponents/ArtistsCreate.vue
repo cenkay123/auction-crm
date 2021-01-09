@@ -4,13 +4,13 @@
       Yeni Sanatci Ekle
     </v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-10 pt-2">
+    <v-form class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-text-field ref="name" v-model="artistsForm.NameSurName" label="Ad Soyad" placeholder="Ad Soyad" dense
                         outlined></v-text-field>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-menu
               v-model="menuStart"
               :close-on-content-click="false"
@@ -36,7 +36,7 @@
             ></v-date-picker>
           </v-menu>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-menu
               v-model="menuEnd"
               :close-on-content-click="false"
@@ -72,10 +72,9 @@
           <label class="custom-label flag-EN">Resim yukle</label>
           <ImageUpload :data="artistsForm" dataParameter="images"></ImageUpload>
         </v-col>
-        <v-col cols="2" class="px-7 py-0">
+        <v-col cols="12" md="2" class="px-7 py-0">
           <v-btn class="login-btn" color="success" @click="createArtist">Kaydet</v-btn>
         </v-col>
-        <v-col cols="10"></v-col>
       </v-row>
     </v-form>
   </v-card>
