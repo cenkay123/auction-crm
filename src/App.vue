@@ -1,6 +1,6 @@
 <template>
   <v-app class="app" v-if="$store.state.auth.loggedIn">
-    <v-navigation-drawer app :mini-variant.sync="mini" permanent>
+    <v-navigation-drawer app  v-model="$store.state.form.drawer">
       <Sideebar></Sideebar>
     </v-navigation-drawer>
     <v-app-bar color="#122230" dense dark app>
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      mini: false,
+      mini: true,
     }
   }
 }

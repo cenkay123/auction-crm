@@ -1,6 +1,6 @@
 <template>
   <v-row class="home">
-    <v-col cols="10" style="padding: 0" class="home-left-content">
+    <v-col md="10" sm="12" style="padding: 0" class="home-left-content">
       <div class="banner">
         <h2>Hoşgeldin, {{ $store.state.auth.userInfo.firstName }}!</h2>
         <p>{{ $store.state.auth.userInfo.userName }}, {{ $store.state.auth.userInfo.cityName }}</p>
@@ -13,8 +13,10 @@
             <v-tab>Moduler</v-tab>
           </v-tabs>
         </v-col>
-        <v-col cols="3">
-          <v-card max-width="344" class="mx-auto count-card">
+      </v-row>
+      <v-row class="px-3">
+        <v-col cols="6" md="3">
+          <v-card class="mx-auto count-card">
             <v-list-item>
               <v-list-item-content class="count-card-header">
                 <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
@@ -34,8 +36,8 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
-          <v-card max-width="344" class="mx-auto count-card">
+        <v-col cols="6" md="3">
+          <v-card class="mx-auto count-card">
             <v-list-item>
               <v-list-item-content class="count-card-header">
                 <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
@@ -55,8 +57,8 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
-          <v-card max-width="344" class="mx-auto count-card">
+        <v-col cols="6" md="3">
+          <v-card class="mx-auto count-card">
             <v-list-item>
               <v-list-item-content class="count-card-header">
                 <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
@@ -76,8 +78,8 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="3">
-          <v-card max-width="344" class="mx-auto count-card">
+        <v-col cols="6" md="3">
+          <v-card class="mx-auto count-card">
             <v-list-item>
               <v-list-item-content class="count-card-header">
                 <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
@@ -97,26 +99,29 @@
             </v-card-actions>
           </v-card>
         </v-col>
-        <v-col cols="6">
+      </v-row>
+      <v-row class="px-3">
+        <v-col cols="12" md="6">
           <v-card>
           <div id="chart">
             <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
           </div>
           </v-card>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <NewsList></NewsList>
         </v-col>
       </v-row>
+
     </v-col>
-    <v-col cols="2">
+    <v-col cols="12" md="2">
       <v-row>
         <v-col cols="12">
-          <v-card max-width="344" class="mx-auto count-card">
+          <v-card class="mx-auto count-card">
             <v-list-item>
               <v-list-item-content class="count-card-header">
                 <v-list-item-title class="count-card-title" style="font-size: 13px">{{
-                    currentTime | moment("dddd, hh:mm:ss")
+                    currentTime | moment("dddd, HH:mm:ss")
                   }}
                 </v-list-item-title>
                 <v-list-item-title class="count-card-title text-right">
@@ -134,14 +139,11 @@
           </v-card>
         </v-col>
         <v-col cols="12">
-          <v-card
-              class="mx-auto"
-              max-width="400"
-          >
+          <v-card class="mx-auto">
             <v-list-item two-line>
               <v-list-item-content>
                 <v-list-item-title class="headline">{{ weather.location.name }}</v-list-item-title>
-                <v-list-item-subtitle>{{ currentTime | moment("dddd, hh:mm") }}, {{ weather.current.condition.text }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ currentTime | moment("dddd, HH:mm") }}, {{ weather.current.condition.text }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
 
@@ -161,7 +163,7 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-actions>
-              <v-btn text class="last_weather">son guncelleme: {{ weather.current.last_updated | moment("dddd, hh:mm") }}</v-btn>
+              <v-btn text class="last_weather">son guncelleme: {{ weather.current.last_updated | moment("dddd, HH:mm") }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -193,7 +195,7 @@ export default {
           breakpoint: 480,
           options: {
             chart: {
-              width: 200
+              width: 400
             },
             legend: {
               position: 'bottom'
