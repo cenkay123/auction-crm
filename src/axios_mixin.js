@@ -28,16 +28,17 @@ const axios_mixin = {
             return response;
         },
         api_get: function (path, getSuccess, getError) {
+            this.$store.commit('loaderAction', true)
             this.api_calling().get(this.base_url + path).then(
-                (response) => (getSuccess(response))
+                (response) => {(getSuccess(response)); this.$store.commit('loaderAction', false)}
             ).catch(
                 (error) => (getError(error))
             );
         },
         api_post: function (path, payload, postsuccess, posterror) {
-            this.$store.state.settings.loader=true;
+            this.$store.commit('loaderAction', true)
             this.api_calling().post(this.base_url + path, payload).then(
-                (response) => (postsuccess(response.data))
+                (response) => {(postsuccess(response.data)); this.$store.commit('loaderAction', false)},
             ).catch(
                 (error) => (posterror(error))
             );

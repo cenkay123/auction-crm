@@ -10,7 +10,7 @@
     </v-tabs>
 
     <v-card-text>
-      <v-form class="px-2 pt-2 md-px-10">
+      <v-form class="px-0 pt-2 md-px-10">
         <v-row>
           <v-col cols="12">
             <v-text-field ref="name"

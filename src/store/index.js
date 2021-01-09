@@ -113,7 +113,11 @@ const moduleSettings = {
         siteSettings: {},
         loader: false
     },
-    mutations: {}
+    mutations: {
+        loaderAction(state, data) {
+            state.loader = data
+        }
+    }
 }
 
 const vuexLocal = new createPersistedState({

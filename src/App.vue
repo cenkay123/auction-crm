@@ -5,13 +5,19 @@
     </v-navigation-drawer>
     <v-app-bar color="#122230" dense dark app>
       <Header></Header>
+      <Loader v-if="$store.state.settings.loader"></Loader>
     </v-app-bar>
     <v-main color="grey">
       <v-container fluid>
-        <Loader v-if="$store.state.settings.loader"></Loader>
         <Breadcrumbs v-if="$store.state.auth.loggedIn"></Breadcrumbs>
         <router-view></router-view>
       </v-container>
+      <v-overlay v-if="$store.state.settings.loader"
+                 :value="$store.state.settings.loader"
+                 style="background: rgb(0 0 0/60%); pointer-events: none"
+                 :z-index="9999999"
+                 :absolute="true"
+                 opacity=".3"></v-overlay>
     </v-main>
   </v-app>
   <v-app v-else>
@@ -27,6 +33,7 @@ import Loader from "@/components/Loader";
 import Sideebar from "@/components/Sideebar";
 import Login from "@/views/Login";
 import Breadcrumbs from "@/components/Breadcrumbs";
+
 export default {
   name: 'App',
   components: {Breadcrumbs, Login, Sideebar, Header, Loader},

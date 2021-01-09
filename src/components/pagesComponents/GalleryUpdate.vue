@@ -4,7 +4,7 @@
       Yeni Olustur
     </v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="pagesForm.valid" class="px-10 pt-2">
+    <v-form v-model="pagesForm.valid" class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-text-field ref="name" v-model="updateItems['title_' + item.code]"
@@ -12,11 +12,11 @@
                         :label="'Baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
                         outlined></v-text-field>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-text-field ref="name" v-model="updateItems.redirectionLink"
                         label="Yönlendirme linki" placeholder="Yönlendirme linki" outlined dense></v-text-field>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" md="6">
           <v-text-field ref="name" v-model="updateItems.rank"
                         label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
@@ -38,8 +38,7 @@
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
       </v-row>
-      <v-col cols="6"></v-col>
-      <v-col cols="2" class="px-7 py-0">
+      <v-col cols="12" md="2" class="px-7 py-0">
         <v-btn class="login-btn" color="success" @click="updateGallery">Kaydet</v-btn>
       </v-col>
     </v-form>

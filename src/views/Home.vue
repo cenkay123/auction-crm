@@ -32,7 +32,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="indigo white--text" class="count-card-button">Goruntule</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -53,7 +53,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="indigo white--text" class="count-card-button">Goruntule</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -74,7 +74,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="indigo white--text" class="count-card-button">Goruntule</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -95,7 +95,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="indigo white--text" class="count-card-button">Goruntule</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
