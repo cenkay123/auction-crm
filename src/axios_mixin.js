@@ -70,6 +70,7 @@ const axios_mixin = {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Evet, silinsin!',
+                cancelButtonText: 'Iptal',
             }).then((result) => {
                 if (result.value) {
                     this.api_calling().post(this.base_url + path, payload).then(
