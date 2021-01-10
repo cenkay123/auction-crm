@@ -71,7 +71,7 @@ const routes = [
                 name: 'SlaytList',
                 component: SlaytList,
                 meta: {
-                    title: 'Anasayfa Sliderlar',
+                    title: 'Slaytlar',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Slaytlar', route: '/slayts', disabled: true},
@@ -83,7 +83,7 @@ const routes = [
                 name: 'SlaytsCreate',
                 component: SlaytsCreate,
                 meta: {
-                    title: 'Yeni SlaytList ekleme',
+                    title: 'Slayt Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Slaytlar', route: '/slayts'},
@@ -122,7 +122,6 @@ const routes = [
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages', disabled: true},
-                        {name: 'Sayfa ekleme', route: '/create'},
                     ]
                 }
             },
@@ -131,11 +130,11 @@ const routes = [
                 name: 'Create',
                 component: Create,
                 meta: {
-                    title: 'Yeni sayfa ekleme',
+                    title: 'Sayfa Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages'},
-                        {name: 'Sayfa ekleme', route: '/create', disabled: true},
+                        {name: 'Sayfa Ekleme', route: '/create', disabled: true},
                     ]
                 }
             },
@@ -144,7 +143,7 @@ const routes = [
                 name: 'Update',
                 component: Update,
                 meta: {
-                    title: 'Sayfa düzenleme',
+                    title: 'Sayfa Düzenleme',
                      breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages'},
@@ -157,11 +156,11 @@ const routes = [
                 name: 'subpages',
                 component: Subpages,
                 meta: {
-                    title: 'Alt sayfalar',
+                    title: 'Alt Sayfalar',
                      breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages'},
-                        {name: 'Alt sayfa', route: '/update', disabled: true},
+                        {name: 'Alt Sayfalar', route: '/update', disabled: true},
                     ]
                 }
             },
@@ -183,11 +182,11 @@ const routes = [
                 name: 'GalleryCreate',
                 component: GalleryCreate,
                 meta: {
-                    title: 'Galeri oluşturma',
+                    title: 'Galeri Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
-                        {name: 'Galeriler', route: '/GalleryPage'},
-                        {name: 'Galeri ekleme', route: '/create', disabled: true},
+                        {name: 'Galeriler', route: '/galleryPage'},
+                        {name: 'Galeri Ekleme', route: '/create', disabled: true},
                     ]
                 }
             },
@@ -196,7 +195,7 @@ const routes = [
                 name: 'GalleryUpdate',
                 component: GalleryUpdate,
                 meta: {
-                    title: 'Galeri düzenleme',
+                    title: 'Galeri Güncelleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Galeri Güncelleme', route: '/create', disabled: true},
@@ -229,7 +228,7 @@ const routes = [
                 name: 'NewsCreate',
                 component: NewsCreate,
                 meta: {
-                    title: 'Yeni haber ekleme',
+                    title: 'Haber Ekle',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Haberler', route: '/news'},
@@ -242,7 +241,7 @@ const routes = [
                 name: 'NewsUpdate',
                 component: NewsUpdate,
                 meta: {
-                    title: 'Haber düzenleme',
+                    title: 'Haber Guncelle',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Haberler', route: '/news'},
@@ -267,7 +266,7 @@ const routes = [
                     title: 'Sanatçılar',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
-                        {name: 'Sanatcilar', route: '/artists', disabled: true},
+                        {name: 'Sanatçılar', route: '/artists', disabled: true},
                     ]
                 }
             },
@@ -276,7 +275,7 @@ const routes = [
                 name: 'ArtistsCreate',
                 component: ArtistsCreate,
                 meta: {
-                    title: 'Yeni sanatçı ekleme',
+                    title: 'Sanatci Ekle',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sanatcilar', route: '/artists'},
@@ -289,7 +288,7 @@ const routes = [
                 name: 'ArtistsUpdate',
                 component: ArtistsUpdate,
                 meta: {
-                    title: 'Sanatçı düzenleme',
+                    title: 'Sanatci Guncelle',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sanatcilar', route: '/artists'},
@@ -323,7 +322,7 @@ const routes = [
                 name: 'WordCreate',
                 component: WordCreate,
                 meta: {
-                    title: 'Yeni kelime ekleme',
+                    title: 'Kelime Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Kelimeler', route: '/words'},
@@ -335,7 +334,7 @@ const routes = [
                 name: 'WordUpdate',
                 component: WordUpdate,
                 meta: {
-                    title: 'Kelime düzenleme',
+                    title: 'Kelime Güncelleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Kelimeler', route: '/words'},
@@ -369,7 +368,7 @@ const routes = [
                 name: 'PopupCreate',
                 component: PopupCreate,
                 meta: {
-                    title: 'Yeni Pop-up ekleme',
+                    title: 'Popup Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Popup', route: '/Popup'},
@@ -381,7 +380,7 @@ const routes = [
                 name: 'PopupUpdate',
                 component: PopupUpdate,
                 meta: {
-                    title: 'Pop-up düzenleme',
+                    title: 'Popup Güncelleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Popup', route: '/Popup'},
