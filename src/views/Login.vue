@@ -16,17 +16,17 @@
             <div class="subtitle-1 justify-center text-center">Giriş için bilgilerinizi giriniz</div>
           </v-card-text>
           <v-divider class="mx-4"></v-divider>
-          <v-form v-model="loginForm.valid">
+          <v-form v-model="loginForm.valid" v-on:submit.prevent="login">
             <v-row>
-              <v-col cols="12" class="px-7 py-0 pt-3">
+              <v-col cols="12" class="px-7 py-2 pt-3">
                 <v-text-field label="Eposta" class="login-input" outlined v-model="loginForm.email" required
                               :rules="loginForm.emailRules"></v-text-field>
               </v-col>
-              <v-col cols="12" class="px-7 py-0">
+              <v-col cols="12" class="px-7 py-2">
                 <v-text-field label="Şifre" type="password" class="login-input" outlined v-model="loginForm.password"
                               required :rules="loginForm.passwordRules"></v-text-field>
               </v-col>
-              <v-col cols="12" class="px-7 py-0">
+              <v-col cols="12" class="px-7 pt-1">
                 <v-btn class="login-btn" type="submit" color="success" @click="login" :loading="loading"
                        :disabled="loading">Giriş yap
                   <template v-slot:loader>
@@ -56,14 +56,17 @@ export default {
         valid: false,
         email: '',
         password: '',
-        emailRules: [v => !!v || 'Email is required'],
-        passwordRules: [v => !!v || 'Password is required',],
+        emailRules: [v => !!v || 'Lutfen e-posta giriniz.'],
+        passwordRules: [v => !!v || 'Lutfen sifre giriniz.',],
       },
       snackbar: false,
       text: 'Kullanici adi veya parola yanlis.',
       timeout: 2000,
       loading: false
     }
+  },
+  mounted() {
+    window.localStorage.clear();
   },
   methods: {
     login() {
