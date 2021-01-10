@@ -39,7 +39,7 @@ export default {
       var token = JSON.parse(vuex);
 
       axios({
-        url: "http://52.247.242.98:80/file/fileupload",
+        url: this.base_url + "/file/fileupload",
         method: "POST",
         data: formData,
         headers: {'Authorization': 'Bearer ' + token.auth.userToken}
