@@ -145,30 +145,27 @@ export default {
     },
     updateData(){
       this.$store.state.settings.loader=true;
-      let rawData = {
-        id:this.$store.state.settings.siteSettings.id,
-        title:this.$store.state.settings.siteSettings.title,
-        description:this.$store.state.settings.siteSettings.description,
-        cellPhone:this.$store.state.settings.siteSettings.cellPhone,
-        landPhone:this.$store.state.settings.siteSettings.landPhone,
-        fax:this.$store.state.settings.siteSettings.fax,
-        email:this.$store.state.settings.siteSettings.email,
-        address:this.$store.state.settings.siteSettings.address,
-        map:this.$store.state.settings.siteSettings.map,
-        facebookUrl:this.$store.state.settings.siteSettings.facebookUrl,
-        instagramUrl:this.$store.state.settings.siteSettings.instagramUrl,
-        twitterUrl:this.$store.state.settings.siteSettings.twitterUrl,
-        linkedinUrl:this.$store.state.settings.siteSettings.linkedinUrl,
-        pinterestUrl:this.$store.state.settings.siteSettings.pinterestUrl,
-        otherSocialMediaUrl:this.$store.state.settings.siteSettings.otherSocialMediaUrl,
-        comissionRate:this.$store.state.settings.siteSettings.comissionRate,
-        taxRate:this.$store.state.settings.siteSettings.taxRate,
-        isActive:this.$store.state.settings.siteSettings.isActive,
-      }
-      rawData = JSON.stringify(rawData)
+
       let formData = new FormData();
       formData.append('logo', this.$store.state.settings.siteSettings.logo)
-      formData.append('data', rawData)
+      formData.append("id",this.$store.state.settings.siteSettings.id)
+      formData.append("title",this.$store.state.settings.siteSettings.title)
+      formData.append("description",this.$store.state.settings.siteSettings.description)
+      formData.append("cellPhone",this.$store.state.settings.siteSettings.cellPhone)
+      formData.append("landPhone",this.$store.state.settings.siteSettings.landPhone)
+      formData.append("fax",this.$store.state.settings.siteSettings.fax)
+      formData.append("email",this.$store.state.settings.siteSettings.email)
+      formData.append("address",this.$store.state.settings.siteSettings.address)
+      formData.append("map",this.$store.state.settings.siteSettings.map)
+      formData.append("facebookUrl",this.$store.state.settings.siteSettings.facebookUrl)
+      formData.append("instagramUrl",this.$store.state.settings.siteSettings.instagramUrl)
+      formData.append("twitterUrl",this.$store.state.settings.siteSettings.twitterUrl)
+      formData.append("linkedinUrl",this.$store.state.settings.siteSettings.linkedinUrl)
+      formData.append("pinterestUrl",this.$store.state.settings.siteSettings.pinterestUrl)
+      formData.append("otherSocialMediaUrl",this.$store.state.settings.siteSettings.otherSocialMediaUrl)
+      formData.append("comissionRate",this.$store.state.settings.siteSettings.comissionRate)
+      formData.append("taxRate",this.$store.state.settings.siteSettings.taxRate)
+      formData.append("isActive",this.$store.state.settings.siteSettings.isActive)
       this.api_post('/sitesettings/update', formData,
           {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
     },
