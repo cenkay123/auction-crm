@@ -4,25 +4,31 @@ import Home from '../views/Home.vue'
 import Pages from "@/views/Pages";
 import Settings from "@/views/Settings";
 import Documantation from "@/views/Documantation";
+
 import List from "@/components/pagesComponents/List";
 import Create from "@/components/pagesComponents/Create";
 import Update from "@/components/pagesComponents/Update";
 import Subpages from "@/components/pagesComponents/Subpages";
+
 import News from "@/views/News";
 import NewsList from "@/components/newsComponents/NewsList";
 import NewsCreate from "@/components/newsComponents/NewsCreate";
 import NewsUpdate from "@/components/newsComponents/NewsUpdate";
+
 import Artists from "@/views/Artists";
 import ArtistsList from "@/components/artistsComponents/ArtistsList";
 import ArtistsCreate from "@/components/artistsComponents/ArtistsCreate";
 import ArtistsUpdate from "@/components/artistsComponents/ArtistsUpdate";
+
 import Slayts from "@/views/Slayts";
 import SlaytList from "@/components/slaytComponents/SlaytList";
 import SlaytsCreate from "@/components/slaytComponents/SlaytsCreate";
 import SlaytsUpdate from "@/components/slaytComponents/SlaytsUpdate";
+
 import GalleryPage from "@/components/pagesComponents/GalleryPage";
 import GalleryCreate from "@/components/pagesComponents/GalleryCreate";
 import GalleryUpdate from "@/components/pagesComponents/GalleryUpdate";
+
 import Words from "@/views/Words";
 import WordsList from "@/components/wordsComponents/WordsList";
 import WordCreate from "@/components/wordsComponents/WordCreate";
@@ -32,6 +38,11 @@ import Popup from "@/views/Popup";
 import PopupList from "@/components/popupComponents/PopupList";
 import PopupCreate from "@/components/popupComponents/PopupCreate";
 import PopupUpdate from "@/components/popupComponents/PopupUpdate";
+
+import Categories from "@/views/Categories";
+import CategoriesList from "@/components/categoriesComponents/CategoriesList";
+import CategoriesCreate from "@/components/categoriesComponents/CategoriesCreate";
+import CategoriesUpdate from "@/components/categoriesComponents/CategoriesUpdate";
 
 
 Vue.use(VueRouter)
@@ -344,8 +355,54 @@ const routes = [
             }
         ]
     },
-     /** Popup Router */
+     /** Kategoriler Router */
     {
+        path: '/Categories',
+        name: 'Categories',
+        component: Categories,
+        redirect: '/Categories',
+        children: [
+            {
+                path: '/',
+                name: 'CategoriesList',
+                component: CategoriesList,
+                meta: {
+                    title: 'Kategoriler',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kategoriler', route: '/CategoriesList', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/CategoriesCreate',
+                name: 'CategoriesCreate',
+                component: CategoriesCreate,
+                meta: {
+                    title: 'Kategori Ekleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kategori Ekleme', route: '/CategoriesCreate',disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/CategoriesUpdate/:id',
+                name: 'CategoriesUpdate',
+                component: CategoriesUpdate,
+                meta: {
+                    title: 'Kategori Güncelleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kategoriler', route: '/Categories'},
+                        {name: 'Kategori Güncelleme', route: '/Categories', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+
+      {
         path: '/Popup',
         name: 'Popup',
         component: Popup,

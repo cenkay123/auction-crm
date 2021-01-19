@@ -48,6 +48,7 @@ export default {
         {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists'},
         {title: 'Kelimeler', icon: 'mdi-pencil', route: 'Words'},
         {title: 'Popup', icon: 'mdi-gift', route: 'Popup'},
+        {title: 'Urunler Kategorisi', icon: 'mdi-help-box', route: 'Categories'},
         {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation'},
       ],
     }

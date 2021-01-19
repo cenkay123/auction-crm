@@ -36,6 +36,7 @@ const moduleStore = {
         artists: [],
         words: [],
         popup: [],
+        categories: [],
     },
     mutations: {
         successSlayt(state, response) {
@@ -52,6 +53,9 @@ const moduleStore = {
         },
         successArtists(state, data) {
             state.artists = data;
+        },
+        successCategories(state, data) {
+            state.categories = data;
         },
         errorSlayt() {
             axios_mixin.methods.Error_Message('İşlem hatalı', 'tekrar deneyiniz', 'error')
