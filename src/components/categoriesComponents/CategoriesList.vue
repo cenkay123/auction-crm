@@ -95,8 +95,8 @@ export default {
      this.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
     },
     updateStatus(id, status) {
-      this.mixinUpdateItem('/productcategories/isactiveupdate', {
-        slider:{
+      this.mixinUpdateItem('/productcategory/isactiveupdate', {
+        productcategory:{
           Id: id,
           IsActive: status
         }
