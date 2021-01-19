@@ -65,8 +65,7 @@ export default {
   data() {
     return {
       pagePropertyList: [],
-      page_id:this.$route.params.page_id,
-      pagesForm: {parentId:this.$route.query.page_id},
+      pagesForm: {parentId:this.$route.params.page_id},
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,

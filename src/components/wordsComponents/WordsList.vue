@@ -24,11 +24,11 @@
           <v-spacer></v-spacer>
 
           <download-excel :data="$store.state.storeData.slayts" name="Slaytlar.xls">
-            <v-btn class="mr-3" small color="warning" dark>Export
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark>Export
               <v-icon small class="ml-1">mdi-export</v-icon>
             </v-btn>
           </download-excel>
-          <v-btn class="mr-3" small color="primary" dark :to="{name: 'WordCreate'}">Yeni Olustur
+          <v-btn class="mr-3" small color="blue-grey darken-4" dark :to="{name: 'WordCreate'}">Yeni Olustur
             <v-icon small class="ml-1">mdi-plus-outline</v-icon>
           </v-btn>
         </v-toolbar>

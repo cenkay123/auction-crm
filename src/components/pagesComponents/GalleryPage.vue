@@ -15,14 +15,14 @@
         </template>
 
 
-        <template v-slot:item.pageBanners="{ item }">
-            <v-img
-              lazy-src="https://picsum.photos/id/11/10/6"
-              max-width="200"
-              max-height="160"
-              :src="item.pageBanners[0].pictureUrl"
-            ></v-img>
-        </template>
+<!--        <template v-slot:item.pageBanners="{ item }">-->
+<!--            <v-img-->
+<!--              lazy-src="https://picsum.photos/id/11/10/6"-->
+<!--              max-width="200"-->
+<!--              max-height="160"-->
+<!--              :src="item.pageBanners[0].pictureUrl"-->
+<!--            ></v-img>-->
+<!--        </template>-->
 
         <template v-slot:top>
           <v-toolbar flat>
@@ -84,7 +84,7 @@ export default {
       newData: [],
       headers: [
         {text: '#',align: 'start',sortable: false,value: 'id'},
-        {text: 'Resim',  value: 'pageBanners'},
+        // {text: 'Resim',  value: 'pageBanners'},
         {text: 'Baslik', value: 'title_tr'},
         {text: 'Menu durumu', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}

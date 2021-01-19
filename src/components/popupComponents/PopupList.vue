@@ -27,7 +27,7 @@
           ></v-text-field>
           <v-spacer></v-spacer>
 
-          <v-btn class="mr-3" small color="primary" dark :to="{name: 'PopupCreate'}">Yeni Olustur
+          <v-btn class="mr-3" small color="blue-grey darken-4" dark :to="{name: 'PopupCreate'}">Yeni Olustur
             <v-icon small class="ml-1">mdi-plus-outline</v-icon>
           </v-btn>
         </v-toolbar>

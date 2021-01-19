@@ -17,7 +17,7 @@
             </router-link>
           </template>
           <template v-slot:item.rank="{item}">
-            <input class="rank-input" type="text" v-model="item.rank">
+            <div class="rank-input">{{item.rank}}</div>
 
           </template>
           <template v-slot:top>

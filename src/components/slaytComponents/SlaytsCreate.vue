@@ -15,7 +15,7 @@
         <v-col cols="12">
           <v-row>
             <v-text-field ref="name" v-model="slaytpostData.link"
-                          label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
+                          label="Link" placeholder="Link yonlendirme" outlined dense></v-text-field>
           </v-row>
         </v-col>
         <v-col cols="12">

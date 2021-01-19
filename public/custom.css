@@ -1,44 +1,76 @@
 .ck-editor {
-    height: 250px!important;
+    height: 250px !important;
 }
+
 .ck-editor__editable {
-    height: 200px!important;
+    height: 200px !important;
 }
+
 .custom-label {
     font-size: 14px;
     color: #797979;
     font-weight: 500;
 }
-.v-overlay__scrim{
-  opacity: 0!important;
+
+.v-overlay__scrim {
+    opacity: 0 !important;
 }
-.c00c292{background-color: #00c292!important;color: #fff!important;padding: 0 13px!important;height: 30px!important;}
+
+.c00c292 {
+    background-color: #00c292 !important;
+    color: #fff !important;
+    padding: 0 13px !important;
+    height: 30px !important;
+}
 
 .swal2-title {
-    font-weight: 500!important;
+    font-weight: 500 !important;
 }
-.v-breadcrumbs__item{color: #00c292!important;font-size: 12px; font-weight: 600; letter-spacing: 1.5px;}
-.v-breadcrumbs__item--disabled{color: #a0a0a0 !important;}
-.darkcolorbg{background: #14213d;}
-.theme--dark.v-navigation-drawer{background-color: #14213d}
-.rank-input{border: 1px solid;width: 12%;border-radius: 5px;padding: 2px 0;text-align: center;color: #000;opacity: 1;}
-.profilePic .v-image__image--cover {background-size: 30px}
+
+.v-breadcrumbs__item {
+    color: #00c292 !important;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+.v-breadcrumbs__item--disabled {
+    color: #a0a0a0 !important;
+}
+
+.darkcolorbg {
+    background: #14213d;
+}
+
+.theme--dark.v-navigation-drawer {
+    background-color: #14213d
+}
+
+.rank-input {
+    border: 1px solid #ccc;
+    width: 26%;
+    padding: 2px 0;
+    text-align: center;
+    color: #000;
+    opacity: 1;
+}
+
+.profilePic .v-image__image--cover {
+    background-size: 30px
+}
 
 
-body::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #F5F5F5;
 }
 
-body::-webkit-scrollbar
-{
+body::-webkit-scrollbar {
     width: 10px;
     background-color: #F5F5F5;
 }
 
-body::-webkit-scrollbar-thumb
-{
+body::-webkit-scrollbar-thumb {
     background-color: #14213d;
     border: 2px solid #14213d;
     border-bottom-right-radius: 10px;

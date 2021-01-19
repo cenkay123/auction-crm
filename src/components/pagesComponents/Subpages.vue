@@ -106,9 +106,9 @@ export default {
       this.fetchPages()
     },
     updateStatus(id, status) {
-      this.mixinUpdateItem('/pages/isactiveupdate', {
+      this.mixinUpdateItem('/pages/ismainupdate', {
         id: id,
-        isActive: status,
+        isMain: status,
       }, this.successUpdate)
     },
     successUpdate() {

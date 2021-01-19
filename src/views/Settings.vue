@@ -111,6 +111,7 @@
           <v-col cols="12">
             <v-row>
               <v-col cols="12" md="6">
+
                 <v-file-input v-model="$store.state.settings.siteSettings.logo" color="blue-grey darken-4" label="Site Logosu" placeholder="Lutfen Logo Seciniz" prepend-icon="mdi-paperclip" outlined :show-size="1000">
                   <template v-slot:selection="{ index, text }">
                     <v-chip color="blue-grey darken-4" dark label small v-text="typeof $store.state.settings.siteSettings.logo === 'string' ? $store.state.settings.siteSettings.logo : text"></v-chip>
@@ -119,6 +120,7 @@
               </v-col>
             </v-row>
           </v-col>
+
 
           <v-col cols="2" class="py-0">
             <v-btn class="btn" color="success" @click="updateData">Kaydet</v-btn>

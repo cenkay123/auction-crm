@@ -21,7 +21,7 @@
                         label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
         </v-col>
          <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="pagesForm.rank"
+          <v-text-field ref="name" type="number" v-model="pagesForm.rank"
                         label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
