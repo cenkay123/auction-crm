@@ -22,14 +22,45 @@
     </v-list>
     <v-divider></v-divider>
     <v-list dense nav class="pt-5">
-      <v-list-item v-for="item in items" :key="item.title" link :to="{name: item.route}" exact>
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <div v-for="item in items" :key="item.title">
+       <!--DropDown None-->
+        <v-list-item v-if="item.dropDown.length < 1" link :to="{name: item.route}" exact>
+          <template>
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </template>
+        </v-list-item>
+        <!--DropDown Block-->
+        <v-list-item v-else>
+          <v-list-group
+              link
+              :value="false"
+              class="w-100 customListgroup"
+          >
+            <template v-slot:activator class="pl-0">
+              <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </template>
+            <template v-if="item.dropDown.length!= 0">
+              <v-list-item
+                  v-for="dropItem in item.dropDown" :key="dropItem.title"
+                  link :to="{name: dropItem.route}" exact
+                  class="sidebarDropdown"
+              >
+                <v-list-item-title v-text="dropItem.title"></v-list-item-title>
+              </v-list-item>
+            </template>
+          </v-list-group>
+        </v-list-item>
+      </div>
     </v-list>
   </div>
 </template>
@@ -40,16 +71,26 @@ export default {
   data() {
     return {
       items: [
-        {title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'Home'},
-        {title: 'Site Ayarlari', icon: 'mdi-settings', route: 'Settings'},
-        {title: 'Slaytlar', icon: 'mdi-image', route: 'Slayts'},
-        {title: 'Sayfalar', icon: 'mdi-book', route: 'Pages'},
-        {title: 'Haberler', icon: 'mdi-newspaper', route: 'News'},
-        {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists'},
-        {title: 'Kelimeler', icon: 'mdi-pencil', route: 'Words'},
-        {title: 'Popup', icon: 'mdi-gift', route: 'Popup'},
-        {title: 'Urunler Kategorisi', icon: 'mdi-help-box', route: 'Categories'},
-        {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation'},
+        {title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'Home', dropDown: []},
+        {title: 'Site Ayarlari', icon: 'mdi-settings', route: 'Settings', dropDown: []},
+        {title: 'Slaytlar', icon: 'mdi-image', route: 'Slayts', dropDown: []},
+        {title: 'Sayfalar', icon: 'mdi-book', route: 'Pages', dropDown: []},
+        {title: 'Haberler', icon: 'mdi-newspaper', route: 'News', dropDown: []},
+        {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists', dropDown: []},
+        {title: 'Kelimeler', icon: 'mdi-pencil', route: 'Words', dropDown: []},
+        {title: 'Popup', icon: 'mdi-gift', route: 'Popup', dropDown: []},
+        {
+          title: 'Urunler', icon: 'mdi mdi-cart',
+          dropDown: [{
+            title: 'Urunler Kategorisi',
+            route: 'Categories',
+          },
+            {
+              title: 'Urunler',
+              route: 'urunler',
+            }]
+        },
+        {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation', dropDown: []},
       ],
     }
   }
@@ -58,7 +99,7 @@ export default {
 
 <style scoped>
 .sidebarUser {
-  background: #122230!important;
+  background: #122230 !important;
   position: relative;
 }
 
