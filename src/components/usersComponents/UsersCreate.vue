@@ -102,7 +102,7 @@ export default {
   methods: {
     addData() {
       this.api_post('/users/add', {
-        users: this.createData
+        user: this.createData
       }, this.addSuccess, this.addError);
     },
     addSuccess() {

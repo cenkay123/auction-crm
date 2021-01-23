@@ -103,7 +103,7 @@ export default {
     },
     updateData() {
       this.api_post('/users/update', {
-        users: this.ListData
+        user: this.ListData
       }, this.successUpdate, this.errorUpdate);
     },
     errorUpdate() {
