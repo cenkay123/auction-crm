@@ -37,6 +37,7 @@ const moduleStore = {
         words: [],
         popup: [],
         categories: [],
+        users: [],
     },
     mutations: {
         successSlayt(state, response) {
@@ -56,6 +57,9 @@ const moduleStore = {
         },
         successCategories(state, data) {
             state.categories = data;
+        },
+        successUsers(state, data) {
+            state.users = data;
         },
         errorSlayt() {
             axios_mixin.methods.Error_Message('İşlem hatalı', 'tekrar deneyiniz', 'error')
