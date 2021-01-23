@@ -44,6 +44,10 @@ import CategoriesList from "@/components/categoriesComponents/CategoriesList";
 import CategoriesCreate from "@/components/categoriesComponents/CategoriesCreate";
 import CategoriesUpdate from "@/components/categoriesComponents/CategoriesUpdate";
 
+import Users from "@/views/Users";
+import UsersList from "@/components/usersComponents/UsersList";
+import UsersCreate from "@/components/usersComponents/UsersCreate";
+import UsersUpdate from "@/components/usersComponents/UsersUpdate";
 
 Vue.use(VueRouter)
 
@@ -155,7 +159,7 @@ const routes = [
                 component: Update,
                 meta: {
                     title: 'Sayfa Düzenleme',
-                     breadcrumb: [
+                    breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages'},
                         {name: 'Sayfa Düzenleme', route: '/update', disabled: true},
@@ -168,7 +172,7 @@ const routes = [
                 component: Subpages,
                 meta: {
                     title: 'Alt Sayfalar',
-                     breadcrumb: [
+                    breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Sayfalar', route: '/pages'},
                         {name: 'Alt Sayfalar', route: '/update', disabled: true},
@@ -355,7 +359,7 @@ const routes = [
             }
         ]
     },
-     /** Kategoriler Router */
+    /** Kategoriler Router */
     {
         path: '/Categories',
         name: 'Categories',
@@ -382,7 +386,7 @@ const routes = [
                     title: 'Kategori Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
-                        {name: 'Kategori Ekleme', route: '/CategoriesCreate',disabled: true},
+                        {name: 'Kategori Ekleme', route: '/CategoriesCreate', disabled: true},
                     ]
                 }
             },
@@ -402,7 +406,7 @@ const routes = [
         ]
     },
 
-      {
+    {
         path: '/Popup',
         name: 'Popup',
         component: Popup,
@@ -442,6 +446,53 @@ const routes = [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Popup', route: '/Popup'},
                         {name: 'Popup Güncelleme', route: '/popup', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+
+      {
+        path: '/Users',
+        name: 'Users',
+        component: Users,
+        redirect: '/Users',
+        children: [
+            {
+                path: '/',
+                name: 'UsersList',
+                component: UsersList,
+                meta: {
+                    title: 'Kullanıcılar',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kullanıcılar', route: '/users', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/UsersCreate',
+                name: 'UsersCreate',
+                component: UsersCreate,
+                meta: {
+                    title: 'Kullanıcı Ekleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kullanıcılar', route: '/Users'},
+                        {name: 'Kullanıcı Ekleme', route: '/Users',disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/UsersUpdate/:id',
+                name: 'UsersUpdate',
+                component: UsersUpdate,
+                meta: {
+                    title: 'Kullanıcı Güncelleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Kullanıcılar', route: '/Users'},
+                        {name: 'Kullanıcı Güncelleme', route: '/users', disabled: true},
                     ]
                 }
             }

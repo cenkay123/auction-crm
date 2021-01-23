@@ -23,7 +23,7 @@
     <v-divider></v-divider>
     <v-list dense nav class="pt-5">
       <div v-for="item in items" :key="item.title">
-       <!--DropDown None-->
+        <!--DropDown None-->
         <v-list-item v-if="item.dropDown.length < 1" link :to="{name: item.route}" exact>
           <template>
             <v-list-item-icon>
@@ -88,6 +88,17 @@ export default {
             {
               title: 'Urunler',
               route: 'urunler',
+            }]
+        },
+        {
+          title: 'Kullanıcılar', icon: 'mdi mdi-account',
+          dropDown: [{
+            title: 'Kullanıcı Ekle',
+            route: 'UsersCreate',
+          },
+            {
+              title: 'Kullanıcılar',
+              route: 'Users',
             }]
         },
         {title: 'Dokumantasyon', icon: 'mdi-help-box', route: 'Documantation', dropDown: []},
