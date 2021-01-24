@@ -8,9 +8,6 @@
     <v-btn color="#fff" icon :to="{name: 'Settings'}">
       <v-icon>mdi-settings</v-icon>
     </v-btn>
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
     <v-menu bottom offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-btn v-bind="attrs" v-on="on" icon>

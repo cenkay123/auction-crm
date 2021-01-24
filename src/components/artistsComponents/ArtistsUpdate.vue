@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="pb-3">
-      Sanatci Guncelle
+      Sanatçı Güncelle
     </v-card-title>
     <v-divider></v-divider>
     <v-form class="px-4 px-md-10 pt-2">
@@ -14,7 +14,7 @@
           <v-menu v-model="menuStart" :close-on-content-click="false" :nudge-right="40" transition="scale-transition"
                   offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="artistsItem.birthDate" label="Dogum tarihi" placeholder="Dogum tarihi" readonly
+              <v-text-field v-model="artistsItem.birthDate" label="Doğum tarihi" placeholder="Doğum tarihi" readonly
                             v-bind="attrs" v-on="on" outlined></v-text-field>
             </template>
             <v-date-picker v-model="artistsItem.birthDate" @input="menuStart = false"></v-date-picker>
@@ -32,13 +32,13 @@
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'Sanatci bilgisi ' + item.code.toUpperCase()"></label>
-            <Editor :data="artistsItem" dataItem="about_" :lang="item"></Editor>
+            <label class="custom-label" v-text="'Sanatçı bilgisi ' + item.code.toUpperCase()"></label>
+            <Editor :data="artistsItem" dataItem="about_" class="mt-3 mb-4" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-EN">Resim yukle</label>
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+          <vue-dropzone ref="myVueDropzone" id="dropzone" class="mt-3" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="12">

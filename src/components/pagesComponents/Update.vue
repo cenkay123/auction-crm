@@ -4,61 +4,75 @@
       Sayfa Düzenleme
     </v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="pagesForm.valid" class="px-2 px-md-10 pt-2">
+    <v-form v-model="pagesForm.valid" class="px-2 px-md-10 pt-2 formClass">
       <v-row>
         <v-col cols="12" md="6">
           <v-text-field ref="name" v-model="updateItems['title_' + item.code]"
                         v-for="item in $store.state.form.languages" :key="item.id"
-                        :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
-                        outlined></v-text-field>
+                        label="Sayfa adi" placeholder="Sayfa adi giriniz" dense
+                        outlined>
+            <template v-slot:prepend>
+              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+            </template>
+          </v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field ref="name" v-model="updateItems['keywords_' + item.code]"
                         v-for="item in $store.state.form.languages" :key="item.id"
-                        :label="'keywords ' + item.code.toUpperCase()" placeholder="Keywords giriniz" dense
-                        outlined></v-text-field>
+                        label="keywords" placeholder="Keywords giriniz" dense
+                        outlined>
+            <template v-slot:prepend>
+              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+            </template>
+          </v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field ref="name" v-model="updateItems.redirectionLink"
-                        label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
+                        label="Link" placeholder="Link yonlendirme" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field ref="name" type="number" v-model="updateItems.rank"
                         label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-textarea counter v-model="updateItems['description_' + item.code]" v-for="item in $store.state.form.languages"
+          <v-textarea counter v-model="updateItems['description_' + item.code]"
+                      v-for="item in $store.state.form.languages"
                       :key="item.id"
-                      :label="'Ozet ' + item.code.toUpperCase()" placeholder="ozet giriniz"
-                      outlined dense></v-textarea>
+                      label="Açıklama" placeholder="ozet giriniz"
+                      outlined dense>
+            <template v-slot:prepend>
+              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+            </template>
+          </v-textarea>
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'Icerik ' + item.code.toUpperCase()"></label>
-            <Editor :data="updateItems" dataItem="detail_" :lang="item"></Editor>
+            <label class="custom-label" v-text="'İçerik ' + item.code.toUpperCase()"></label>
+            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="updateItems" class="mt-3 mb-4" dataItem="detail_" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
-          <label class="custom-label flag-EN">Resim yukle</label>
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+          <label class="custom-label flag-EN">Resim yükle</label>
+          <vue-dropzone ref="myVueDropzone" class="mt-3" id="dropzone" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="6">
-          <v-select :items="pagePropertyList" v-model="updateItems.SpecificationId" item-text="name" item-value="id"
-                    label="Sayfa Ozelligi" outlined dense></v-select>
+          <v-select :items="pagePropertyList" v-model="updateItems.specificationId" item-text="name" item-value="id"
+                    label="Sayfa tipi"  outlined dense></v-select>
         </v-col>
         <v-col cols="6">
-          <v-select :items="$store.state.pages.pages" v-model="updateItems.parentId" default="id" item-text="title"
+          <v-select :items="$store.state.pages.pages"  v-model="updateItems.parentId" default="id" item-text="title"
                     item-value="id"
-                    label="Ust Sayfalar" outlined dense></v-select>
+                    label="Üst Sayfalar" outlined dense></v-select>
         </v-col>
         <v-col cols="12" md="6">
           <v-row>
             <v-col cols="6">
-              <v-checkbox v-model="updateItems.isActive" label="Ust menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="updateItems.isMain" label="Üst menüde gözüksün" class="mt-0"></v-checkbox>
             </v-col>
             <v-col cols="6">
-              <v-checkbox v-model="updateItems.isFooter" label="Alt menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="updateItems.isFooter" label="Alt menüde gözüksün" class="mt-0"></v-checkbox>
             </v-col>
           </v-row>
         </v-col>
@@ -91,11 +105,12 @@ export default {
         addRemoveLinks: true,
         headers: {"My-Awesome-Header": "header value"}
       },
-      pagesForm: {topPages:null},
+      pagesForm: {topPages: null},
       updateItems: {},
-      page_id:this.$route.params.id
+      page_id: this.$route.params.id
     }
   },
+
   mounted() {
     this.getData();
     this.fetchSpecifications();
@@ -112,14 +127,14 @@ export default {
       this.pagesForm.pageProperty = this.pagePropertyList[0].id;
     },
     successFetchPages(response) {
-      this.updateItems=response.data;
+      this.updateItems = response.data;
     },
-    updatePage(){
-      this.api_post('/pages/update/',{
-        page:this.updateItems,
-      },this.successUpdate)
+    updatePage() {
+      this.api_post('/pages/update/', {
+        page: this.updateItems,
+      }, this.successUpdate)
     },
-    successUpdate(){
+    successUpdate() {
       this.Error_Message('İslem Basarılı', '', 'success')
       this.$router.push({name: 'List'})
     }

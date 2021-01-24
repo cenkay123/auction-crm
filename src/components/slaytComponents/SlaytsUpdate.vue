@@ -10,7 +10,7 @@
           <v-row>
             <v-text-field ref="name" v-model="slaytUpdateData['title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
+                          :label="'Baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
                           outlined class="col-md-6 px-1"></v-text-field>
           </v-row>
         </v-col>
@@ -19,20 +19,22 @@
             <v-textarea counter v-model="slaytUpdateData['summary_' + item.code]"
                         v-for="item in $store.state.form.languages"
                         :key="item.id"
-                        :label="'Aciklama ' + item.code.toUpperCase()" placeholder="aciklama giriniz"
+                        :label="'Açıklama ' + item.code.toUpperCase()" placeholder="aciklama giriniz"
                         outlined dense class="col-md-6 px-1"></v-textarea>
           </v-row>
         </v-col>
 
         <v-col cols="12">
-          <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'content ' + item.code.toUpperCase()"></label>
-            <Editor :data="slaytUpdateData" dataItem="content_" :lang="item"></Editor>
-          </div>
+          <v-row>
+            <div class="col-md-12 px-1" v-for="item in $store.state.form.languages" :key="item.id">
+              <label class="custom-label" v-text="'İçerik ' + item.code.toUpperCase()"></label>
+              <Editor :data="slaytUpdateData" class="mt-5" dataItem="content_" :lang="item"></Editor>
+            </div>
+          </v-row>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" class="p-0">
           <label class="custom-label flag-EN">Resim yukle</label>
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+          <vue-dropzone class="mt-3" ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="12">

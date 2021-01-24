@@ -4,29 +4,38 @@
       Yeni Haber Olustur
     </v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="newsForm.valid" class="px-4 px-md-10 pt-2">
+    <v-form v-model="newsForm.valid" class="px-4 px-md-10 pt-2 formClass">
       <v-row>
         <v-col cols="12">
           <v-row>
             <v-text-field ref="name" v-model="newsForm['Title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
-                          outlined class="col-md-6 px-1"></v-text-field>
+                          label="Başlık" placeholder="Başlık giriniz" dense
+                          outlined class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-text-field>
           </v-row>
         </v-col>
         <v-col cols="12">
           <v-row>
-            <v-textarea counter v-model="newsForm['ShortDescription_' + item.code]" v-for="item in $store.state.form.languages"
+            <v-textarea counter v-model="newsForm['ShortDescription_' + item.code]"
+                        v-for="item in $store.state.form.languages"
                         :key="item.id"
-                        :label="'Aciklama ' + item.code.toUpperCase()" placeholder="aciklama giriniz"
-                        outlined dense class="col-md-6 px-1"></v-textarea>
+                        label="Açıklama" placeholder="aciklama giriniz"
+                        outlined dense class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-textarea>
           </v-row>
         </v-col>
         <v-col cols="12" md="6">
           <v-menu ref="menu" v-model="menuStart" :close-on-content-click="false" :return-value.sync="newsForm.StartDate"
                   transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="newsForm.StartDate" label="Yayinlanacagi tarih" outlined readonly v-bind="attrs"
+              <v-text-field v-model="newsForm.StartDate" label="Yayınlanacağı tarih" outlined readonly v-bind="attrs"
                             v-on="on"></v-text-field>
             </template>
             <v-date-picker v-model="newsForm.StartDate" no-title scrollable>
@@ -40,7 +49,7 @@
           <v-menu ref="menu" v-model="menuEnd" :close-on-content-click="false" :return-value.sync="newsForm.EndDate"
                   transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-model="newsForm.EndDate" label="Yayinlandan kalkacagi tarih" outlined readonly v-bind="attrs"
+              <v-text-field v-model="newsForm.EndDate" label="Yayından kalkacağı tarih" outlined readonly v-bind="attrs"
                             v-on="on"></v-text-field>
             </template>
             <v-date-picker v-model="newsForm.EndDate" no-title scrollable>
@@ -52,14 +61,15 @@
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'Icerik ' + item.code.toUpperCase()"></label>
-            <Editor :data="newsForm" dataItem="Detail_" :lang="item"></Editor>
+            <label class="custom-label">İçerik</label>
+             <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="newsForm" dataItem="Detail_" class="mt-3 mb-4" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
-          <label class="custom-label flag-EN">Resim yukle</label>
+          <label class="custom-label flag-EN">Resim yükle</label>
           <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
-                        vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
+                        vdropzone-removed-file="onRemoveUploadingFile" class="mt-3"></vue-dropzone>
         </v-col>
         <v-col cols="12" md="2" class="px-7 py-0">
           <v-btn class="login-btn" color="success" @click="createNews">Kaydet</v-btn>
@@ -73,6 +83,7 @@
 import vue2Dropzone from 'vue2-dropzone';
 import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 import Editor from "@/components/basicFormComponents/Editor";
+
 var moment = require('moment');
 export default {
   name: "NewsCreate",

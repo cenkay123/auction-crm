@@ -8,7 +8,7 @@
           <v-row>
             <v-text-field ref="name" v-model="slaytpostData['Title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
+                          :label="'Baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
                           outlined class="col-md-6 px-1"></v-text-field>
           </v-row>
         </v-col>

@@ -3,7 +3,7 @@
     <v-data-table
         :headers="headers"
         :search="search"
-        :items="$store.state.storeData.popup"
+        :items="popup"
         sort-by="id"
         class="elevation-5"
     >
@@ -61,6 +61,7 @@ export default {
   data() {
     return {
       search: '',
+      popup:[],
       headers: [
         {
           text: '#',
@@ -82,7 +83,7 @@ export default {
       this.api_get('/popups', this.fetchSuccess, this.fetchError);
     },
     fetchSuccess(response) {
-      this.$store.commit('successPopup', response.data)
+      this.popup=response.data;
     },
     fetchError() {
       this.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')

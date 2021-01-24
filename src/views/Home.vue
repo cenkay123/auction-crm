@@ -32,7 +32,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -40,7 +40,49 @@
           <v-card class="mx-auto count-card">
             <v-list-item>
               <v-list-item-content class="count-card-header">
-                <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
+                <v-list-item-title class="count-card-title">Haberler</v-list-item-title>
+                <v-list-item-title class="count-card-title text-right">
+                  <v-btn icon>
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <div class="count-card-body">
+              <h3 class="blue-grey--text">{{$store.state.storeData.news.length}}</h3>
+              <p>Toplam Haber</p>
+            </div>
+            <v-card-actions class="count-card-footer">
+              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+        <v-col cols="6" md="3">
+          <v-card class="mx-auto count-card">
+            <v-list-item>
+              <v-list-item-content class="count-card-header">
+                <v-list-item-title class="count-card-title">Kullanıcılar</v-list-item-title>
+                <v-list-item-title class="count-card-title text-right">
+                  <v-btn icon>
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <div class="count-card-body">
+              <h3 class="blue-grey--text">{{$store.state.storeData.users.length}}</h3>
+              <p>Toplam kullanıcı</p>
+            </div>
+            <v-card-actions class="count-card-footer">
+              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+        <v-col cols="6" md="3">
+          <v-card class="mx-auto count-card">
+            <v-list-item>
+              <v-list-item-content class="count-card-header">
+                <v-list-item-title class="count-card-title">Online Müzayedeler</v-list-item-title>
                 <v-list-item-title class="count-card-title text-right">
                   <v-btn icon>
                     <v-icon>mdi-dots-vertical</v-icon>
@@ -53,49 +95,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col cols="6" md="3">
-          <v-card class="mx-auto count-card">
-            <v-list-item>
-              <v-list-item-content class="count-card-header">
-                <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
-                <v-list-item-title class="count-card-title text-right">
-                  <v-btn icon>
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <div class="count-card-body">
-              <h3 class="blue-grey--text">12</h3>
-              <p>Toplam urun</p>
-            </div>
-            <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-        <v-col cols="6" md="3">
-          <v-card class="mx-auto count-card">
-            <v-list-item>
-              <v-list-item-content class="count-card-header">
-                <v-list-item-title class="count-card-title">Ürünler</v-list-item-title>
-                <v-list-item-title class="count-card-title text-right">
-                  <v-btn icon>
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
-                </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-            <div class="count-card-body">
-              <h3 class="blue-grey--text">12</h3>
-              <p>Toplam urun</p>
-            </div>
-            <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Goruntule</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -163,7 +163,7 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-actions>
-              <v-btn text class="last_weather">son guncelleme: {{ weather.current.last_updated | moment("dddd, HH:mm") }}</v-btn>
+              <v-btn text class="last_weather">son güncelleme: {{ weather.current.last_updated | moment("dddd, HH:mm") }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -209,7 +209,7 @@ export default {
     setInterval(() => this.updateCurrentTime(), 1 * 1000);
   },
   mounted() {
-    this.havaDurumu()
+    this.havaDurumu();
   },
   methods: {
     updateCurrentTime() {
@@ -226,7 +226,7 @@ export default {
           console.error(err)
         }
       })
-    }
+    },
   },
 
 }

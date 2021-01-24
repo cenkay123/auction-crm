@@ -3,7 +3,7 @@
     <v-data-table
         :headers="headers"
         :search="search"
-        :items="$store.state.storeData.artists"
+        :items="artists"
         sort-by="id"
         class="elevation-5"
     >
@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       search: '',
+      artists:[],
       headers: [
         {
           text: '#',
@@ -103,7 +104,7 @@ export default {
       this.mixinDeleteItem('/artists/deleteall', {Id: null}, this.fetchArtists);
     },
     successArtists(response) {
-      this.$store.commit('successArtists', response.data)
+      this.artists=response.data;
     },
     routeUpdateItem(id) {
       this.$router.push({name: 'ArtistsUpdate', params: {id: id}})

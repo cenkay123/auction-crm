@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="pb-3">
-      Yeni Sanatci Ekle
+      Yeni Sanatçı Ekle
     </v-card-title>
     <v-divider></v-divider>
     <v-form class="px-4 px-md-10 pt-2">
@@ -22,8 +22,8 @@
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                   v-model="artistsForm.BirthDate"
-                  label="Dogum tarihi"
-                  placeholder="Dogum tarihi"
+                  label="Doğum tarihi"
+                  placeholder="Doğum tarihi"
                   readonly
                   v-bind="attrs"
                   v-on="on"
@@ -64,15 +64,16 @@
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'Sanatci Bilgisi ' + item.code.toUpperCase()"></label>
-            <Editor :data="artistsForm" dataItem="About_" :lang="item"></Editor>
+            <label class="custom-label">Sanatçı Bilgisi</label>
+               <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="artistsForm" dataItem="About_" class="mt-3 mb-4" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-EN">Resim yukle</label>
-          <ImageUpload :data="artistsForm" dataParameter="images"></ImageUpload>
+          <ImageUpload :data="artistsForm" class="mt-3" dataParameter="images"></ImageUpload>
         </v-col>
-        <v-col cols="12" md="2" class="px-7 py-0">
+        <v-col cols="12" md="2" class=" py-0">
           <v-btn class="login-btn" color="success" @click="createArtist">Kaydet</v-btn>
         </v-col>
       </v-row>

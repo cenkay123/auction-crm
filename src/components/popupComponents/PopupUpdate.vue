@@ -10,8 +10,12 @@
           <v-row>
             <v-text-field ref="name" v-model="ListData['title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
-                          outlined class="col-md-6 px-1"></v-text-field>
+                          label="başlık" placeholder="Başlık giriniz" dense
+                          outlined class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-text-field>
           </v-row>
         </v-col>
         <v-col cols="12">
@@ -19,8 +23,12 @@
             <v-textarea counter v-model="ListData['description_' + item.code]"
                         v-for="item in $store.state.form.languages"
                         :key="item.id"
-                        :label="'Aciklama ' + item.code.toUpperCase()" placeholder="aciklama giriniz"
-                        outlined dense class="col-md-6 px-1"></v-textarea>
+                        label="Açıklama" placeholder="açıklama giriniz"
+                        outlined dense class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-textarea>
           </v-row>
         </v-col>
 

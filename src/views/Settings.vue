@@ -172,11 +172,11 @@ export default {
           {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
     },
     successUpdate(){
-      this.$store.commit('successMessage');
+     this.Error_Message('İslem Basarılı', '', 'success')
       this.getSitesettings();
     },
     errorUpdate(){
-      this.$store.commit('errorMessage')
+      this.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
     }
 
   }
