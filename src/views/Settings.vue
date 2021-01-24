@@ -148,26 +148,33 @@ export default {
     updateData(){
       this.$store.state.settings.loader=true;
 
+
+
+
       let formData = new FormData();
-      formData.append('logo', this.$store.state.settings.siteSettings.logo)
-      formData.append("id",this.$store.state.settings.siteSettings.id)
-      formData.append("title",this.$store.state.settings.siteSettings.title)
-      formData.append("description",this.$store.state.settings.siteSettings.description)
-      formData.append("cellPhone",this.$store.state.settings.siteSettings.cellPhone)
-      formData.append("landPhone",this.$store.state.settings.siteSettings.landPhone)
-      formData.append("fax",this.$store.state.settings.siteSettings.fax)
-      formData.append("email",this.$store.state.settings.siteSettings.email)
-      formData.append("address",this.$store.state.settings.siteSettings.address)
-      formData.append("map",this.$store.state.settings.siteSettings.map)
-      formData.append("facebookUrl",this.$store.state.settings.siteSettings.facebookUrl)
-      formData.append("instagramUrl",this.$store.state.settings.siteSettings.instagramUrl)
-      formData.append("twitterUrl",this.$store.state.settings.siteSettings.twitterUrl)
-      formData.append("linkedinUrl",this.$store.state.settings.siteSettings.linkedinUrl)
-      formData.append("pinterestUrl",this.$store.state.settings.siteSettings.pinterestUrl)
-      formData.append("otherSocialMediaUrl",this.$store.state.settings.siteSettings.otherSocialMediaUrl)
-      formData.append("comissionRate",this.$store.state.settings.siteSettings.comissionRate)
-      formData.append("taxRate",this.$store.state.settings.siteSettings.taxRate)
-      formData.append("isActive",this.$store.state.settings.siteSettings.isActive)
+      let settingsData={};
+
+      settingsData.append('logo', this.$store.state.settings.siteSettings.logo)
+      settingsData.append("id",this.$store.state.settings.siteSettings.id)
+      settingsData.append("title",this.$store.state.settings.siteSettings.title)
+      settingsData.append("description",this.$store.state.settings.siteSettings.description)
+      settingsData.append("cellPhone",this.$store.state.settings.siteSettings.cellPhone)
+      settingsData.append("landPhone",this.$store.state.settings.siteSettings.landPhone)
+      settingsData.append("fax",this.$store.state.settings.siteSettings.fax)
+      settingsData.append("email",this.$store.state.settings.siteSettings.email)
+      settingsData.append("address",this.$store.state.settings.siteSettings.address)
+      settingsData.append("map",this.$store.state.settings.siteSettings.map)
+      settingsData.append("facebookUrl",this.$store.state.settings.siteSettings.facebookUrl)
+      settingsData.append("instagramUrl",this.$store.state.settings.siteSettings.instagramUrl)
+      settingsData.append("twitterUrl",this.$store.state.settings.siteSettings.twitterUrl)
+      settingsData.append("linkedinUrl",this.$store.state.settings.siteSettings.linkedinUrl)
+      settingsData.append("pinterestUrl",this.$store.state.settings.siteSettings.pinterestUrl)
+      settingsData.append("otherSocialMediaUrl",this.$store.state.settings.siteSettings.otherSocialMediaUrl)
+      settingsData.append("comissionRate",this.$store.state.settings.siteSettings.comissionRate)
+      settingsData.append("taxRate",this.$store.state.settings.siteSettings.taxRate)
+      settingsData.append("isActive",this.$store.state.settings.siteSettings.isActive)
+
+      formData.append('settings',settingsData)
       this.api_post('/sitesettings/update', formData,
           {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
     },
