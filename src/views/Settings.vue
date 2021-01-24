@@ -135,6 +135,11 @@
 <script>
 export default {
   name: "Settings",
+  data(){
+    return{
+      settingsData:{},
+    }
+  },
   mounted() {
     this.getSitesettings()
   },
@@ -146,37 +151,9 @@ export default {
       this.$store.state.settings.siteSettings = response.data[0]
     },
     updateData(){
-      this.$store.state.settings.loader=true;
-
-
-
-
-      let formData = new FormData();
-      let settingsData={};
-
-      settingsData.append('logo', this.$store.state.settings.siteSettings.logo)
-      settingsData.append("id",this.$store.state.settings.siteSettings.id)
-      settingsData.append("title",this.$store.state.settings.siteSettings.title)
-      settingsData.append("description",this.$store.state.settings.siteSettings.description)
-      settingsData.append("cellPhone",this.$store.state.settings.siteSettings.cellPhone)
-      settingsData.append("landPhone",this.$store.state.settings.siteSettings.landPhone)
-      settingsData.append("fax",this.$store.state.settings.siteSettings.fax)
-      settingsData.append("email",this.$store.state.settings.siteSettings.email)
-      settingsData.append("address",this.$store.state.settings.siteSettings.address)
-      settingsData.append("map",this.$store.state.settings.siteSettings.map)
-      settingsData.append("facebookUrl",this.$store.state.settings.siteSettings.facebookUrl)
-      settingsData.append("instagramUrl",this.$store.state.settings.siteSettings.instagramUrl)
-      settingsData.append("twitterUrl",this.$store.state.settings.siteSettings.twitterUrl)
-      settingsData.append("linkedinUrl",this.$store.state.settings.siteSettings.linkedinUrl)
-      settingsData.append("pinterestUrl",this.$store.state.settings.siteSettings.pinterestUrl)
-      settingsData.append("otherSocialMediaUrl",this.$store.state.settings.siteSettings.otherSocialMediaUrl)
-      settingsData.append("comissionRate",this.$store.state.settings.siteSettings.comissionRate)
-      settingsData.append("taxRate",this.$store.state.settings.siteSettings.taxRate)
-      settingsData.append("isActive",this.$store.state.settings.siteSettings.isActive)
-
-      formData.append('settings',settingsData)
-      this.api_post('/sitesettings/update', formData,
-          {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
+      this.api_post('/sitesettings/update',{
+        settings:this.$store.state.settings.siteSettings
+      },this.successUpdate, this.errorUpdate)
     },
     successUpdate(){
      this.Error_Message('İslem Basarılı', '', 'success')
