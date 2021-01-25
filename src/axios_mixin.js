@@ -30,7 +30,10 @@ const axios_mixin = {
         api_get: function (path, getSuccess, getError) {
             this.$store.commit('loaderAction', true)
             this.api_calling().get(this.base_url + path).then(
-                (response) => {(getSuccess(response)); this.$store.commit('loaderAction', false)}
+                (response) => {
+                    (getSuccess(response));
+                    this.$store.commit('loaderAction', false)
+                }
             ).catch(
                 (error) => (getError(error))
             );
@@ -38,7 +41,10 @@ const axios_mixin = {
         api_post: function (path, payload, postsuccess, posterror) {
             this.$store.commit('loaderAction', true)
             this.api_calling().post(this.base_url + path, payload).then(
-                (response) => {(postsuccess(response.data)); this.$store.commit('loaderAction', false)},
+                (response) => {
+                    (postsuccess(response.data));
+                    this.$store.commit('loaderAction', false)
+                },
             ).catch(
                 (error) => (posterror(error))
             );
@@ -53,7 +59,7 @@ const axios_mixin = {
                 showConfirmButton: false,
                 timer: 3000,
             });
-            this.$store.state.settings.loader=false;
+            this.$store.state.settings.loader = false;
 
         },
         Swall_Fire(title, text, type) {
@@ -117,6 +123,15 @@ const axios_mixin = {
                 }
             }
             return false;
+        },
+        findFormData: function (data) {
+            let formData = new FormData();
+
+            for (var key in data) {
+                var value = data[key];
+                formData.append(key, value)
+            }
+            return formData;
         },
         findByKey: function (source, key, oddkey) {
             if (key in source) {

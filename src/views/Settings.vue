@@ -167,16 +167,7 @@ export default {
     },
 
     updateData() {
-      let formData = new FormData();
-
-      var th = this;
-
-      for (var key in th.$store.state.settings.siteSettings) {
-        var value = th.$store.state.settings.siteSettings[key];
-        formData.append(key,value)
-      }
-
-      this.api_post('/sitesettings/update', formData,
+      this.api_post('/sitesettings/update', this.findFormData(this.$store.state.settings.siteSettings),
           {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
     },
     successUpdate() {
