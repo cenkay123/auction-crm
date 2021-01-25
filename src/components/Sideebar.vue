@@ -72,7 +72,10 @@ export default {
     return {
       items: [
         {title: 'Dashboard', icon: 'mdi-view-dashboard', route: 'Home', dropDown: []},
-        {title: 'Site Ayarlari', icon: 'mdi-settings', route: 'Settings', dropDown: []},
+        {title: 'Ayarlar', icon: 'mdi-settings', route: 'Settings', dropDown: [
+          {title:'Site Ayarları', route:'Settings', dropDown:[]},
+          {title:'Dil Ayaları', route:'LanguageSettings', dropDown:[]}
+        ]},
         {title: 'Slaytlar', icon: 'mdi-image', route: 'Slayts', dropDown: []},
         {title: 'Sayfalar', icon: 'mdi-book', route: 'Pages', dropDown: []},
         {title: 'Haberler', icon: 'mdi-newspaper', route: 'News', dropDown: []},

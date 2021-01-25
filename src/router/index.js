@@ -53,7 +53,7 @@ import Products from "@/views/Products";
 import ProductsList from "@/components/productsComponents/ProductsList";
 import ProductsCreate from "@/components/productsComponents/ProductsCreate";
 import ProductsUpdate from "@/components/productsComponents/ProductsUpdate";
-
+import LanguageSettings from "@/views/LanguageSettings";
 Vue.use(VueRouter)
 
 const routes = [
@@ -551,8 +551,20 @@ const routes = [
             }
         ]
     },
-
-
+    /** Dil Ayaları Router */
+    {
+        path: '/LanguageSettings',
+        name: 'LanguageSettings',
+        component: LanguageSettings,
+        meta: {
+            title: 'Dil Ayarlari',
+            breadcrumb: [
+                {name: 'Anasayfa', route: '/'},
+                {name: 'Site Ayarları', route: '/Settings', disabled: false},
+                {name: 'Dil Ayaları', route: '/LanguageSettings', disabled: true},
+            ]
+        }
+    },
     {
         path: '/documantation',
         name: 'Documantation',
