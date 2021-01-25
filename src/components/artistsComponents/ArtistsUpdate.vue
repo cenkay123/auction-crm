@@ -30,6 +30,22 @@
             <v-date-picker v-model="artistsItem.dateOfDeath" @input="menuEnd = false"></v-date-picker>
           </v-menu>
         </v-col>
+
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="artistsItem.link"
+                          class="col-md-12 px-2"
+                          label="Link" placeholder="Link yönlendirme" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="artistsItem.rank"
+                          class="col-md-12 px-1"
+                          label="Sıra" placeholder="Sırası" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
             <label class="custom-label" v-text="'Sanatçı bilgisi ' + item.code.toUpperCase()"></label>

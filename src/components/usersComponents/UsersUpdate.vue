@@ -67,6 +67,12 @@
           </v-row>
         </v-col>
 
+          <v-col cols="6">
+          <v-select :items="userProperty"  v-model="ListData.userType" default="id" item-text="title"
+                    item-value="id"
+                    label="Kullanıcı tipi" outlined dense></v-select>
+        </v-col>
+
         <v-col cols="12">
           <v-row>
             <v-col cols="2">
@@ -86,9 +92,11 @@
 <script>
 export default {
   name: "UsersUpdate",
+
   data() {
     return {
       ListData: {},
+      userProperty:[{title:'admin',id:1},{title:'kullanıcı',id:2}],
     }
   },
   mounted() {

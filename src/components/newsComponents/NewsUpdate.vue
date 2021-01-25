@@ -4,7 +4,7 @@
       Haber Güncelle
     </v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-4 px-md-10 pt-2 formClass">
+    <v-form class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -31,7 +31,23 @@
             </v-textarea>
           </v-row>
         </v-col>
-        <v-col cols="12" md="6" class="pl-0 pr-0">
+
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="newsItem.link"
+                          class="col-md-12 px-2"
+                          label="Link" placeholder="Link yönlendirme" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="newsItem.rank"
+                          class="col-md-12 px-1"
+                          label="Sıra" placeholder="Sırası" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+
+        <v-col cols="12" md="6">
           <v-menu ref="menu" v-model="menuStart" :close-on-content-click="false" :return-value.sync="newsItem.startDate"
                   transition="scale-transition" offset-y min-width="290px">
             <template v-slot:activator="{ on, attrs }">
