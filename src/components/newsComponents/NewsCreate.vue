@@ -4,7 +4,7 @@
       Yeni Haber Olustur
     </v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="newsForm.valid" class="px-4 px-md-10 pt-2 formClass">
+    <v-form v-model="newsForm.valid" class="px-4 px-md-10 pt-2 ">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -23,7 +23,7 @@
             <v-textarea counter v-model="newsForm['ShortDescription_' + item.code]"
                         v-for="item in $store.state.form.languages"
                         :key="item.id"
-                        label="Açıklama" placeholder="aciklama giriniz"
+                        label="Açıklama" placeholder="Açıklama giriniz"
                         outlined dense class="col-md-6 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
@@ -31,6 +31,22 @@
             </v-textarea>
           </v-row>
         </v-col>
+
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="newsForm.link"
+                          class="col-md-12 px-2"
+                          label="Link" placeholder="Link yönlendirme" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="newsForm.rank"
+                          class="col-md-12 px-1"
+                          label="Sıra" placeholder="Sırası" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+
         <v-col cols="12" md="6">
           <v-menu ref="menu" v-model="menuStart" :close-on-content-click="false" :return-value.sync="newsForm.StartDate"
                   transition="scale-transition" offset-y min-width="290px">
@@ -62,7 +78,7 @@
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
             <label class="custom-label">İçerik</label>
-             <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
+            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
             <Editor :data="newsForm" dataItem="Detail_" class="mt-3 mb-4" :lang="item"></Editor>
           </div>
         </v-col>

@@ -4,7 +4,7 @@
       Slayt Guncelle
     </v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-4 px-md-10 pt-2 formClass">
+    <v-form class="px-4 px-md-10 pt-2">
       <v-row>
         <v-col cols="12">
           <v-row>
@@ -29,6 +29,21 @@
                 <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
               </template>
             </v-textarea>
+          </v-row>
+        </v-col>
+
+          <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="slaytUpdateData.link"
+                          class="col-md-12 px-2"
+                          label="Link" placeholder="Link yönlendirme" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+        <v-col cols="6">
+          <v-row>
+            <v-text-field ref="name" v-model="slaytUpdateData.rank"
+                          class="col-md-12 px-1"
+                          label="Sıra" placeholder="Sırası" outlined dense></v-text-field>
           </v-row>
         </v-col>
 

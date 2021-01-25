@@ -68,11 +68,14 @@
         </v-col>
         <v-col cols="12" md="6">
           <v-row>
-            <v-col cols="6">
+            <v-col cols="5">
               <v-checkbox v-model="updateItems.isMain" label="Üst menüde gözüksün" class="mt-0"></v-checkbox>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="5">
               <v-checkbox v-model="updateItems.isFooter" label="Alt menüde gözüksün" class="mt-0"></v-checkbox>
+            </v-col>
+             <v-col cols="2">
+              <v-checkbox v-model="updateItems.isActive" label="Durumu" class="mt-0"></v-checkbox>
             </v-col>
           </v-row>
         </v-col>

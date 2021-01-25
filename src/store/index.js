@@ -20,9 +20,9 @@ const moduleForm = {
             console.log('hello admin')
         },
         sidebarAction(state) {
-            if(state.drawer) {
+            if (state.drawer) {
                 state.drawer = false
-            }else {
+            } else {
                 state.drawer = 1
             }
         }
@@ -34,6 +34,7 @@ const moduleStore = {
         news: [],
         categories: [],
         users: [],
+        products: [],
     },
     mutations: {
         successNews(state, data) {
@@ -44,6 +45,9 @@ const moduleStore = {
         },
         successUsers(state, data) {
             state.users = data;
+        },
+        successProducts(state, data) {
+            state.products = data;
         },
     }
 }
@@ -62,6 +66,8 @@ const moduleAuth = {
         },
         logout(state) {
             state.loggedIn = false;
+            state.userInfo = {};
+            state.userToken = null;
             window.location.href = "/";
         }
     }
@@ -87,7 +93,7 @@ const modulePages = {
                     subPages: item.subPages,
                     SpecificationId: item.pageSpecification.id,
                 };
-                if (item.parentId==0){
+                if (item.parentId == 0) {
                     state.pages.push(customItem);
                 }
 

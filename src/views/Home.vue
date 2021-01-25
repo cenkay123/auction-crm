@@ -28,11 +28,11 @@
               </v-list-item-content>
             </v-list-item>
             <div class="count-card-body">
-              <h3 class="blue-grey--text">12</h3>
+              <h3 class="blue-grey--text">{{$store.state.storeData.products.length}}</h3>
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button" :to="{name: 'Products'}">Görüntüle</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -53,7 +53,7 @@
               <p>Toplam Haber</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button" :to="{name: 'News'}">Görüntüle</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -74,7 +74,7 @@
               <p>Toplam kullanıcı</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button" :to="{name: 'Users'}">Görüntüle</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -95,7 +95,7 @@
               <p>Toplam urun</p>
             </div>
             <v-card-actions class="count-card-footer">
-              <v-btn color="primary white--text" small class="count-card-button">Görüntüle</v-btn>
+              <v-btn color="primary white--text" small class="count-card-button" :to="{name: 'Products'}">Görüntüle</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

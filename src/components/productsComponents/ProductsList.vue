@@ -3,7 +3,7 @@
     <v-data-table
         :headers="headers"
         :search="search"
-        :items="slayts"
+        :items="$store.state.storeData.products"
         sort-by="id"
         class="elevation-5"
     >
@@ -13,7 +13,7 @@
       </template>
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>Slaytlar</v-toolbar-title>
+          <v-toolbar-title>Ürünler</v-toolbar-title>
           <v-divider class="mx-4 d-none d-md-flex" inset vertical></v-divider>
           <v-text-field
               v-model="search"
@@ -27,15 +27,16 @@
           ></v-text-field>
           <v-spacer></v-spacer>
 
-          <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="deleteAllClear()">Sıfırla
-            <v-icon small class="ml-1">mdi-close-outline</v-icon>
+          <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="deleteAllClear(null)">
+            <span class="d-none d-md-inline">Sıfırla</span>
+            <v-icon small class="ml-0 ml-md-1">mdi-close-outline</v-icon>
           </v-btn>
-          <download-excel :data="$store.state.storeData.slayts" name="Slaytlar.xls">
+          <download-excel :data="products" name="Categories.xls">
             <v-btn class="mr-3" small color="blue-grey darken-4" dark>Export
               <v-icon small class="ml-1">mdi-export</v-icon>
             </v-btn>
           </download-excel>
-          <v-btn class="mr-3" small color="blue-grey darken-4" dark :to="{name: 'SlaytsCreate'}">Yeni Olustur
+          <v-btn class="mr-3" small color="blue-grey darken-4" dark :to="{name: 'ProductsCreate'}">Yeni Olustur
             <v-icon small class="ml-1">mdi-plus-outline</v-icon>
           </v-btn>
         </v-toolbar>
@@ -65,11 +66,11 @@
 
 <script>
 export default {
-  name: "SlaytList",
+  name: "ProductsList",
   data() {
     return {
       search: '',
-      slayts: [],
+      products: [],
       headers: [
         {
           text: '#',
@@ -77,44 +78,45 @@ export default {
           sortable: false,
           value: 'id'
         },
-        {text: 'Baslik', value: 'title_tr'},
+        {text: 'Ürün adı', value: 'name_tr'},
         {text: 'Status', value: 'isActive'},
         {text: 'İslemler', value: 'actions'}
       ],
     }
   },
   mounted() {
-    this.fetchSliders()
+    this.fetchProducts()
   },
+
   methods: {
-    fetchSliders() {
-      this.api_get('/sliders', this.fetchSuccess, this.fetchError);
+    fetchProducts() {
+      this.api_get('/products', this.fetchSuccess, this.fetchError);
     },
     fetchSuccess(response) {
-      this.slayts = response.data;
+      this.$store.commit('successProducts',response.data)
     },
     fetchError() {
-      this.$store.commit('errorSlayt')
+      this.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
     },
     updateStatus(id, status) {
-      this.mixinUpdateItem('/sliders/isactiveupdate', {
-        slider:{
+      this.mixinUpdateItem('/products/isactiveupdate', {
+        product: {
           Id: id,
           IsActive: status
         }
-      }, this.fetchSliders)
-    },
-    deleteAllClear() {
-      this.mixinDeleteItem('/sliders/deleteall', {Id: null}, this.fetchSliders);
+      }, this.fetchProducts)
     },
     deleteItem(id) {
-      this.mixinDeleteItem('/sliders/delete/' + id, {
+      this.mixinDeleteItem('/product/delete/' + id, {
         Id: id
-      }, this.fetchSliders);
+      }, this.fetchProducts);
     },
     routeUpdateItem(id) {
-      this.$router.push({name: 'SlaytsUpdate', params: {id: id}})
-    }
+      this.$router.push({name: 'ProductsUpdate', params: {id: id}})
+    },
+    deleteAllClear() {
+      this.mixinDeleteItem('/products/deleteall', {Id: null}, this.fetchProducts);
+    },
 
   }
 }

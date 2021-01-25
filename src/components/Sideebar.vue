@@ -87,7 +87,7 @@ export default {
           },
             {
               title: 'Urunler',
-              route: 'urunler',
+              route: 'Products',
             }]
         },
         {

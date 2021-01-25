@@ -49,6 +49,11 @@ import UsersList from "@/components/usersComponents/UsersList";
 import UsersCreate from "@/components/usersComponents/UsersCreate";
 import UsersUpdate from "@/components/usersComponents/UsersUpdate";
 
+import Products from "@/views/Products";
+import ProductsList from "@/components/productsComponents/ProductsList";
+import ProductsCreate from "@/components/productsComponents/ProductsCreate";
+import ProductsUpdate from "@/components/productsComponents/ProductsUpdate";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -493,6 +498,54 @@ const routes = [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Kullanıcılar', route: '/Users'},
                         {name: 'Kullanıcı Güncelleme', route: '/users', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+
+    /** Products Router */
+    {
+        path: '/Products',
+        name: 'Products',
+        component: Products,
+        redirect: '/Products',
+        children: [
+            {
+                path: '/',
+                name: 'ProductsList',
+                component: ProductsList,
+                meta: {
+                    title: 'Ürünler',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Ürünler', route: '/', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/ProductsCreate',
+                name: 'ProductsCreate',
+                component: ProductsCreate,
+                meta: {
+                    title: 'Ürün Ekleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Ürünler', route: '/Products'},
+                        {name: 'Ürün Ekleme', route: '/', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/ProductsUpdate/:id',
+                name: 'ProductsUpdate',
+                component: ProductsUpdate,
+                meta: {
+                    title: 'Ürün Güncelleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Ürünler', route: '/Products'},
+                        {name: 'Ürün Güncelleme', route: '/', disabled: true},
                     ]
                 }
             }

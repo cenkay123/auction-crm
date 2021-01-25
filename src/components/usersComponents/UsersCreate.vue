@@ -76,6 +76,11 @@
             ></v-text-field>
           </v-row>
         </v-col>
+        <v-col cols="6" class="pl-1">
+          <v-select :items="userProperty" v-model="createData.userType" default="id" item-text="title"
+                    item-value="id"
+                    label="Kullanıcı tipi" outlined dense></v-select>
+        </v-col>
         <v-col cols="12">
           <v-checkbox v-model="createData.IsActive" label="Aktif/Pasif" class="mt-0"></v-checkbox>
         </v-col>
@@ -94,6 +99,7 @@ export default {
   name: "UsersCreate",
   data() {
     return {
+      userProperty:[{title:'admin',id:1},{title:'kullanıcı',id:2}],
       createData: {
         IsActive: true,
       },
