@@ -69,6 +69,7 @@ export default {
   data() {
     return {
       search: '',
+      slayts: [],
       headers: [
         {
           text: '#',
@@ -90,7 +91,7 @@ export default {
       this.api_get('/sliders', this.fetchSuccess, this.fetchError);
     },
     fetchSuccess(response) {
-      this.$store.commit('successSlayt', response.data)
+      this.slayts = response.data;
     },
     fetchError() {
       this.$store.commit('errorSlayt')

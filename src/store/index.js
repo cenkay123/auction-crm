@@ -31,38 +31,19 @@ const moduleForm = {
 
 const moduleStore = {
     state: {
-        slayts: [],
         news: [],
-        artists: [],
-        words: [],
-        popup: [],
         categories: [],
         users: [],
     },
     mutations: {
-        successSlayt(state, response) {
-            state.slayts = response;
-        },
-        successPopup(state, response) {
-            state.popup = response;
-        },
-        successWords(state, response) {
-            state.words = response;
-        },
         successNews(state, data) {
             state.news = data;
-        },
-        successArtists(state, data) {
-            state.artists = data;
         },
         successCategories(state, data) {
             state.categories = data;
         },
         successUsers(state, data) {
             state.users = data;
-        },
-        errorSlayt() {
-            axios_mixin.methods.Error_Message('İşlem hatalı', 'tekrar deneyiniz', 'error')
         },
     }
 }

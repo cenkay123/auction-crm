@@ -39,13 +39,13 @@
                 class="d-none d-md-flex"
             ></v-text-field>
             <v-spacer></v-spacer>
-            <v-btn class="mr-3" small color="red" dark @click="deleteAllClear()" >Sıfırla
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="deleteAllClear()" >Sıfırla
               <v-icon small class="ml-1">mdi-close-outline</v-icon>
             </v-btn>
-            <v-btn class="mr-3" small color="warning" dark>Export
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark>Export
               <v-icon small class="ml-1">mdi-export</v-icon>
             </v-btn>
-            <v-btn class="mr-3" small color="primary" dark @click="routeGalleryCreate(page_id)" >Yeni Olustur
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="routeGalleryCreate(page_id)" >Yeni Olustur
               <v-icon small class="ml-1">mdi-plus-outline</v-icon>
             </v-btn>
           </v-toolbar>
@@ -86,7 +86,7 @@ export default {
         {text: '#',align: 'start',sortable: false,value: 'id'},
         // {text: 'Resim',  value: 'pageBanners'},
         {text: 'Baslik', value: 'title_tr'},
-        {text: 'Menu durumu', value: 'isMain'},
+        {text: 'Durumu', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
       ],
       text: 'Bir sorun ile karsilasildi.',

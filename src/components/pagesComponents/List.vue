@@ -36,10 +36,7 @@
               ></v-text-field>
               <v-spacer></v-spacer>
 
-              <v-btn class="mr-3" small color="blue-grey darken-4" dark>
-                <span class="d-none d-md-inline">Sıralama kaydet</span>
-                <v-icon small class="ml-0 ml-md-1">mdi-source-commit</v-icon>
-              </v-btn>
+
               <v-btn class="mr-3" small color="blue-grey darken-4" dark @click="deleteAllClear(null)">
                 <span class="d-none d-md-inline">Sıfırla</span>
                 <v-icon small class="ml-0 ml-md-1">mdi-close-outline</v-icon>
@@ -57,7 +54,7 @@
             </v-toolbar>
           </template>
           <template v-slot:item.actions="{ item }">
-            <v-tooltip bottom>
+            <v-tooltip bottom v-if="item.specificationId==2">
               <template v-slot:activator="{ on, attrs }">
                 <v-icon small color="teal darken-2
    accent-2" class="mr-2" v-bind="attrs" v-on="on"
@@ -108,7 +105,7 @@ export default {
           sortable: false,
           value: 'id'
         },
-        {text: 'Baslik', value: 'title'},
+        {text: 'Sayfa adi', value: 'title'},
         {text: 'Alt Sayfalar', value: 'subPages'},
         {text: 'Sayfa sırası', value: 'rank'},
         {text: 'Üst menu durum', value: 'isMain'},

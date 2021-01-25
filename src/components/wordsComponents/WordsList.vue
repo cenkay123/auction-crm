@@ -3,7 +3,7 @@
     <v-data-table
         :headers="headers"
         :search="search"
-        :items="$store.state.storeData.words"
+        :items="words"
         sort-by="id"
         class="elevation-5"
     >
@@ -62,6 +62,7 @@ export default {
   data() {
     return {
       search: '',
+      words:[],
       headers: [
         {
           text: '#',
@@ -84,7 +85,7 @@ export default {
       this.api_get('/words', this.fetchSuccess);
     },
     fetchSuccess(response) {
-      this.$store.commit('successWords', response.data)
+      this.words=response.data;
     },
     deleteItem(id) {
       this.mixinDeleteItem('/words/delete/' + id, {

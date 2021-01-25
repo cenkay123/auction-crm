@@ -8,15 +8,19 @@
           <v-row>
             <v-text-field ref="name" v-model="categoriesData['title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'Kategori adi ' + item.code.toUpperCase()" placeholder="Kategori adı giriniz" dense
-                          outlined class="col-md-6 px-1"></v-text-field>
+                          label="Kategori adi" placeholder="Kategori adı giriniz" dense
+                          outlined class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-text-field>
           </v-row>
         </v-col>
         <v-col cols="12">
           <v-checkbox v-model="categoriesData.IsActive" label="Aktif/Pasif" class="mt-0"></v-checkbox>
         </v-col>
-        <v-col cols="12" md="2" class="px-7 py-0">
-          <v-btn class="login-btn" color="success" @click="addCategories">Kaydet</v-btn>
+        <v-col cols="12" md="2">
+          <v-btn class="login-btn" color="blue-grey darken-4" @click="addCategories">Kaydet</v-btn>
         </v-col>
       </v-row>
     </v-form>

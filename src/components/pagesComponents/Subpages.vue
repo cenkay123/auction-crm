@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="sub in $store.state.pages.pages" :key="sub.id" >
+    <div v-for="sub in $store.state.pages.pages" :key="sub.id">
       <v-data-table
           v-if="sub.id==$route.params.id"
           :headers="headers"
@@ -30,19 +30,29 @@
             ></v-text-field>
             <v-spacer></v-spacer>
 
-            <v-btn class="mr-3" small color="red" dark>Sıfırla
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark>Sıfırla
               <v-icon small class="ml-1">mdi-close-outline</v-icon>
             </v-btn>
-            <v-btn class="mr-3" small color="warning" dark>Export
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark>Export
               <v-icon small class="ml-1">mdi-export</v-icon>
             </v-btn>
-            <v-btn class="mr-3" small color="primary" dark :to="{name: 'Create'}">Yeni Olustur
+            <v-btn class="mr-3" small color="blue-grey darken-4" dark :to="{name: 'Create'}">Yeni Olustur
               <v-icon small class="ml-1">mdi-plus-outline</v-icon>
             </v-btn>
           </v-toolbar>
         </template>
 
         <template v-slot:item.actions="{ item }">
+          <v-tooltip bottom v-if="item.specificationId==2">
+            <template v-slot:activator="{ on, attrs }">
+              <v-icon small color="teal darken-2
+   accent-2" class="mr-2" v-bind="attrs" v-on="on"
+                      @click="routeGalleryItem(item.id)">
+                mdi-image
+              </v-icon>
+            </template>
+            <span>Galeri</span>
+          </v-tooltip>
           <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
               <v-icon small color="orange lighten-1" class="mr-2" v-bind="attrs" v-on="on"
@@ -78,7 +88,7 @@ export default {
       search: "",
       newData: [],
       headers: [
-        {text: '#',align: 'start',sortable: false,value: 'id'},
+        {text: '#', align: 'start', sortable: false, value: 'id'},
         {text: 'Baslik', value: 'title_tr'},
         {text: 'Menu durum', value: 'isMain'},
         {text: 'İslemler', value: 'actions', sortable: false}
@@ -116,6 +126,9 @@ export default {
     },
     routeUpdateItem(id) {
       this.$router.push({name: 'Update', params: {id: id}})
+    },
+    routeGalleryItem(id) {
+      this.$router.push({name: 'galleryPage', params: {page_id: id}})
     }
   }
 }

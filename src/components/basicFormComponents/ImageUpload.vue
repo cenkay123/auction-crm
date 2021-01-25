@@ -70,7 +70,7 @@ export default {
       default: false
     },
     accept: {
-      default: 'image/*'
+      default: '/'
     },
     multiple: {
       default: null

@@ -4,35 +4,55 @@
       Yeni Sayfa Olustur
     </v-card-title>
     <v-divider></v-divider>
-    <v-form v-model="pagesForm.valid" class="px-1 px-md-10 pt-2">
+    <v-form v-model="pagesForm.valid" class="px-1 px-md-10 pt-2 formClass">
       <v-row>
         <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="pagesForm['title_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
-                        :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
-                        outlined></v-text-field>
+          <v-text-field ref="name" v-model="pagesForm['title_' + item.code]" v-for="item in $store.state.form.languages"
+                        :key="item.id"
+                        label="Sayfa Adı"
+                        placeholder="Baslik giriniz" dense
+                        outlined>
+            <template v-slot:prepend>
+              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+            </template>
+          </v-text-field>
+
+
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="pagesForm['keywords_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
-                        :label="'Keywords ' + item.code.toUpperCase()" placeholder="Keywords giriniz" dense
-                        outlined></v-text-field>
+          <v-text-field ref="name" v-model="pagesForm['keywords_' + item.code]"
+                        v-for="item in $store.state.form.languages" :key="item.id"
+                        label="Keywords" placeholder="Keywords giriniz" dense
+                        outlined>
+            <template v-slot:prepend>
+              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+            </template>
+          </v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field ref="name" v-model="pagesForm.RedirectionLink"
-                        label="link" placeholder="Link yonlendirme" outlined dense></v-text-field>
+                        label="Link" placeholder="Link yonlendirme" outlined dense></v-text-field>
         </v-col>
-         <v-col cols="12" md="6">
+        <v-col cols="12" md="6">
           <v-text-field ref="name" type="number" v-model="pagesForm.rank"
                         label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-textarea counter v-model="pagesForm['description_' + item.code]" v-for="item in $store.state.form.languages" :key="item.id"
-                      :label="'Ozet ' + item.code.toUpperCase()" placeholder="ozet giriniz"
-                      outlined dense></v-textarea>
+          <v-textarea counter v-model="pagesForm['description_' + item.code]"
+                      v-for="item in $store.state.form.languages" :key="item.id"
+                      label="Açıklama" placeholder="Açıklama giriniz"
+                      outlined dense>
+            <template v-slot:prepend>
+              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+            </template>
+          </v-textarea>
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'Icerik ' + item.code.toUpperCase()"></label>
-            <Editor :data="pagesForm" dataItem="detail_" :lang="item"></Editor>
+            <label class="custom-label">İçerik</label>
+            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="pagesForm" class="mt-3 mb-5" dataItem="detail_" :lang="item"></Editor>
+
           </div>
         </v-col>
         <v-col cols="12">
@@ -42,20 +62,20 @@
         </v-col>
         <v-col cols="6">
           <v-select :items="pagePropertyList" v-model="pagesForm.SpecificationId" item-text="name" item-value="id"
-                    label="Sayfa Ozelligi" outlined dense></v-select>
+                    label="Sayfa Özelliği" outlined dense></v-select>
         </v-col>
         <v-col cols="6">
           <v-select :items="$store.state.pages.pages" v-model="pagesForm.ParentId" default="id" item-text="title"
                     item-value="id"
-                    label="Ust Sayfalar" outlined dense></v-select>
+                    label="Üst Sayfalar" outlined dense></v-select>
         </v-col>
         <v-col cols="12" md="6">
           <v-row>
             <v-col cols="6">
-              <v-checkbox v-model="pagesForm.IsMain" label="Ust menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="pagesForm.IsMain" label="Üst menüde gözüksün" class="mt-0"></v-checkbox>
             </v-col>
             <v-col cols="6">
-              <v-checkbox v-model="pagesForm.IsFooter" label="Alt menude gozuksun" class="mt-0"></v-checkbox>
+              <v-checkbox v-model="pagesForm.IsFooter" label="Alt menüde gözüksün" class="mt-0"></v-checkbox>
             </v-col>
           </v-row>
         </v-col>

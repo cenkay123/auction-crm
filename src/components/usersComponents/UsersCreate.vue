@@ -24,7 +24,7 @@
           <v-row>
             <v-text-field ref="name" v-model="createData['password']"
                           label="Şifre"
-                          placeholder="Şifre" type="number" dense outlined class="col-md-12 px-1"
+                          placeholder="Şifre" type="password" dense outlined class="col-md-12 px-1"
             ></v-text-field>
           </v-row>
         </v-col>

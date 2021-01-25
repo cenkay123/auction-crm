@@ -405,7 +405,7 @@ const routes = [
             }
         ]
     },
-
+    /** Popup Router */
     {
         path: '/Popup',
         name: 'Popup',
@@ -451,8 +451,8 @@ const routes = [
             }
         ]
     },
-
-      {
+    /** Users Router */
+    {
         path: '/Users',
         name: 'Users',
         component: Users,
@@ -479,7 +479,7 @@ const routes = [
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Kullanıcılar', route: '/Users'},
-                        {name: 'Kullanıcı Ekleme', route: '/Users',disabled: true},
+                        {name: 'Kullanıcı Ekleme', route: '/Users', disabled: true},
                     ]
                 }
             },

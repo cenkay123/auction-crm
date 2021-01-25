@@ -2,20 +2,24 @@
   <v-card>
     <v-card-title class="pb-3">Yeni Slider ekleme</v-card-title>
     <v-divider></v-divider>
-    <v-form class="px-4 px-md-10 pt-2">
+    <v-form class="px-4 px-md-10 pt-2 formClass">
       <v-row>
         <v-col cols="12">
           <v-row>
             <v-text-field ref="name" v-model="slaytpostData['Title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
-                          outlined class="col-md-6 px-1"></v-text-field>
+                          label="Başlık" placeholder="Başlık giriniz" dense
+                          outlined class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-text-field>
           </v-row>
         </v-col>
         <v-col cols="12">
           <v-row>
             <v-text-field ref="name" v-model="slaytpostData.link"
-                          label="Link" placeholder="Link yonlendirme" outlined dense></v-text-field>
+                          label="Link" placeholder="Link yönlendirme" outlined dense></v-text-field>
           </v-row>
         </v-col>
         <v-col cols="12">
@@ -23,19 +27,24 @@
             <v-textarea counter v-model="slaytpostData['summary_' + item.code]"
                         v-for="item in $store.state.form.languages"
                         :key="item.id"
-                        :label="'Aciklama ' + item.code.toUpperCase()" placeholder="aciklama giriniz"
-                        outlined dense class="col-md-6 px-1"></v-textarea>
+                        label="Açıklama" placeholder="Açıklama giriniz"
+                        outlined dense class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-textarea>
           </v-row>
         </v-col>
         <v-col cols="12">
           <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'İçerik ' + item.code.toUpperCase()"></label>
-            <Editor :data="slaytpostData" dataItem="content_" :lang="item"></Editor>
+            <label class="custom-label">İçerik</label>
+            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="slaytpostData" dataItem="content_" class="mt-3 mb-4" :lang="item"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-EN">Resim yukle</label>
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+          <vue-dropzone ref="myVueDropzone" id="dropzone" class="mt-3" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="12">
@@ -79,7 +88,7 @@ export default {
       this.api_post('/sliders/add', {
         slider: this.slaytpostData
       }, this.addSuccess, this.addError);
-      this.$store.state.settings.loader=true;
+      this.$store.state.settings.loader = true;
     },
     addSuccess() {
       this.Error_Message('İslem Basarılı', '', 'success')

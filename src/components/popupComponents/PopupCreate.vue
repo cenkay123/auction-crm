@@ -1,7 +1,7 @@
 <template>
 
   <v-card>
-    <v-card-title class="pb-3">Yeni  ekleme</v-card-title>
+    <v-card-title class="pb-3">Yeni ekleme</v-card-title>
     <v-divider></v-divider>
     <v-form class="px-4 px-md-10 pt-2">
       <v-row>
@@ -9,11 +9,15 @@
           <v-row>
             <v-text-field ref="name" v-model="popupPostdata['title_' + item.code]"
                           v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'Baslik ' + item.code.toUpperCase()" placeholder="Baslik giriniz" dense
-                          outlined class="col-md-6 px-1"></v-text-field>
+                          label="Baslik" placeholder="Baslik giriniz" dense
+                          outlined class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-text-field>
           </v-row>
         </v-col>
-        <v-col cols="12">
+        <v-col cols="12" class="pl-5">
           <v-row>
             <v-text-field ref="name" v-model="popupPostdata.RedirectionLink"
                           label="Link" placeholder="Link yonlendirme" outlined dense></v-text-field>
@@ -24,19 +28,23 @@
             <v-textarea counter v-model="popupPostdata['description_' + item.code]"
                         v-for="item in $store.state.form.languages"
                         :key="item.id"
-                        :label="'Açıklama ' + item.code.toUpperCase()" placeholder="Açıklama giriniz"
-                        outlined dense class="col-md-6 px-1"></v-textarea>
+                        label="Açıklama" placeholder="Açıklama giriniz"
+                        outlined dense class="col-md-6 px-1">
+              <template v-slot:prepend>
+                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              </template>
+            </v-textarea>
           </v-row>
         </v-col>
         <v-col cols="12">
           <label class="custom-label flag-EN">Resim yukle</label>
-          <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
+          <vue-dropzone ref="myVueDropzone"  class="mt-3" id="dropzone" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
         <v-col cols="12">
           <v-checkbox v-model="popupPostdata.IsActive" label="Aktif/Pasif" class="mt-0"></v-checkbox>
         </v-col>
-        <v-col cols="12" md="2" class="px-7 py-0">
+        <v-col cols="12" md="2">
           <v-btn class="login-btn" color="success" @click="addData">Kaydet</v-btn>
         </v-col>
         <v-col cols="10"></v-col>
@@ -50,11 +58,11 @@
 import vue2Dropzone from "vue2-dropzone";
 
 export default {
-name: "PopupCreate",
+  name: "PopupCreate",
   components: {
     vueDropzone: vue2Dropzone
   },
-   data() {
+  data() {
     return {
       dropzoneOptions: {
         url: 'https://httpbin.org/post',

@@ -16,6 +16,10 @@
     opacity: 0 !important;
 }
 
+.formClass .v-input__prepend-outer {
+    margin: 0 !important;
+}
+
 .c00c292 {
     background-color: #00c292 !important;
     color: #fff !important;
@@ -46,6 +50,25 @@
     background-color: #14213d
 }
 
+.p-0 {
+    padding: 0 !important;
+}
+
+.label-in-Img {
+    width: 24px!important;
+    height: 24px!important;
+    position: absolute!important;
+    margin-left: 10px!important;
+    opacity: 0.6;
+}
+.img-right .v-image__image{opacity: 0.6}
+.img-right {
+    max-width: 30px;
+    position: absolute !important;
+    right: 17px;
+    top: 8px;
+}
+
 .rank-input {
     border: 1px solid #ccc;
     width: 26%;
@@ -54,10 +77,19 @@
     color: #000;
     opacity: 1;
 }
-.sidebarDropdown{padding-left: 26%!important;}
-.customListgroup .v-list-group__header.v-list-item{padding-left: 0!important;}
 
-.w-100{width: 100%}
+.sidebarDropdown {
+    padding-left: 26% !important;
+}
+
+.customListgroup .v-list-group__header.v-list-item {
+    padding-left: 0 !important;
+}
+
+.w-100 {
+    width: 100%
+}
+
 .profilePic .v-image__image--cover {
     background-size: 30px
 }
