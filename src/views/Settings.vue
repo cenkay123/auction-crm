@@ -10,7 +10,7 @@
     </v-tabs>
 
     <v-card-text>
-      <v-form class="px-0 pt-2 md-px-10">
+      <v-form class="px-0 pt-2 md-px-10" enctype="multipart/form-data">
         <v-row>
           <v-col cols="12">
             <v-text-field ref="name"
@@ -36,7 +36,7 @@
                           outlined
                           ref="name"></v-text-field>
           </v-col>
-            <v-col cols="12" md="4">
+          <v-col cols="12" md="4">
             <v-text-field label="Fax"
                           v-model="$store.state.settings.siteSettings.fax"
                           outlined
@@ -108,13 +108,13 @@
                           outlined
                           ref="name"></v-text-field>
           </v-col>
-           <v-col cols="6">
+          <v-col cols="6">
             <v-text-field label="Google Recaptcha Site Key"
                           v-model="$store.state.settings.siteSettings.googleRecaptchaSiteKey"
                           outlined
                           ref="name"></v-text-field>
           </v-col>
-                     <v-col cols="6">
+          <v-col cols="6">
             <v-text-field label="Google Recaptcha Secret Key"
                           v-model="$store.state.settings.siteSettings.googleRecaptchaSecretKey"
                           outlined
@@ -124,9 +124,12 @@
             <v-row>
               <v-col cols="12" md="6">
 
-                <v-file-input v-model="$store.state.settings.siteSettings.logo" color="blue-grey darken-4" label="Site Logosu" placeholder="Lutfen Logo Seciniz" prepend-icon="mdi-paperclip" outlined :show-size="1000">
+                <v-file-input v-model="$store.state.settings.siteSettings.logo" color="blue-grey darken-4"
+                              label="Site Logosu" placeholder="Lutfen Logo Seciniz" prepend-icon="mdi-paperclip"
+                              outlined :show-size="1000">
                   <template v-slot:selection="{ index, text }">
-                    <v-chip color="blue-grey darken-4" dark label small v-text="typeof $store.state.settings.siteSettings.logo === 'string' ? $store.state.settings.siteSettings.logo : text"></v-chip>
+                    <v-chip color="blue-grey darken-4" dark label small
+                            v-text="typeof $store.state.settings.siteSettings.logo === 'string' ? $store.state.settings.siteSettings.logo : text"></v-chip>
                   </template>
                 </v-file-input>
               </v-col>
@@ -147,9 +150,9 @@
 <script>
 export default {
   name: "Settings",
-  data(){
-    return{
-      settingsData:{},
+  data() {
+    return {
+      settingsData: {},
     }
   },
   mounted() {
@@ -162,16 +165,25 @@ export default {
     getSuccess(response) {
       this.$store.state.settings.siteSettings = response.data[0]
     },
-    updateData(){
-      this.api_post('/sitesettings/update',{
-        settings:this.$store.state.settings.siteSettings
-      },this.successUpdate, this.errorUpdate)
+
+    updateData() {
+      let formData = new FormData();
+
+      var th = this;
+
+      for (var key in th.$store.state.settings.siteSettings) {
+        var value = th.$store.state.settings.siteSettings[key];
+        formData.append(key,value)
+      }
+
+      this.api_post('/sitesettings/update', formData,
+          {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
     },
-    successUpdate(){
-     this.Error_Message('İslem Basarılı', '', 'success')
+    successUpdate() {
+      this.Error_Message('İslem Basarılı', '', 'success')
       this.getSitesettings();
     },
-    errorUpdate(){
+    errorUpdate() {
       this.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
     }
 
