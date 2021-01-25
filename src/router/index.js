@@ -60,6 +60,9 @@ import ExhibitionsCreate from "@/components/exhibitionsComponents/ExhibitionsCre
 
 import ExhibitionsUpdate from "@/components/exhibitionsComponents/ExhibitionsUpdate";
 
+
+
+import LanguageSettings from "@/views/LanguageSettings";
 Vue.use(VueRouter)
 
 const routes = [
@@ -558,6 +561,7 @@ const routes = [
         ]
     },
 
+
       /** Sergiler Router */
     {
         path: '/Exhibitions',
@@ -606,6 +610,22 @@ const routes = [
         ]
     },
 
+
+
+    /** Dil Ayaları Router */
+    {
+        path: '/LanguageSettings',
+        name: 'LanguageSettings',
+        component: LanguageSettings,
+        meta: {
+            title: 'Dil Ayarlari',
+            breadcrumb: [
+                {name: 'Anasayfa', route: '/'},
+                {name: 'Site Ayarları', route: '/Settings', disabled: false},
+                {name: 'Dil Ayaları', route: '/LanguageSettings', disabled: true},
+            ]
+        }
+    },
 
     {
         path: '/documantation',

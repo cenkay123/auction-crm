@@ -108,6 +108,18 @@
                           outlined
                           ref="name"></v-text-field>
           </v-col>
+           <v-col cols="6">
+            <v-text-field label="Google Recaptcha Site Key"
+                          v-model="$store.state.settings.siteSettings.googleRecaptchaSiteKey"
+                          outlined
+                          ref="name"></v-text-field>
+          </v-col>
+                     <v-col cols="6">
+            <v-text-field label="Google Recaptcha Secret Key"
+                          v-model="$store.state.settings.siteSettings.googleRecaptchaSecretKey"
+                          outlined
+                          ref="name"></v-text-field>
+          </v-col>
           <v-col cols="12">
             <v-row>
               <v-col cols="12" md="6">

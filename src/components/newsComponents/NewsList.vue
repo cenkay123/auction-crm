@@ -48,7 +48,9 @@
       <template v-slot:item.endDate="{item}">
         <div>{{ item.endDate | moment("dddd, MMMM Do YYYY") }}</div>
       </template>
-
+      <template v-slot:item.rank="{item}">
+            <div class="rank-input">{{item.rank}}</div>
+      </template>
       <template v-slot:item.actions="{ item }">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
@@ -88,6 +90,7 @@ export default {
         {text: 'Status', value: 'isActive'},
         {text: 'Yayinlanma tarihi', value: 'createdAt', sortable: false},
         {text: 'Sonlanacagi tarihi', value: 'endDate', sortable: false},
+        {text: 'Sayfa Sırası', value: 'rank'},
         {text: 'İslemler', value: 'actions'}
       ],
     }
