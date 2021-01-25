@@ -54,6 +54,12 @@ import ProductsList from "@/components/productsComponents/ProductsList";
 import ProductsCreate from "@/components/productsComponents/ProductsCreate";
 import ProductsUpdate from "@/components/productsComponents/ProductsUpdate";
 
+import Exhibitions from "@/views/Exhibitions";
+import ExhibitionsList from "@/components/exhibitionsComponents/ExhibitionsList";
+import ExhibitionsCreate from "@/components/exhibitionsComponents/ExhibitionsCreate";
+
+import ExhibitionsUpdate from "@/components/exhibitionsComponents/ExhibitionsUpdate";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -546,6 +552,54 @@ const routes = [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Ürünler', route: '/Products'},
                         {name: 'Ürün Güncelleme', route: '/', disabled: true},
+                    ]
+                }
+            }
+        ]
+    },
+
+      /** Sergiler Router */
+    {
+        path: '/Exhibitions',
+        name: 'Exhibitions',
+        component: Exhibitions,
+        redirect: '/Exhibitions',
+        children: [
+            {
+                path: '/',
+                name: 'ExhibitionsList',
+                component: ExhibitionsList,
+                meta: {
+                    title: 'Sergiler',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sergiler', route: '/', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/ExhibitionsCreate',
+                name: 'ExhibitionsCreate',
+                component: ExhibitionsCreate,
+                meta: {
+                    title: 'Sergi ekleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sergiler', route: '/Exhibitions'},
+                        {name: 'Sergi Ekleme', route: '/', disabled: true},
+                    ]
+                }
+            },
+            {
+                path: '/ExhibitionsUpdate/:id',
+                name: 'ExhibitionsUpdate',
+                component: ExhibitionsUpdate,
+                meta: {
+                    title: 'Sergi Güncelleme',
+                    breadcrumb: [
+                        {name: 'Anasayfa', route: '/'},
+                        {name: 'Sergiler', route: '/Exhibitions'},
+                        {name: 'Sergi Güncelleme', route: '/', disabled: true},
                     ]
                 }
             }
