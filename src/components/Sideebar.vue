@@ -82,6 +82,7 @@ export default {
         {title: 'Sanatcilar', icon: 'mdi-account-star', route: 'Artists', dropDown: []},
         {title: 'Kelimeler', icon: 'mdi-pencil', route: 'Words', dropDown: []},
         {title: 'Popup', icon: 'mdi-gift', route: 'Popup', dropDown: []},
+        {title: 'Sergiler', icon: 'mdi-library', route: 'Exhibitions', dropDown: []},
         {
           title: 'Urunler', icon: 'mdi mdi-cart',
           dropDown: [{
