@@ -7,22 +7,20 @@
     <v-form v-model="pagesForm.valid" class="px-2 px-md-10 pt-2 formClass">
       <v-row>
         <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="updateItems['title_' + item.code]"
-                        v-for="item in $store.state.form.languages" :key="item.id"
+          <v-text-field ref="name" v-model="updateItems['title_' + $store.state.form.selectedLanguage.code]"
                         label="Sayfa adi" placeholder="Sayfa adi giriniz" dense
                         outlined>
             <template v-slot:prepend>
-              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
             </template>
           </v-text-field>
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="updateItems['keywords_' + item.code]"
-                        v-for="item in $store.state.form.languages" :key="item.id"
+          <v-text-field ref="name" v-model="updateItems['keywords_' + $store.state.form.selectedLanguage.code]"
                         label="keywords" placeholder="Keywords giriniz" dense
                         outlined>
             <template v-slot:prepend>
-              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
             </template>
           </v-text-field>
         </v-col>
@@ -35,21 +33,19 @@
                         label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-textarea counter v-model="updateItems['description_' + item.code]"
-                      v-for="item in $store.state.form.languages"
-                      :key="item.id"
+          <v-textarea counter v-model="updateItems['description_' + $store.state.form.selectedLanguage.code]"
                       label="Açıklama" placeholder="ozet giriniz"
                       outlined dense>
             <template v-slot:prepend>
-              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
             </template>
           </v-textarea>
         </v-col>
         <v-col cols="12">
-          <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'İçerik ' + item.code.toUpperCase()"></label>
-            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
-            <Editor :data="updateItems" class="mt-3 mb-4" dataItem="detail_" :lang="item"></Editor>
+          <div>
+            <label class="custom-label" v-text="'İçerik ' + $store.state.form.selectedLanguage.code.toUpperCase()"></label>
+            <img :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="updateItems" class="mt-3 mb-4" dataItem="detail_" :lang="$store.state.form.selectedLanguage"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
