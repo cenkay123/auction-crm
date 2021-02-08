@@ -8,9 +8,8 @@
       <v-row>
         <v-col cols="12">
           <v-row>
-            <v-text-field ref="name" v-model="UpdateData['value_' + item.code]"
-                          v-for="item in $store.state.form.languages" :key="item.id"
-                          :label="'Kelime ' + item.code.toUpperCase()" dense
+            <v-text-field ref="name" v-model="UpdateData['value_' + $store.state.form.selectedLanguage.code]"
+                          :label="'Kelime ' + $store.state.form.selectedLanguage.code.toUpperCase()" dense
                           outlined class="col-md-6 px-1"></v-text-field>
           </v-row>
         </v-col>
