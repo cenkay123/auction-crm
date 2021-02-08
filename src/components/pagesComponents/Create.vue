@@ -7,25 +7,23 @@
     <v-form v-model="pagesForm.valid" class="px-1 px-md-10 pt-2 formClass">
       <v-row>
         <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="pagesForm['title_' + item.code]" v-for="item in $store.state.form.languages"
-                        :key="item.id"
+          <v-text-field ref="name" v-model="pagesForm['title_' + $store.state.form.selectedLanguage.code]"
                         label="Sayfa Adı"
                         placeholder="Baslik giriniz" dense
                         outlined>
             <template v-slot:prepend>
-              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')"
+                     max-width="30"></v-img>
             </template>
           </v-text-field>
-
-
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field ref="name" v-model="pagesForm['keywords_' + item.code]"
-                        v-for="item in $store.state.form.languages" :key="item.id"
+          <v-text-field ref="name" v-model="pagesForm['keywords_' + $store.state.form.selectedLanguage.code]"
                         label="Keywords" placeholder="Keywords giriniz" dense
                         outlined>
             <template v-slot:prepend>
-              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')"
+                     max-width="30"></v-img>
             </template>
           </v-text-field>
         </v-col>
@@ -38,21 +36,22 @@
                         label="Sıralama" placeholder="Sıralama" outlined dense></v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-textarea counter v-model="pagesForm['description_' + item.code]"
-                      v-for="item in $store.state.form.languages" :key="item.id"
+          <v-textarea counter v-model="pagesForm['description_' + $store.state.form.selectedLanguage.code]"
                       label="Açıklama" placeholder="Açıklama giriniz"
                       outlined dense>
             <template v-slot:prepend>
-              <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+              <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')"
+                     max-width="30"></v-img>
             </template>
           </v-textarea>
         </v-col>
         <v-col cols="12">
-          <div v-for="item in $store.state.form.languages" :key="item.id">
+          <div>
             <label class="custom-label">İçerik</label>
-            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
-            <Editor :data="pagesForm" class="mt-3 mb-5" dataItem="detail_" :lang="item"></Editor>
-
+            <img :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" class="label-in-Img"
+                 height="150"/>
+            <Editor :data="pagesForm" class="mt-3 mb-5" dataItem="detail_"
+                    :lang="$store.state.form.selectedLanguage"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
@@ -77,7 +76,7 @@
             <v-col cols="5">
               <v-checkbox v-model="pagesForm.IsFooter" label="Alt menüde gözüksün" class="mt-0"></v-checkbox>
             </v-col>
-             <v-col cols="2">
+            <v-col cols="2">
               <v-checkbox v-model="pagesForm.isActive" label="Durumu" class="mt-0"></v-checkbox>
             </v-col>
           </v-row>
