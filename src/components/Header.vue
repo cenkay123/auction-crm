@@ -5,6 +5,42 @@
     </v-btn>
     <v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
     <v-spacer></v-spacer>
+    <v-menu bottom offset-y>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+        depressed
+        class="font-weight-bold mr-2"
+        color="#073b4c"
+        small
+        v-bind="attrs"
+        v-on="on"
+        >
+          {{ $store.state.form.selectedLanguage.lang }}
+          <v-icon
+              right
+              dark
+              small
+          >
+            mdi-arrow-down-thick
+          </v-icon>
+        </v-btn>
+      </template>
+      <v-list dense>
+        <v-list-item
+            v-for="(language, i) in $store.state.form.languages"
+            :key="i"
+            @click="$store.commit('changeLanguage', language)"
+            :class="{'v-list-item--active': language.id === $store.state.form.selectedLanguage.id}"
+        >
+          <v-list-item-title class="align-center d-flex">
+          <span>
+            <img :src="require(`../assets/${language.code}.png`)" :alt="`${language.lang}`" class="mr-1">
+          </span>
+            {{ language.lang.toUpperCase() }}
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
     <v-btn color="#fff" icon :to="{name: 'Settings'}">
       <v-icon>mdi-settings</v-icon>
     </v-btn>
@@ -74,7 +110,7 @@ export default {
 }
 
 .mode-item .v-input--switch {
-  margin: 0!important;
+  margin: 0 !important;
 }
 
 </style>

@@ -13,7 +13,8 @@ const moduleForm = {
             {lang: 'turkce', code: 'tr', id: 1},
             {lang: 'english', code: 'en', id: 2},
         ],
-        drawer: 1
+        drawer: 1,
+        selectedLanguage: {lang: 'turkce', code: 'tr', id: 1}
     },
     mutations: {
         hello() {
@@ -25,6 +26,9 @@ const moduleForm = {
             } else {
                 state.drawer = 1
             }
+        },
+        changeLanguage(state, lang) {
+            state.selectedLanguage = lang
         }
     }
 }

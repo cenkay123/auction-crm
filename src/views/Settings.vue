@@ -167,8 +167,7 @@ export default {
     },
 
     updateData() {
-      this.api_post('/sitesettings/update', this.findFormData(this.$store.state.settings.siteSettings),
-          {headers: {'Content-Type': 'multipart/form-data'}}, this.successUpdate, this.errorUpdate)
+      this.api_post('/sitesettings/update', this.findFormData(this.$store.state.settings.siteSettings), this.successUpdate, this.errorUpdate)
     },
     successUpdate() {
       this.Error_Message('İslem Basarılı', '', 'success')
@@ -177,7 +176,6 @@ export default {
     errorUpdate() {
       this.Error_Message('İslem Hatalı', 'Tekrar deneyiniz', 'error')
     }
-
   }
 }
 </script>
