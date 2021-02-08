@@ -10,7 +10,7 @@
           <v-row>
             <v-text-field ref="name" v-model="productUpdateData['name_' + $store.state.form.selectedLanguage.code]"
                           label="Başlık" placeholder="Başlık giriniz" dense
-                          outlined class="col-md-6 px-1">
+                          outlined class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
@@ -37,7 +37,7 @@
           <v-row>
             <v-textarea counter v-model="productUpdateData['description_' + $store.state.form.selectedLanguage.code]"
                         label="Açıklama Metni" placeholder="Ürün açıklaması giriniz"
-                        outlined dense class="col-md-6 px-1">
+                        outlined dense class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
@@ -49,6 +49,13 @@
           <vue-dropzone class="mt-3" ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
+        <v-col cols="12">
+          <v-row>
+            <v-text-field ref="name" v-model="productUpdateData.rank"
+                          class="col-md-12 px-2"
+                          label="Ürün sırası" placeholder="Ürün Sırası" type="number" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
         <v-col cols="6">
           <v-select :items="categories" v-model="productUpdateData.categoryId" default="id" item-text="title_tr"
                     item-value="id"
@@ -58,13 +65,6 @@
           <v-select :items="artist" v-model="productUpdateData.artistId" default="id" item-text="nameSurname"
                     item-value="id"
                     label="Artist seçimi" outlined dense></v-select>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-row>
-            <v-text-field ref="name" v-model="productUpdateData.rank"
-                          class="col-md-12 px-2"
-                          label="Ürün sırası" placeholder="Ürün Sırası" type="number" outlined dense></v-text-field>
-          </v-row>
         </v-col>
         <v-col cols="12">
           <v-row>

@@ -10,7 +10,7 @@
           <v-row>
             <v-text-field ref="name" v-model="slaytUpdateData['title_' + $store.state.form.selectedLanguage.code]"
                           label="Başlık" placeholder="Başlık giriniz" dense
-                          outlined class="col-md-6 px-1">
+                          outlined class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
@@ -21,7 +21,7 @@
           <v-row>
             <v-textarea counter v-model="slaytUpdateData['summary_' + $store.state.form.selectedLanguage.code]"
                         label="Açıklama" placeholder="açıklama giriniz"
-                        outlined dense class="col-md-6 px-1">
+                        outlined dense class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>

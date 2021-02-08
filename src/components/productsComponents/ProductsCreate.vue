@@ -8,7 +8,7 @@
           <v-row>
             <v-text-field ref="name" v-model="productspostData['name_' + $store.state.form.selectedLanguage.code]"
                           label="Ürün adı" placeholder="Ürün adı" dense
-                          outlined class="col-md-6">
+                          outlined class="col-md-12">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
@@ -51,7 +51,7 @@
           <v-row>
             <v-textarea counter v-model="productspostData['description_' + $store.state.form.selectedLanguage.code]"
                         label="Ürün Açıklama" placeholder="Ürün Açıklaması giriniz"
-                        outlined dense class="col-md-6 px-1">
+                        outlined dense class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
@@ -64,7 +64,13 @@
           <vue-dropzone ref="myVueDropzone" id="dropzone" class="mt-3" :options="dropzoneOptions"
                         vdropzone-removed-file="onRemoveUploadingFile"></vue-dropzone>
         </v-col>
-
+        <v-col cols="12">
+          <v-row>
+            <v-text-field ref="name" v-model="productspostData.rank"
+                          class="col-md-12 px-2"
+                          label="Ürün sırası" placeholder="Ürün Sırası" type="number" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
         <v-col cols="6">
           <v-select :items="categories" v-model="productspostData.categoryId" default="id" item-text="title_tr"
                     item-value="id"
@@ -77,13 +83,6 @@
                     item-value="id"
                     @click="fetchArtists()"
                     label="Artist seçimi" outlined dense></v-select>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-row>
-            <v-text-field ref="name" v-model="productspostData.rank"
-                          class="col-md-12 px-2"
-                          label="Ürün sırası" placeholder="Ürün Sırası" type="number" outlined dense></v-text-field>
-          </v-row>
         </v-col>
         <v-col cols="12">
           <v-checkbox v-model="productspostData.IsActive" label="Aktif/Pasif" class="mt-0"></v-checkbox>

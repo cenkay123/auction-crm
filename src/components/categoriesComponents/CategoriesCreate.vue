@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-card-title class="pb-3">Yeni Kategori ekleme</v-card-title>
+    <v-card-title class="pb-3">Yeni Kategori Ekleme</v-card-title>
     <v-divider></v-divider>
     <v-form class="px-4 px-md-10 pt-2">
       <v-row>
@@ -19,7 +19,7 @@
           <v-checkbox v-model="categoriesData.IsActive" label="Aktif/Pasif" class="mt-0"></v-checkbox>
         </v-col>
         <v-col cols="12" md="2">
-          <v-btn class="login-btn" color="blue-grey darken-4" @click="addCategories">Kaydet</v-btn>
+          <v-btn class="login-btn" color="success" @click="addCategories">Kaydet</v-btn>
         </v-col>
       </v-row>
     </v-form>

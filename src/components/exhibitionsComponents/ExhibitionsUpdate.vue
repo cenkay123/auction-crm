@@ -10,7 +10,7 @@
           <v-row>
             <v-text-field ref="name" v-model="sergiItem['title_' + $store.state.form.selectedLanguage.code]"
                           label="Sergi adı" placeholder="Sergi adı giriniz" dense
-                          outlined class="col-md-6 px-1">
+                          outlined class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
@@ -35,7 +35,7 @@
           <v-row>
             <v-textarea counter v-model="sergiItem['shortDescription_' + $store.state.form.selectedLanguage.code]"
                         label="Açıklama" placeholder="Açıklama giriniz"
-                        outlined dense class="col-md-6 px-1">
+                        outlined dense class="col-md-12 px-1">
               <template v-slot:prepend>
                 <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>

@@ -373,7 +373,7 @@ const routes = [
             }
         ]
     },
-    /** Kategoriler Router */
+    /** Categories Router */
     {
         path: '/Categories',
         name: 'Categories',
@@ -400,6 +400,7 @@ const routes = [
                     title: 'Kategori Ekleme',
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
+                        {name: 'Kategoriler', route: '/Categories'},
                         {name: 'Kategori Ekleme', route: '/CategoriesCreate', disabled: true},
                     ]
                 }
@@ -447,6 +448,7 @@ const routes = [
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Popup', route: '/Popup'},
+                        {name: 'Popup Ekleme', route: '/PopupCreate', disabled: true},
                     ]
                 }
             },
@@ -459,7 +461,7 @@ const routes = [
                     breadcrumb: [
                         {name: 'Anasayfa', route: '/'},
                         {name: 'Popup', route: '/Popup'},
-                        {name: 'Popup Güncelleme', route: '/popup', disabled: true},
+                        {name: 'Popup Güncelleme', route: '/PopupUpdate', disabled: true},
                     ]
                 }
             }
