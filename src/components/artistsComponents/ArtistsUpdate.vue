@@ -47,9 +47,9 @@
         </v-col>
 
         <v-col cols="12">
-          <div v-for="item in $store.state.form.languages" :key="item.id">
-            <label class="custom-label" v-text="'Sanatçı bilgisi ' + item.code.toUpperCase()"></label>
-            <Editor :data="artistsItem" dataItem="about_" class="mt-3 mb-4" :lang="item"></Editor>
+          <div>
+            <label class="custom-label" v-text="'Sanatçı bilgisi ' + $store.state.form.selectedLanguage.code.toUpperCase()"></label>
+            <Editor :data="artistsItem" dataItem="about_" class="mt-3 mb-4" :lang="$store.state.form.selectedLanguage"></Editor>
           </div>
         </v-col>
         <v-col cols="12">
