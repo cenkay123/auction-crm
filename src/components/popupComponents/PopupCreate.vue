@@ -7,12 +7,11 @@
       <v-row>
         <v-col cols="12">
           <v-row>
-            <v-text-field ref="name" v-model="popupPostdata['title_' + item.code]"
-                          v-for="item in $store.state.form.languages" :key="item.id"
+            <v-text-field ref="name" v-model="popupPostdata['title_' + $store.state.form.selectedLanguage.code]"
                           label="Baslik" placeholder="Baslik giriniz" dense
                           outlined class="col-md-6 px-1">
               <template v-slot:prepend>
-                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+                <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
             </v-text-field>
           </v-row>
@@ -25,13 +24,11 @@
         </v-col>
         <v-col cols="12">
           <v-row>
-            <v-textarea counter v-model="popupPostdata['description_' + item.code]"
-                        v-for="item in $store.state.form.languages"
-                        :key="item.id"
+            <v-textarea counter v-model="popupPostdata['description_' + $store.state.form.selectedLanguage.code]"
                         label="Açıklama" placeholder="Açıklama giriniz"
                         outlined dense class="col-md-6 px-1">
               <template v-slot:prepend>
-                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+                <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
             </v-textarea>
           </v-row>

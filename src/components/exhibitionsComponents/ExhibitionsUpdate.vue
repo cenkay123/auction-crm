@@ -8,12 +8,11 @@
       <v-row>
         <v-col cols="12">
           <v-row>
-            <v-text-field ref="name" v-model="sergiItem['title_' + item.code]"
-                          v-for="item in $store.state.form.languages" :key="item.id"
+            <v-text-field ref="name" v-model="sergiItem['title_' + $store.state.form.selectedLanguage.code]"
                           label="Sergi adı" placeholder="Sergi adı giriniz" dense
                           outlined class="col-md-6 px-1">
               <template v-slot:prepend>
-                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+                <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
             </v-text-field>
           </v-row>
@@ -34,13 +33,11 @@
         </v-col>
         <v-col cols="12">
           <v-row>
-            <v-textarea counter v-model="sergiItem['shortDescription_' + item.code]"
-                        v-for="item in $store.state.form.languages"
-                        :key="item.id"
+            <v-textarea counter v-model="sergiItem['shortDescription_' + $store.state.form.selectedLanguage.code]"
                         label="Açıklama" placeholder="Açıklama giriniz"
                         outlined dense class="col-md-6 px-1">
               <template v-slot:prepend>
-                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+                <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
             </v-textarea>
           </v-row>
@@ -78,10 +75,10 @@
           </v-menu>
         </v-col>
         <v-col cols="12">
-          <div v-for="item in $store.state.form.languages" :key="item.id">
+          <div>
             <label class="custom-label">İçerik</label>
-            <img :src="require('../../assets/'+item.code+'.png')" class="label-in-Img" height="150"/>
-            <Editor :data="sergiItem" class="mt-3 mb-4" dataItem="longDescription_" :lang="item"></Editor>
+            <img :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" class="label-in-Img" height="150"/>
+            <Editor :data="sergiItem" class="mt-3 mb-4" dataItem="longDescription_" :lang="$store.state.form.selectedLanguage"></Editor>
           </div>
         </v-col>
         <v-col cols="12">

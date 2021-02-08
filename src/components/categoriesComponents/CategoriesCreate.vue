@@ -6,12 +6,11 @@
       <v-row>
         <v-col cols="12">
           <v-row>
-            <v-text-field ref="name" v-model="categoriesData['title_' + item.code]"
-                          v-for="item in $store.state.form.languages" :key="item.id"
+            <v-text-field ref="name" v-model="categoriesData['title_' + $store.state.form.selectedLanguage.code]"
                           label="Kategori adi" placeholder="Kategori adı giriniz" dense
                           outlined class="col-md-6 px-1">
               <template v-slot:prepend>
-                <v-img class="img-right" :src="require('../../assets/'+item.code+'.png')" max-width="30"></v-img>
+                <v-img class="img-right" :src="require('../../assets/'+$store.state.form.selectedLanguage.code+'.png')" max-width="30"></v-img>
               </template>
             </v-text-field>
           </v-row>
