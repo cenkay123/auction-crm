@@ -15,19 +15,27 @@
             </v-text-field>
           </v-row>
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="4">
           <v-row>
             <v-text-field ref="name" v-model="productspostData.price"
                           class="col-md-12 px-2"
-                          label="Fiyat" placeholder="Fiyat" type="number" outlined dense></v-text-field>
+                          label="Fiyat" placeholder="Fiyat" type="number" prefix="₺" outlined dense></v-text-field>
           </v-row>
         </v-col>
 
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="4">
           <v-row>
             <v-text-field ref="name" v-model="productspostData.discountrate"
                           class="col-md-12 px-2"
-                          label="İndirim oranı" placeholder="İndirim oranı" type="number" outlined dense></v-text-field>
+                          label="İndirim oranı" placeholder="İndirim oranı" type="number" prefix="%" outlined dense></v-text-field>
+          </v-row>
+        </v-col>
+
+        <v-col cols="12" md="4">
+          <v-row>
+            <v-text-field ref="name" :value="(((100 - (productspostData.discountrate)) / 100) * productspostData.price).toFixed(2)"
+                          class="col-md-12 px-2"
+                          label="Yansitilacak Fiyat" placeholder="Yansitilacak Fiyat" disabled type="number" prefix="₺" outlined dense></v-text-field>
           </v-row>
         </v-col>
 
